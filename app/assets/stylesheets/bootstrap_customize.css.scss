@@ -1,0 +1,72 @@
+h1, h2, h3, h4 {
+  color: $brand-primary;
+}
+
+body {
+  background: #E9E9E9 image-url('sativa.png') repeat;
+}
+
+.navbar {
+  background-color: $brand-primary;
+  border-bottom: none;
+
+  a { color: #FFF; font-size: 16px }
+
+  .navbar-header {
+    a.navbar-brand {
+      font-size: 18px;
+    }
+
+    button.navbar-toggle {
+      font-size: 16px;
+      color: #FFF;
+    }
+  }
+
+  .navbar-right {
+    float: right;
+    margin-right: -15px;
+    > li {
+      float: left;
+    }    
+    .navbar-toggle { display: none; }
+  }  
+
+  .navbar-collapse ul.nav li { 
+    &:hover a { color: $brand-primary; background-color: #FFF;}
+  }
+
+  @media (max-width: $grid-float-breakpoint) {
+    .navbar-header {
+      float: left;
+    }
+        
+    .navbar-right {
+      margin-right: -15px;
+
+      .navbar-toggle {
+        display: block;
+        padding: 0;
+        margin: 0;
+      }
+    }   
+  }  
+}
+
+.list-group {
+  border-radius: 0px;
+  .list-group-item {
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+}
+
+.panel {
+  border: none;
+  border-top: 2px solid $brand-primary;
+  .panel-heading {
+    background-color: lighten(#E9E9E9, 6%);
+    .panel-title { color: $brand-primary; }
+  }
+}

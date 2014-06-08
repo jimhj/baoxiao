@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html
+  head
+    title Baoxiao
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = csrf_meta_tags
+  body
+    .navbar.navbar-fixed-top
+      .container
+        .navbar-header
+          a.navbar-brand href="#{root_path}" 爆笑集中营
+        ul.nav.navbar-nav.navbar-right
+          - if login?
+            li
+              a href="#"= current_user.name
+          - else
+            li: a href="#{sign_up_path}" 注册
+            li: a href="#" 登录
+          li.navbar-toggle: a href="javascript:;" data-toggle="collapse" data-target="#header"
+            i.fa.fa-bars
+        #header.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li: a href="#" 最新
+            li: a href="#" 图片
+            li: a href="#" 文字         
+    .main
+      .container
+        .row
+          = yield

@@ -1,0 +1,21 @@
+---
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        avatar: "头像"
+        created_at: "创建于"
+        email: Email
+        username: "昵称"
+        password: "密码"
+        password_confirmation: "密码确认"
+        login: "用户名"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              format: "无效的邮件格式"
+            name:
+              format: "只能使用字母、数字或 - 号，并且不能以 - 号开头"
+              length: "长度为 4-20 个字符"

@@ -1,0 +1,51 @@
+/*
+ *= require font-awesome
+*/
+
+$brand-primary: #F19670;
+
+@import "bootstrap";
+@import "bootstrap_customize";
+@import "jokes";
+
+@each $margin in 2, 5, 10, 15, 20, 25, 30, 50 {
+  .ml-#{$margin} { margin-left: #{$margin}px; }
+  .mr-#{$margin} { margin-right: #{$margin}px; }
+  .mt-#{$margin} { margin-top: #{$margin}px; }
+  .mb-#{$margin} { margin-bottom: #{$margin}px; }
+}
+
+.main {
+  margin-top: 70px;
+}
+
+.main > .container {
+  > .row {
+    width: 90%;
+    margin: 0 auto;    
+  }
+
+  @media (max-width: $grid-float-breakpoint) {
+    padding-left: 0;
+    padding-right: 0;
+
+    > .row {
+      width: 100%;
+      margin: 0 auto;
+
+      .col-md-6, .col-md-8, .panel {
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0;    
+      }
+
+      .col-md-8 .list-group-item {
+        border-radius: 0;
+        .tips { display: none; }
+      }
+
+      .recent { display: none; }       
+    }
+  }
+}
+

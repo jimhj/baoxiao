@@ -1,0 +1,62 @@
+.col-md-8
+  .jokes.list-group
+    - @jokes.each do |joke|
+      .list-group-item
+        - unless joke.anonymous?
+          .list-group-item-user
+            a href="#" 
+              img src="http://images1.maxthon.cn/avatar/17/891/17891266/1380202364.jpg"
+            a.ml-5 href="#" 毛泽北
+            time.ml-5 大约1小时前
+            a.ml-5 href="#" 糗事百科
+        - if joke.title.present?
+          h4.list-group-item-heading.mt-10
+            a href="#{joke_path(213)}"= joke.title
+        .list-group-item-text.mt-10
+          .content= joke.content
+          - if joke.picture.present?
+            .thumb.mt-10
+              a href="#"
+                = image_tag joke.picture.small.url
+        .status.mt-5
+          ul.list-unstyled.clearfix
+            li
+              a href="#"
+                i.fa.fa-thumbs-o-up
+                span.ml-2 16
+            li.ml-10
+              a href="#"
+                i.fa.fa-thumbs-o-down
+                span.ml-2 20
+            li.ml-10
+              a href="#"
+                i.fa.fa-comment-o
+                span.ml-2 7
+            li.pull-right
+              a href="#"
+                i.fa.fa-share-square-o
+.col-md-4
+  .panel.recent
+    .panel-heading 
+      h3.panel-title 最新的蚊子笑话
+    .panel-body
+      ul.list-unstyled
+        li.mb-10
+          a href="#" 大爷你这么搞笑，大妈不会放过你的
+        li.mb-10
+          a href="#" 属于高温时期冷笑话
+  .panel.recent
+    .panel-heading 
+      h3.panel-title 最新的搞笑图片
+    .panel-body
+      ul.list-unstyled.joke-pictures.clearfix
+        - 5.times do
+          li
+            a href="#"
+              img src="http://i2.kl688.com/kl688File/2014-5/2014053011162041550.jpg"
+              span 属于高温时期冷笑话
+
+          li
+            a href="#"
+              img src="http://i2.kl688.com/kl688File/2014-5/2014053011162041550.jpg"
+              span 属于高温时期冷笑话
