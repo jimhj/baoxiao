@@ -13,9 +13,6 @@ timeout 180
 listen 9001, :tcp_nopush => true
 listen "/tmp/unicorn.#{application}.sock", :backlog => 64
 
-# Spawn unicorn master worker for user apps (group: apps)
-user ENV['USER'] || 'ruby', ENV['USER'] || 'ruby'
-
 # Fill path to your app
 working_directory current_path
 
