@@ -3,6 +3,6 @@ class JokesController < ApplicationController
   end
   
   def show
-    
+    @joke = Joke.find params[:id]
   end
 end

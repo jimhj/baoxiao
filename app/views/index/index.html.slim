@@ -2,7 +2,6 @@
   .jokes.list-group
     - @jokes.each do |joke|
       .list-group-item
-       
         .list-group-item-user
           - unless joke.anonymous?
             a href="#" 
@@ -14,31 +13,34 @@
             a= joke.from
         - if joke.title.present?
           h4.list-group-item-heading.mt-10
-            a href="#{joke_path(213)}"= joke.title
+            a href="#{joke_path(joke)}"= joke.title
         .list-group-item-text.mt-10
           .content= joke.content
           - if joke.picture.present?
             .thumb.mt-10
-              a href="#"
-                = image_tag joke.picture.small.url
+              a href="#{joke_path(joke)}"
+                - if mobile?
+                  = image_tag joke.picture.small.url
+                - else
+                  = image_tag joke.picture.normal.url
         .status.mt-5
           ul.list-unstyled.clearfix
             li
               a href="#"
                 i.fa.fa-thumbs-o-up
                 span.ml-2= joke.up_votes_count
-            li.ml-10
+            li.ml-20
               a href="#"
                 i.fa.fa-thumbs-o-down
                 span.ml-2= joke.down_votes_count
-            li.ml-10
-              a href="#"
+            li.ml-20
+              a href="#{joke_path(joke)}"
                 i.fa.fa-comment-o
                 span.ml-2= joke.comments_count
             li.pull-right
               a href="#"
                 i.fa.fa-share-square-o
-  .pagination
+  .baoxiao-pagination
     = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
 
 .col-md-4

@@ -9,10 +9,22 @@
     }
   }
 
+  .list-group-item-text {
+    .thumb img {
+      max-width: 100%;
+    }
+
+    @media (max-width: $grid-float-breakpoint) {
+      .thumb { text-align: center; }
+    }
+  }
+
   .status ul {
     li {
-      float: left;
-    }
+      float: left;    
+    } 
+
+    li a { font-size: 18px; }
   }
 
   .pagebar {
@@ -103,6 +115,9 @@ ul.joke-pictures {
   }
 }
 
-.pagination {
-  margin: 0 0 10px 0;
+.baoxiao-pagination {
+  margin-bottom: 20px;
+  > .pagination {
+    margin: 0;
+  }
 }

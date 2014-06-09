@@ -47,7 +47,11 @@ $brand-primary: #F19670;
       .recent { display: none; }       
     }
 
-    .pagination li {
+    .baoxiao-pagination {
+      text-align: center;
+    }
+
+    .baoxiao-pagination > .pagination li {
       display: none;
       &.active, &.prev, &.next {
         display: inline;
