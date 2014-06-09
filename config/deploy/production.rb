@@ -15,6 +15,7 @@
 # something that quacks like a hash can be used to set
 # extended properties on the server.
 set :password, ask('Server password', nil)
+fetch(:default_env).merge!( rvm_path: "/home/xiao/.rvm/bin/rvm" )
 server '106.187.101.105', 
         user: 'xiao',
         roles: %w{web app db},
