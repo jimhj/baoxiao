@@ -58,10 +58,11 @@ group :development do
   gem 'spring'  
   
   # Deploy tool
-  gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-rvm', '~> 0.1.1'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.0.0'  
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler', '1.1.0'
+  gem 'rvm1-capistrano3'
+  # gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git' 
 end
 
 gem 'net-ssh', '~> 2.9.1'
