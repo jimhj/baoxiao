@@ -34,6 +34,9 @@ gem "jquery-fileupload-rails"
 # Taggable
 gem 'acts-as-taggable-on', '~> 3.2.6'
 
+# Pagination
+gem 'will_paginate-bootstrap', '~> 1.0.0'
+
 # HTML Parser
 gem 'nokogiri', '~> 1.6.2', require: false
 

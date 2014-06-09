@@ -19,3 +19,6 @@ zh-CN:
             name:
               format: "只能使用字母、数字或 - 号，并且不能以 - 号开头"
               length: "长度为 4-20 个字符"
+  will_paginate:
+    previous_label: 上一页
+    next_label: 下一页

@@ -35,6 +35,9 @@
             li.pull-right
               a href="#"
                 i.fa.fa-share-square-o
+  .pagination
+    = will_paginate @jokes, renderer: BootstrapPagination::Rails
+
 .col-md-4
   .panel.recent
     .panel-heading 
