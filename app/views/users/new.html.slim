@@ -14,7 +14,7 @@
         .form-group
           = f.label :password, class: 'control-label'
           = f.password_field :password, placeholder: '设定密码', tabindex: 4, class: 'form-control'
-        = f.submit '提交注册', class: 'btn btn-primary', tabindex: 5
+        input.btn.btn-primary type="submit" value="提交注册"
 
 javascript:
   $('#new-user-form').validate({
