@@ -1,6 +1,6 @@
 # Set your full path to application.
 application = "baoxiao"
-app_path = "/home/xiao/baoxiao/www/#{application}"
+app_path = "/home/xiao/www/#{application}"
 shared_path = "#{app_path}/shared"
 current_path = "#{app_path}/current"
 

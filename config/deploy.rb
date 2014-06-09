@@ -34,6 +34,6 @@ namespace :deploy do
     end
   end
 
-  before :start, 'rvm1:hook'
+  before 'deploy:start', 'rvm1:hook'
   after :publishing, 'deploy:restart'
 end
