@@ -11,6 +11,11 @@ class PictureUploader < CarrierWave::Uploader::Base
     process resize_to_limit: [280, nil]
   end
 
+  version :thumb do
+    process resize_to_fit: [120, nil]
+    process crop: '120x90+0+0'
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -24,5 +29,13 @@ class PictureUploader < CarrierWave::Uploader::Base
       @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
       "#{@name}.#{file.extension}"
     end
-  end 
+  end
+
+  private
+  def crop(geometry)
+    manipulate! do |img|      
+      img.crop(geometry)
+      img
+    end    
+  end  
 end

@@ -5,7 +5,8 @@ set :application, 'baoxiao'
 set :repo_url, 'git@github.com:jimhj/baoxiao.git'
 set :deploy_to, -> { "/home/xiao/www/#{fetch(:application)}" }
 set :rails_env, 'production'
-set :rvm1_ruby_version, "2.1.0"
+set :rvm_type, :user
+set :rvm_ruby_version, '2.1.0'
 
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
@@ -34,6 +35,6 @@ namespace :deploy do
     end
   end
 
-  before 'deploy:start', 'rvm1:hook'
+  before 'deploy:start', 'rvm:hook'
   after :publishing, 'deploy:restart'
 end

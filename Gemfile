@@ -60,9 +60,8 @@ group :development do
   # Deploy tool
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-rails'
-  gem 'capistrano-bundler', '1.1.0'
-  gem 'rvm1-capistrano3'
-  # gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git' 
+  gem 'capistrano-bundler', '1.1.2'
+  gem 'capistrano-rvm', '0.1.1'
 end
 
 gem 'net-ssh', '~> 2.9.1'

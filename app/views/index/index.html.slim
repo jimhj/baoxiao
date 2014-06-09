@@ -49,22 +49,17 @@
       h3.panel-title 最新的文字笑话
     .panel-body
       ul.list-unstyled
-        li.mb-10
-          a href="#" 大爷你这么搞笑，大妈不会放过你的
-        li.mb-10
-          a href="#" 属于高温时期冷笑话
+        - Joke.recents.each do |joke|
+          li.mb-10
+            a href="#{joke_path(joke)}"= joke.title
+
   .panel.recent
     .panel-heading 
       h3.panel-title 最新的搞笑图片
     .panel-body
       ul.list-unstyled.joke-pictures.clearfix
-        - 5.times do
+        - Joke.recent_pictures.each do |joke|
           li
-            a href="#"
-              img src="http://i2.kl688.com/kl688File/2014-5/2014053011162041550.jpg"
-              span 属于高温时期冷笑话
-
-          li
-            a href="#"
-              img src="http://i2.kl688.com/kl688File/2014-5/2014053011162041550.jpg"
-              span 属于高温时期冷笑话
+            a href="#{joke_path(joke)}"
+              = image_tag joke.picture.thumb.url
+              span= joke.title.truncate(8, omission: '')
