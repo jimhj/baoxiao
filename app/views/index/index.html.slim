@@ -2,13 +2,16 @@
   .jokes.list-group
     - @jokes.each do |joke|
       .list-group-item
-        - unless joke.anonymous?
-          .list-group-item-user
+       
+        .list-group-item-user
+          - unless joke.anonymous?
             a href="#" 
               img src="http://images1.maxthon.cn/avatar/17/891/17891266/1380202364.jpg"
-            a.ml-5 href="#" 毛泽北
-            time.ml-5 大约1小时前
-            a.ml-5 href="#" 糗事百科
+            a.ml-5.mr-5 href="#" 毛泽北
+          time.mr-5 大约1小时前
+
+          - if joke.from.present?
+            a= joke.from
         - if joke.title.present?
           h4.list-group-item-heading.mt-10
             a href="#{joke_path(213)}"= joke.title
@@ -23,25 +26,25 @@
             li
               a href="#"
                 i.fa.fa-thumbs-o-up
-                span.ml-2 16
+                span.ml-2= joke.up_votes_count
             li.ml-10
               a href="#"
                 i.fa.fa-thumbs-o-down
-                span.ml-2 20
+                span.ml-2= joke.down_votes_count
             li.ml-10
               a href="#"
                 i.fa.fa-comment-o
-                span.ml-2 7
+                span.ml-2= joke.comments_count
             li.pull-right
               a href="#"
                 i.fa.fa-share-square-o
   .pagination
-    = will_paginate @jokes, renderer: BootstrapPagination::Rails
+    = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
 
 .col-md-4
   .panel.recent
     .panel-heading 
-      h3.panel-title 最新的蚊子笑话
+      h3.panel-title 最新的文字笑话
     .panel-body
       ul.list-unstyled
         li.mb-10
