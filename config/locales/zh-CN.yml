@@ -6,7 +6,7 @@ zh-CN:
         avatar: "头像"
         created_at: "创建于"
         email: Email
-        username: "昵称"
+        name: "昵称"
         password: "密码"
         password_confirmation: "密码确认"
         login: "用户名"
