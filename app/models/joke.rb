@@ -5,7 +5,7 @@ class Joke < ActiveRecord::Base
   validates :content, presence: true, uniqueness: true, length: { minimum: 5, maximum: 200 }
 
   scope :recents, -> { where.not(title: nil).order('created_at DESC').limit(10) }
-  scope :recent_pictures, -> { where.not(title: nil).not(picture: nil).order('created_at DESC').limit(10) }
+  scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC').limit(10) }
 
   belongs_to :user
 
