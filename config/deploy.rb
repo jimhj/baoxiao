@@ -38,7 +38,9 @@ namespace :deploy do
   desc "Rebuild Elasticsearch Indexs"
   task :rebuild_search_indexs do
     on roles(:app) do
-      execute :rake, "environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+      with rails_env: :production do
+        execute :rake, "environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+      end
     end
   end
 
