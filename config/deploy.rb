@@ -17,7 +17,7 @@ namespace :deploy do
  desc "Start Application"
   task :start do
     on roles(:app) do
-      execute "cd #{current_path}; RAILS_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -D"
+      execute :bundle, "exec unicorn_rails -c config/unicorn.rb -D"
     end
   end
 
@@ -38,7 +38,7 @@ namespace :deploy do
   desc "Rebuild Elasticsearch Indexs"
   task :rebuild_search_indexs do
     on roles(:app) do
-      execute "cd #{current_path}; RAILS_ENV=production rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+      execute :rake, "environment elasticsearch:import:model CLASS='Joke' FORCE=y"
     end
   end
 
