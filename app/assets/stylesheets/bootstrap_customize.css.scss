@@ -13,6 +13,18 @@ body {
   a { color: #FFF; font-size: 16px }
 
   .navbar-header {
+    position: relative;
+    
+    span.logo {
+      width: 48px;
+      height: 48px;
+      background: transparent image-url('logo_48.png') no-repeat;
+      display: inline-block;
+      position: absolute;
+      top: 15px;
+      left: -48px;
+    }
+
     a.navbar-brand {
       font-size: 18px;
     }
@@ -39,6 +51,7 @@ body {
   @media (max-width: $grid-float-breakpoint) {
     .navbar-header {
       float: left;
+      span.logo { display: none; }
     }
         
     .navbar-right {
