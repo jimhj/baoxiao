@@ -7,7 +7,7 @@ class JokesController < ApplicationController
   end
 
   def hot
-    @jokes = Joke.order('created_at DESC').paginate(page_opts)
+    @jokes = Joke.order('id DESC').paginate(page_opts)
     render_index
   end
 
@@ -28,7 +28,7 @@ class JokesController < ApplicationController
   private
 
   def find_jokes(type)
-    @jokes = Joke.order('created_at DESC').where(from: type).paginate(page_opts)
+    @jokes = Joke.order('id DESC').where(from: type).paginate(page_opts)
     render_index
   end
 

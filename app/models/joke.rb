@@ -21,6 +21,14 @@ class Joke < ActiveRecord::Base
     end
   end
 
+  def prev
+    Joke.where("id > ?", id).order("id ASC").first    
+  end
+
+  def next
+    Joke.where("id < ?", id).order("id DESC").first    
+  end
+
   def self.search_with_hightlight q
     highlight_opts = {
       "term_vector"     => "with_positions_offsets" 

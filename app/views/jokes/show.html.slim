@@ -40,10 +40,10 @@
               i.fa.fa-share-square-o
       .pagebar.clearfix
         .pull-left
-          a.btn.btn-primary href="#"
+          a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
             i.fa.fa-chevron-left
         .pull-right
-          a.btn.btn-primary href="#"
+          a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
             span.mr-5 下一条
             i.fa.fa-chevron-right        
       .tips.clearfix
@@ -52,10 +52,10 @@
         span.key.key-right
 
   .panel.comments
-    .panel-heading 评论 (11)
+    .panel-heading 评论 (#{@joke.comments_count || 0})
     .panel-body
       .list-group
-        - 4.times do
+        - 0.times do
           .list-group-item.comment.clearfix
             .list-group-item-avatar.pull-left
               img src="http://pic.qiushibaike.com/system/avtnew/669/6693433/thumb/20140323033803.jpg"
@@ -69,3 +69,23 @@
       span.ml-5 后发表评论
 
 = render 'share/right_bar'
+
+javascript:
+  $(document).ready(function () {
+    $('body').keyup(function (e) {
+      console.log(e.keyCode);
+
+      var link;
+      switch (e.keyCode) {
+        case 37:
+          link = $('.prevJoke').attr('href');
+          break;
+        case 39:
+          link = $('.nextJoke').attr('href');
+          break;        
+      }
+      console.log(link);
+      if (link != "" && link != undefined)
+        window.location.href = link;
+    });
+  });
