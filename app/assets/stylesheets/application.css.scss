@@ -16,6 +16,11 @@ $brand-primary: #F19670;
   .mb-#{$margin} { margin-bottom: #{$margin}px; }
 }
 
+em {
+  // color: #FC252F;
+  background-color: #FFF681;
+}
+
 .main {
   margin-top: 70px;
 }

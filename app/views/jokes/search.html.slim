@@ -13,16 +13,10 @@
             a= joke.from
         - if joke.title.present?
           h4.list-group-item-heading.mt-10
-            a href="#{joke_path(joke.id)}"= joke.title
+            a href="#{joke_path(joke.id)}"
+              = sanitize joke.highlight.title.to_s.gsub('\n\n', '').gsub('[', '').gsub(']', '')
         .list-group-item-text.mt-10
-          .content= joke.content
-          - if joke.picture.present?
-            .thumb.mt-10
-              a href="#{joke_path(joke.id)}"
-                - if mobile?
-                  = image_tag joke.picture.small.url
-                - else
-                  = image_tag joke.picture.normal.url
+          .content= sanitize joke.highlight.content.to_s.gsub('\n\n', '').gsub('[', '').gsub(']', '')
         .status.mt-5
           ul.list-unstyled.clearfix
             li

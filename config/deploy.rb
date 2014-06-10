@@ -35,6 +35,13 @@ namespace :deploy do
     end
   end
 
+  desc "Rebuild Elasticsearch Indexs"
+  task :rebuild_search_indexs do
+    on roles(:app) do
+      execute "cd #{current_path}; RAILS_ENV=production rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+    end
+  end
+
   before 'deploy:start', 'rvm:hook'
-  after :publishing, 'deploy:restart'
+  after :publishing, 'deploy:rebuild_search_indexs', 'deploy:restart'
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :qiubai
       get :mahua
       get :hot
+      get :search
     end
   end
 

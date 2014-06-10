@@ -64,6 +64,17 @@
   }
 }
 
+.panel.search {
+  ul {
+    margin-left: -5px;
+  }
+  
+  ul li {
+    float: left;
+    margin-left: 5px;
+  }
+}
+
 .comments {
   .panel-heading { color: $brand-primary; }
   .panel-body { padding: 0; }

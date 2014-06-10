@@ -7,10 +7,15 @@ class JokesController < ApplicationController
   end
 
   def hot
-    @jokes = Joke.order('created_at DESC')
-                 .paginate(:page => params[:page], :per_page => 20, total_entries: 500)
-    render template: 'index/index'
+    @jokes = Joke.order('created_at DESC').paginate(page_opts)
+    render_index
   end
+
+  def search
+    @jokes = Joke.search_with_hightlight(params[:q])
+                 .paginate(page: params[:page], per_page: 20).results
+    
+  end  
 
   def qiubai
     find_jokes 'QB'
@@ -23,9 +28,15 @@ class JokesController < ApplicationController
   private
 
   def find_jokes(type)
-    @jokes = Joke.order('created_at DESC')
-    @jokes = @jokes.where(from: type)
-    @jokes = @jokes.paginate(:page => params[:page], :per_page => 20, total_entries: 500)
+    @jokes = Joke.order('created_at DESC').where(from: type).paginate(page_opts)
+    render_index
+  end
+
+  def render_index
     render template: 'index/index'
-  end  
+  end
+
+  def page_opts
+    { page: params[:page], per_page: 20, total_entries: 500 }
+  end
 end
