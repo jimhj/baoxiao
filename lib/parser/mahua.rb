@@ -24,14 +24,6 @@ module Parser
           down_votes = c.xpath("./div[@class='link']/div[@class='tools']/ul/li[3]/a").first.try :content
           up_votes = c.xpath("./div[@class='link']/div[@class='tools']/ul/li[4]/a").first.try :content
 
-          # p '*' * 100
-          # p title
-          # p content
-          # p picture
-          # p up_votes
-          # p down_votes
-          # p c.xpath("./descendant::div[@class='tools']")
-
           joke = @user.jokes.build
           joke.anonymous = true
           joke.title = title

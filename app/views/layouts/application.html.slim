@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 html
   head
-    title Baoxiao
+    title 爆笑集中营
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -29,9 +29,10 @@ html
             li: a href="#{mahua_jokes_path}"
               = image_tag 'mahua.ico'
               span.ml-5 快乐麻花
-            / li: a href="#" 
-            /   = image_tag 'hahamx.ico'
-            /   span.ml-5 哈哈.MX    
+            - if false
+              li: a href="#" 
+                = image_tag 'hahamx.ico'
+                span.ml-5 哈哈.MX    
     .main
       .container
         .row
