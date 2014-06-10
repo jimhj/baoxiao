@@ -16,8 +16,10 @@ set :keep_releases, 10
 namespace :deploy do
  desc "Start Application"
   task :start do
-    on roles(:app) do
-      execute :bundle, "exec unicorn_rails -c config/unicorn.rb -D"
+    run_locally roles(:app) do
+      with rails_env: :production do
+        execute :bundle, "exec unicorn_rails -c config/unicorn.rb -D"
+      end
     end
   end
 
@@ -37,8 +39,10 @@ namespace :deploy do
 
   desc "Rebuild Elasticsearch Indexs"
   task :rebuild_search_indexs do
-    on roles(:app) do
-      execute :rake, "environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+    run_locally roles(:app) do
+      with rails_env: :production do
+        rake "environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+      end
     end
   end
 
