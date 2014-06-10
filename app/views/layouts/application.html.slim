@@ -22,16 +22,16 @@ html
             i.fa.fa-bars
         #header.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li: a href="#{root_path}" 最新
+            li: a href="#{hot_jokes_path}" 最新
             li: a href="#{qiubai_jokes_path}" 
               = image_tag 'qiubai.jpeg'
               span.ml-5 糗事百科
             li: a href="#{mahua_jokes_path}"
               = image_tag 'mahua.ico'
               span.ml-5 快乐麻花
-            li: a href="#" 
-              = image_tag 'hahamx.ico'
-              span.ml-5 哈哈.MX    
+            / li: a href="#" 
+            /   = image_tag 'hahamx.ico'
+            /   span.ml-5 哈哈.MX    
     .main
       .container
         .row

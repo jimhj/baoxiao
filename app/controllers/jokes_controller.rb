@@ -6,7 +6,7 @@ class JokesController < ApplicationController
     @joke = Joke.find(params[:id])
   end
 
-  def recent
+  def hot
     @jokes = Joke.order('created_at DESC')
                  .paginate(:page => params[:page], :per_page => 20, total_entries: 500)
     render template: 'index/index'
