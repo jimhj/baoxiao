@@ -25,7 +25,7 @@ module Parser
           joke.content = content
           joke.remote_picture_url = picture if picture
           joke.up_votes_count = up_votes.to_i
-          joke.down_votes_count = down_votes.to_i
+          joke.down_votes_count = down_votes.to_i.abs
           joke.from = 'QB'
 
           unless joke.save
