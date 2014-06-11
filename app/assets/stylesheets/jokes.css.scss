@@ -22,6 +22,10 @@
   .status > ul > li {
     float: left;
     > a { font-size: 18px; }
+    > a.voteJoke.disabled {
+      color: #777;
+      opacity: 0.5;
+    }
   }
 
   .pagebar {

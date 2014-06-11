@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       get :check_title
       get :check_content    
     end
+
+    member do
+      post :vote
+    end
   end
 
   resources :users, only: [:create, :show] do

@@ -1,4 +1,4 @@
-.list-group-item
+.list-group-item id="vote-for-joke-#{joke.id}"
   .list-group-item-user
     - unless joke.anonymous?
       a href="#{user_path(joke.user)}" 
@@ -22,11 +22,11 @@
   .status.mt-5
     ul.list-unstyled.clearfix
       li
-        a href="#"
+        a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
           i.fa.fa-thumbs-o-up
           span.ml-2= joke.up_votes_count
       li.ml-20
-        a href="#"
+        a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
           i.fa.fa-thumbs-o-down
           span.ml-2= joke.down_votes_count
       li.ml-20

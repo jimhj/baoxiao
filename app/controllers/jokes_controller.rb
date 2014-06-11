@@ -1,5 +1,5 @@
 class JokesController < ApplicationController
-  before_action :login_required, only: [:new, :create]
+  before_action :login_required, only: [:new, :create, :vote]
 
   def new
     @joke = current_user.jokes.new
@@ -13,6 +13,13 @@ class JokesController < ApplicationController
       render :new
     end
   end
+
+  def vote
+    joke = Joke.find(params[:id])
+    return if current_user.voted_for?(joke)
+    result = current_user.vote_for(joke, params[:vote_value])
+    render json: { success: result }
+  end
   
   def show
     @joke = Joke.find(params[:id])
@@ -20,7 +27,7 @@ class JokesController < ApplicationController
 
   def hot
     @jokes = Joke.order('hot DESC').paginate(page_opts)
-    render_index
+    render template: 'index/index'
   end
 
   def search
@@ -57,10 +64,6 @@ class JokesController < ApplicationController
 
   def find_jokes(type)
     @jokes = Joke.order('id DESC').where(from: type).paginate(page_opts)
-    render_index
-  end
-
-  def render_index
     render template: 'index/index'
   end
 

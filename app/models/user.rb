@@ -16,5 +16,20 @@ class User < ActiveRecord::Base
   def self.find_by_remember_token(token)
     user = find_by_id(token.split('$').first)
     (user && Rack::Utils.secure_compare(user.remember_token, token)) ? user : nil
-  end  
+  end
+
+  def vote_for(joke, up_or_down)
+    if (flag = up_or_down.to_i) > 0
+      joke.increment!(:up_votes_count)
+    else
+      joke.increment!(:down_votes_count)
+    end
+    voted_joke_ids_will_change!
+    voted_joke_ids.push joke.id
+    save
+  end
+
+  def voted_for?(joke)
+    voted_joke_ids.include? joke.id
+  end
 end

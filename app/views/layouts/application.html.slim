@@ -7,6 +7,9 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = favicon_link_tag
     = csrf_meta_tags
+    - if login?
+      javascript:
+        baoxiao.currentUser = { id: #{current_user.id} };    
   body
     .navbar.navbar-fixed-top
       .container
@@ -53,7 +56,13 @@ html
     .main
       .container
         .row
-          = yield
+          = yield      
+
+  - if login?
+    javascript:
+      baoxiao.Votes.updateVotes(#{current_user.voted_joke_ids});  
+  - else
+    = render 'share/login_modal'
 
   - if mobile?
     javascript:
