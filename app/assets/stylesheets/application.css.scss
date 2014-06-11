@@ -33,11 +33,11 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     margin: 0 auto;
   }
 
-  .jokes .list-group-item.detail {
-    margin-bottom: 0px;
-    border-radius: 4px 4px 0px 0px;
-    border-bottom: 1px solid #DDD;
-  }
+  // .jokes .list-group-item.detail {
+  //   margin-bottom: 0px;
+  //   border-radius: 4px 4px 0px 0px;
+  //   border-bottom: 1px solid #DDD;
+  // }
 
   @media (max-width: $grid-float-breakpoint) {
     padding-left: 0;
@@ -55,9 +55,8 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
 
       .col-md-8 .list-group-item {
         border-radius: 0;
-        .tips { display: none; }
       }
-
+      .tips { display: none; }
       .recent { display: none; }       
     }
 
