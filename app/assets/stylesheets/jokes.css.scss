@@ -19,12 +19,9 @@
     }
   }
 
-  .status ul {
-    li {
-      float: left;    
-    } 
-
-    li a { font-size: 18px; }
+  .status > ul > li {
+    float: left;
+    > a { font-size: 18px; }
   }
 
   .pagebar {

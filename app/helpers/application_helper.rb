@@ -8,5 +8,36 @@ module ApplicationHelper
     agent_str = request.user_agent.to_s.downcase
     return false if agent_str =~ /ipad/
     agent_str =~ Regexp.new(MOBILE_USER_AGENTS)
-  end  
+  end
+
+  def social_share_items(joke)
+    share_list = { weibo: '微博', renren: '人人', qq: 'QQ空间' }
+    # if mobile?
+    #   share_list.merge(weixin: '微信')
+    # end
+
+    items = share_list.collect do |k, v|
+      case k.to_s
+      when 'weibo'
+        url = "http://service.weibo.com/share/share.php?url=#{joke_url(joke)}&type=3&pic=#{joke.picture.normal.url}&title=#{joke.content}"
+      when 'renren'
+        url = "http://widget.renren.com/dialog/share?resourceUrl=#{joke_url(joke)}&srcUrl=#{joke_url(joke)}&title=#{joke.title}&pic=#{joke.picture.normal.url}&description=#{joke.content}"
+      when 'qq'
+        url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=#{joke_url(joke)}&title=#{joke.content}&pics=#{joke.picture.normal.url}"
+      when 'weixin'
+        url = "#"
+      end
+
+      %Q(
+        <li>
+          <a href="#{url}" target="_blank">
+            <i class="fa fa-#{k.to_s}"></i>
+            <span class="ml-5">#{v}</span>
+          </a>
+        </li>
+      )
+    end.join.gsub("\n",'')
+
+    sanitize items
+  end
 end

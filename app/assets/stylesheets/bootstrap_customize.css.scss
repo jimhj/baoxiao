@@ -73,6 +73,11 @@ body {
     border-radius: 4px;
     margin-bottom: 20px;
   }
+
+  .status ul.dropdown-menu {
+    min-width: 0;
+    li a { color: #777; }
+  }
 }
 
 .panel {

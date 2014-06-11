@@ -36,9 +36,12 @@
               a href="#{joke_path(joke.id)}"
                 i.fa.fa-comment-o
                 span.ml-2= joke.comments_count
-            li.pull-right
-              a href="#"
+            li.pull-right.dropdown 
+              a.dropdown-toggle data-target="#" data-toggle="dropdown"
                 i.fa.fa-share-square-o
+              ul.dropdown-menu role="menu"
+                = social_share_items(joke)
+
   .baoxiao-pagination
     = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
 

@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 
 # Font Awesome
-gem 'font-awesome-sass', '~> 4.0.2'
+gem 'font-awesome-sass', '~> 4.1.0'
 
 # Slim Template
 gem 'slim', '~> 2.0.2'

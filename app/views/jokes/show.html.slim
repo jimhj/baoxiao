@@ -73,8 +73,6 @@
 javascript:
   $(document).ready(function () {
     $('body').keyup(function (e) {
-      console.log(e.keyCode);
-
       var link;
       switch (e.keyCode) {
         case 37:
@@ -84,7 +82,6 @@ javascript:
           link = $('.nextJoke').attr('href');
           break;        
       }
-      console.log(link);
       if (link != "" && link != undefined)
         window.location.href = link;
     });

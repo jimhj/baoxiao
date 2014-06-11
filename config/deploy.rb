@@ -45,5 +45,7 @@ namespace :deploy do
   end
 
   before 'deploy:start', 'rvm:hook'
-  after :publishing, 'deploy:restart', 'deploy:rebuild_search_indexs'
+  before :publishing, 'deploy:rebuild_search_indexs'
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:clean'
 end
