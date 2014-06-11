@@ -56,7 +56,21 @@ html
     .main
       .container
         .row
-          = yield      
+          = yield
+
+  javascript:  
+    $('a.voteJoke').not('.disabled').click(function () {
+      if (baoxiao.currentUser) {
+        var count;
+        var url = $(this).data('href');
+        $.post(url, { vote_value : $(this).data('vote_value') });
+        $(this).parents('ul').find('.voteJoke').addClass('disabled').unbind('click');
+        count = parseInt($(this).find('span').text());
+        $(this).find('span').text(count + 1);
+      } else {
+        $('#loginModal').modal();
+      }
+    }); 
 
   - if login?
     javascript:

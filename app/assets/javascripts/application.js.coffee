@@ -15,13 +15,4 @@ $(document).on 'page:change', ->
 $(document).on 'page:restore', ->
   NProgress.remove()
 
-$(document).ready ->
-  $('a.voteJoke').not('.disabled').click ->
-    if baoxiao.currentUser
-      url = $(this).data 'href'
-      $.post url, { vote_value : $(this).data('vote_value') }
-      $(this).siblings('.voteJoke').addClass 'disabled'
-    else
-      $('#loginModal').modal()
-
 
