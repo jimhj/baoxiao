@@ -1,5 +1,17 @@
 class JokesController < ApplicationController
-  def index
+  before_action :login_required, only: [:new, :create]
+
+  def new
+    @joke = current_user.jokes.new
+  end
+
+  def create
+    @joke = current_user.jokes.build joke_params
+    if @joke.save
+      redirect_to @joke
+    else
+      render :new
+    end
   end
   
   def show
@@ -25,6 +37,22 @@ class JokesController < ApplicationController
     find_jokes 'MH'
   end
 
+  def check_title
+    respond_to do |format|
+      format.json do
+        render json: !Joke.where(title: params[:joke][:title]).where.not(id: params[:id]).exists?
+      end
+    end
+  end
+
+  def check_content
+    respond_to do |format|
+      format.json do
+        render json: !Joke.where(content: params[:joke][:content]).where.not(id: params[:id]).exists?
+      end
+    end
+  end  
+
   private
 
   def find_jokes(type)
@@ -38,5 +66,9 @@ class JokesController < ApplicationController
 
   def page_opts
     { page: params[:page], per_page: 20, total_entries: 500 }
+  end
+
+  def joke_params
+    params.require(:joke).permit(:title, :content, :picture, :anonymous)
   end
 end

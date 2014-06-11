@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :jokes do
+  resources :jokes, except: [:index] do
     collection do
       get :qiubai
       get :mahua
       get :hot
       get :search
+      get :check_title
+      get :check_content    
     end
   end
 

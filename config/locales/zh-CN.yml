@@ -10,6 +10,11 @@ zh-CN:
         password: "密码"
         password_confirmation: "密码确认"
         login: "用户名"
+      joke:
+        title: 标题
+        content: 正文
+        picture: 真相图
+        anonymous: 匿名发布
     errors:
       models:
         user:
@@ -19,9 +24,18 @@ zh-CN:
             name:
               format: "只能使用字母、数字或 - 号，并且不能以 - 号开头"
               length: "长度为 4-20 个字符"
+        joke:
+          attributes:
+            title:
+              taken: "已经存在相同的内容"
+              length: "长度为 40 个字符以内"
+            content:
+              taken: "已经存在相同的内容"
+              length: "长度为 5-200 个字符"
   sessions:
     flashes:
       incorrect_email_or_password: '错误的邮箱或者密码'
+      login_required: '需要先登录'
   will_paginate:
     previous_label: 上一页
     next_label: 下一页

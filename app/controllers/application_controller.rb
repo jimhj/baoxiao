@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless login?
+      flash[:warning] = t('sessions.flashes.login_required')
       redirect_to login_path(return_to: (request.fullpath if request.get?))
     end
   end
