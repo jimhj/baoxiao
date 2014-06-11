@@ -35,9 +35,11 @@
             a href="#"
               i.fa.fa-comment-o
               span.ml-2= @joke.comments_count
-          li.pull-right
-            a href="#"
+          li.pull-right.dropdown 
+            a.dropdown-toggle data-target="#" data-toggle="dropdown"
               i.fa.fa-share-square-o
+            ul.dropdown-menu role="menu"
+              = social_share_items(@joke)
       .pagebar.clearfix
         .pull-left
           a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
