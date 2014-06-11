@@ -2,7 +2,7 @@
   .panel.user-profile
     .panel-body
       .user-profile-avatar
-        = image_tag 'avatar.png'
+        = image_tag @user.avatar.thumb.url
       .user-profile-name= @user.name
 .col-md-8
   .jokes.list-group

@@ -1,19 +1,16 @@
-class PictureUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :file
 
   version :normal do
-    process resize_to_limit: [500, nil]
-  end
-
-  version :small do
-    process resize_to_limit: [280, nil]
+    process resize_to_fit: [120, nil]
+    process crop: '120x120+0+0'
   end
 
   version :thumb do
-    process resize_to_fit: [120, nil]
-    process crop: '120x90+0+0'
+    process resize_to_fit: [80, nil]
+    process crop: '80x80+0+0'
   end
 
   def store_dir
@@ -31,6 +28,10 @@ class PictureUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def default_url
+    ActionController::Base.helpers.asset_path([version_name, "avatar.png"].compact.join('_'))
+  end
+
   private
   
   def crop(geometry)
@@ -38,5 +39,5 @@ class PictureUploader < CarrierWave::Uploader::Base
       img.crop(geometry)
       img
     end    
-  end  
+  end    
 end
