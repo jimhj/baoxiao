@@ -19,9 +19,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @jokes = @user.jokes
-                  .where(anonymous: false)
-                  .order('id DESC')
-                  .paginate(page: params[:page], per_page: 20, total_entries: 500)    
+    @jokes = @jokes.where(anonymous: false) unless @user == current_user
+    @jokes = @jokes.order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 500)    
   end
 
   def check_email

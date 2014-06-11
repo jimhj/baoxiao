@@ -12,3 +12,5 @@
           = label_tag '密码'
           = password_field_tag :password, nil, placeholder: '密码', tabindex: 4, class: 'form-control'
         input.btn.btn-primary type="submit" value="登录"
+    .panel-footer
+      | 没有帐号，<a href="#{sign_up_path}">点此注册</a>

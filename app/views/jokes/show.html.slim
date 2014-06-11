@@ -1,57 +1,18 @@
 .col-md-8
   .jokes.list-group
-    .list-group-item
-      .list-group-item-user
-        - unless @joke.anonymous?
-          a href="#" 
-            img src="http://images1.maxthon.cn/avatar/17/891/17891266/1380202364.jpg"
-          a.ml-5.mr-5 href="#" 毛泽北
-        time.mr-5 大约1小时前
-
-        - if @joke.from.present?
-          a= @joke.from
-      - if @joke.title.present?
-        h4.list-group-item-heading.mt-10= @joke.title
-      .list-group-item-text.mt-10
-        .content= @joke.content
-        - if @joke.picture.present?
-          .thumb.mt-10
-            a href="#{@joke.picture.url}"
-              - if mobile?
-                = image_tag @joke.picture.small.url
-              - else
-                = image_tag @joke.picture.normal.url
-      .status.mt-5
-        ul.list-unstyled.clearfix
-          li
-            a href="#"
-              i.fa.fa-thumbs-o-up
-              span.ml-2= @joke.up_votes_count
-          li.ml-10
-            a href="#"
-              i.fa.fa-thumbs-o-down
-              span.ml-2= @joke.down_votes_count
-          li.ml-10
-            a href="#"
-              i.fa.fa-comment-o
-              span.ml-2= @joke.comments_count
-          li.pull-right.dropdown 
-            a.dropdown-toggle data-target="#" data-toggle="dropdown"
-              i.fa.fa-share-square-o
-            ul.dropdown-menu role="menu"
-              = social_share_items(@joke)
-      .pagebar.clearfix
-        .pull-left
-          a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
-            i.fa.fa-chevron-left
-        .pull-right
-          a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
-            span.mr-5 下一条
-            i.fa.fa-chevron-right        
-      .tips.clearfix
-        span.mr-5 按键盘左右键翻页
-        span.key.key-left.mr-5
-        span.key.key-right
+    = render @joke
+    .pagebar.clearfix
+      .pull-left
+        a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
+          i.fa.fa-chevron-left
+      .pull-right
+        a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
+          span.mr-5 下一条
+          i.fa.fa-chevron-right        
+    .tips.clearfix
+      span.mr-5 按键盘左右键翻页
+      span.key.key-left.mr-5
+      span.key.key-right
 
   .panel.comments
     .panel-heading 评论 (#{@joke.comments_count || 0})
