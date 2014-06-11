@@ -19,7 +19,7 @@ html
               a href="#"= current_user.name
           - else
             li: a href="#{sign_up_path}" 注册
-            li: a href="#" 登录
+            li: a href="#{login_path}" 登录
           li.navbar-toggle: a href="javascript:;" data-toggle="collapse" data-target="#header"
             i.fa.fa-bars
         #header.collapse.navbar-collapse
