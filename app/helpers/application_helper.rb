@@ -30,14 +30,14 @@ module ApplicationHelper
 
       %Q(
         <li>
-          <a href="#{url}" target="_blank">
+          <a target="_blank" href="#{url}">
             <i class="fa fa-#{k.to_s}"></i>
             <span class="ml-5">#{v}</span>
           </a>
         </li>
       )
-    end.join.gsub("\n",'')
+    end.join
 
-    sanitize items
+    raw items
   end
 end
