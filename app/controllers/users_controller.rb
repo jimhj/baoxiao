@@ -12,10 +12,17 @@ class UsersController < ApplicationController
       login_as @user
       redirect_back_or_default root_url
     else
-      p @user
       render :new
     end
-  end  
+  end
+
+  def show
+    @user = User.find params[:id]
+    @jokes = @user.jokes
+                  .where(anonymous: false)
+                  .order('id DESC')
+                  .paginate(page: params[:page], per_page: 20, total_entries: 500)    
+  end
 
   def check_email
     respond_to do |format|

@@ -38,13 +38,18 @@ body {
   .navbar-right {
     float: right;
     margin-right: -15px;
-    > li {
-      float: left;
-    }    
+
+    ul.dropdown-menu > li a {
+      font-size: 14px;
+      color: #777;
+    }
+
+    > li { float: left; }
+
     .navbar-toggle { display: none; }
   }  
 
-  .navbar-collapse ul.nav li { 
+  .navbar-collapse ul.nav li,  ul.navbar-right > li { 
     &:hover a { color: $brand-primary; background-color: #FFF;}
   }
 

@@ -1,0 +1,46 @@
+.col-md-4
+  .panel.user-profile
+    .panel-body
+      .user-profile-avatar
+        = image_tag 'avatar.png'
+      .user-profile-name= @user.name
+.col-md-8
+  .jokes.list-group
+    - @jokes.each do |joke|
+      .list-group-item
+        .list-group-item-user
+          time.mr-5 大约1小时前
+        - if joke.title.present?
+          h4.list-group-item-heading.mt-10
+            a href="#{joke_path(joke.id)}"= joke.title
+        .list-group-item-text.mt-10
+          .content= joke.content
+          - if joke.picture.present?
+            .thumb.mt-10
+              a href="#{joke_path(joke.id)}"
+                - if mobile?
+                  = image_tag joke.picture.small.url
+                - else
+                  = image_tag joke.picture.normal.url
+        .status.mt-5
+          ul.list-unstyled.clearfix
+            li
+              a href="#"
+                i.fa.fa-thumbs-o-up
+                span.ml-2= joke.up_votes_count
+            li.ml-20
+              a href="#"
+                i.fa.fa-thumbs-o-down
+                span.ml-2= joke.down_votes_count
+            li.ml-20
+              a href="#{joke_path(joke.id)}"
+                i.fa.fa-comment-o
+                span.ml-2= joke.comments_count
+            li.pull-right.dropdown 
+              a.dropdown-toggle data-target="#" data-toggle="dropdown"
+                i.fa.fa-share-square-o
+              ul.dropdown-menu role="menu"
+                = social_share_items(joke)
+
+  .baoxiao-pagination
+    = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
