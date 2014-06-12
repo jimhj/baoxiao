@@ -14,22 +14,23 @@
       span.key.key-left.mr-5
       span.key.key-right
 
-  .panel.comments
-    .panel-heading 评论 (#{@joke.comments_count || 0})
-    .panel-body
-      .list-group
-        - 0.times do
-          .list-group-item.comment.clearfix
-            .list-group-item-avatar.pull-left
-              img src="http://pic.qiushibaike.com/system/avtnew/669/6693433/thumb/20140323033803.jpg"
-            .list-group-item-content.pull-left.ml-10
-              .list-group-item-username
-                a href="#" 木哈哈
-              .list-group-item-text 不作死不会死，醒的时候咬比较保险,不作死不会死，醒的时候咬比较保险
-            .list-group-item-report.pull-right 1
-    .panel-footer
-      a.btn.btn-primary href="#" 登录
-      span.ml-5 后发表评论
+  - if false
+    .panel.comments
+      .panel-heading 评论 (#{@joke.comments_count || 0})
+      .panel-body
+        .list-group
+          - 0.times do
+            .list-group-item.comment.clearfix
+              .list-group-item-avatar.pull-left
+                img src="http://pic.qiushibaike.com/system/avtnew/669/6693433/thumb/20140323033803.jpg"
+              .list-group-item-content.pull-left.ml-10
+                .list-group-item-username
+                  a href="#" 木哈哈
+                .list-group-item-text 不作死不会死，醒的时候咬比较保险,不作死不会死，醒的时候咬比较保险
+              .list-group-item-report.pull-right 1
+      .panel-footer
+        a.btn.btn-primary href="#" 登录
+        span.ml-5 后发表评论
 
 .col-md-4
   .panel.search

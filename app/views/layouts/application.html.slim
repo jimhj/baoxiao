@@ -57,10 +57,15 @@ html
       .container
         .row
           = yield
+          
+  = render 'share/baidu_share_script'
 
   javascript:  
-    $('a.voteJoke').not('.disabled').click(function () {
+    $('a.voteJoke').click(function () {
       if (baoxiao.currentUser) {
+        if ($(this).is('.disabled')) {
+          return false;
+        }
         var count;
         var url = $(this).data('href');
         $.post(url, { vote_value : $(this).data('vote_value') });
@@ -70,7 +75,7 @@ html
       } else {
         $('#loginModal').modal();
       }
-    }); 
+    });
 
   - if login?
     javascript:

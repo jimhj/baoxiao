@@ -14,7 +14,7 @@
     .content= joke.content
     - if joke.picture.present?
       .thumb.mt-10
-        a href="#{joke_path(joke.id)}"
+        a href="#{params[:action] == 'index' ? joke_path(joke.id) : sibling_joke_path(joke.next)}"
           - if mobile?
             = image_tag joke.picture.small.url
           - else
@@ -29,12 +29,12 @@
         a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
           i.fa.fa-thumbs-o-down
           span.ml-2= joke.down_votes_count
-      li.ml-20
-        a href="#{joke_path(joke.id)}"
-          i.fa.fa-comment-o
-          span.ml-2= joke.comments_count
-      li.pull-right.dropdown 
-        a.dropdown-toggle data-target="#" data-toggle="dropdown"
-          i.fa.fa-share-square-o
-        ul.dropdown-menu role="menu"
-          = social_share_items(joke)
+      - if false
+        li.ml-20
+          a href="#{joke_path(joke.id)}"
+            i.fa.fa-comment-o
+            span.ml-2= joke.comments_count
+      li.pull-right.dropdown
+        #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}'}"
+          span.bds_more style="background: none !important;height: 100%;"
+            i.fa.fa-share-square-o
