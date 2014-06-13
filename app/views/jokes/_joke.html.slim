@@ -7,8 +7,6 @@
             = image_tag joke.user.avatar.thumb.url
           a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
 
-      .pull-right
-
     - if joke.title.present?
       .list-group-title.clearfix.mb-10
         h4.list-group-item-heading
@@ -18,30 +16,30 @@
       .content= joke.content
       - if joke.picture.present?
         .thumb.mt-10
-          a href="#{params[:action] == 'index' ? joke_path(joke.id) : sibling_joke_path(joke.next)}"
+          a href="#{joke_path(joke.id)}"
             - if mobile?
               = image_tag joke.picture.small.url
             - else
               = image_tag joke.picture.normal.url
-    .status.mt-5
-      ul.list-unstyled.clearfix
+
+    .status.mt-10.clearfix
+      .pull-left.tags
+        i.fa.fa-tags
+        - joke.tags.each do |tag|
+          a href="#{tag_path(tag.name)}"= tag
+
+      ul.list-unstyled.counts.pull-right.clearfix
         li
           a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
             i.fa.fa-thumbs-o-up
             span.ml-2= joke.up_votes_count
-        li.ml-20
+        li.ml-15
           a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
             i.fa.fa-thumbs-o-down
             span.ml-2= joke.down_votes_count
-        li.ml-20
+        li.ml-15
           a.readon href="#{joke_path(joke)}": i.fa.fa-eye
-
-        - if false
-          li.ml-20
-            a href="#{joke_path(joke.id)}"
-              i.fa.fa-comment-o
-              span.ml-2= joke.comments_count
-        li.pull-right.dropdown
+        li.ml-15
           #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
-            span.bds_more style="background: none !important;height: 100%;"
+            span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
               i.fa.fa-share-square-o

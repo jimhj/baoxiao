@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   
+  acts_as_tagger
   mount_uploader :avatar, AvatarUploader
 
   validates :login, uniqueness: { case_sensitive: false }, allow_blank: true, format: { with: /\A[a-z0-9][a-z0-9-]*\z/i }

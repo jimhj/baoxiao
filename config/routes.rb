@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tags, only: [:index, :show]
+
   resources :users, only: [:create, :show] do
     collection do
       get :check_email

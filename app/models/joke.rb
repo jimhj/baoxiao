@@ -2,6 +2,8 @@ class Joke < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  acts_as_taggable
+
   mount_uploader :picture, PictureUploader
 
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
@@ -13,7 +15,7 @@ class Joke < ActiveRecord::Base
     # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
     find_by_sql(
       <<-SQL
-        select * from jokes where random() < 0.1 limit 1000       
+        select * from jokes where random() < 0.1 limit 1000;       
       SQL
     ) 
   }

@@ -8,10 +8,10 @@
             button.btn.btn-default type="submit": i.fa.fa-search
 
       ul.list-unstyled.clearfix
-        - Joke::HOT_WORDS.each do |word|
+        - Joke.tags_on(:tags).limit(20).each do |tag|
           li
-            a href="#{search_jokes_path(q: word)}"= word
-        li: a ......
+            a href="#{tag_path(tag.name)}"= tag.name
+        li: a href="#{tags_path}" 更多...
 
   .panel.recent
     .panel-heading 

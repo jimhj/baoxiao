@@ -20,6 +20,8 @@ module Parser
           up_votes = c.xpath(".//li[@class='up']/a[@class='voting']/span[1]").first.try(:content)
           down_votes = c.xpath(".//li[@class='down']/a[@class='voting']/span[1]").first.try(:content)
 
+          tags = Joke::HOT_WORDS[rand(Joke::HOT_WORDS.length)]
+
           joke = @user.jokes.build
           joke.anonymous = true
           joke.content = content
@@ -31,6 +33,8 @@ module Parser
           unless joke.save
             Rails.logger.info("#{content} 保存失败")
             Rails.logger.info(joke.errors.full_messages)
+          else
+            @user.tag(joke, with: tags, on: :tags)
           end
           
           GC.start

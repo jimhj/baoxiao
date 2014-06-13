@@ -1,0 +1,14 @@
+.col-md-8
+  ul.nav.nav-pills.tag
+    li.active
+      a
+        i.fa.fa-tag
+        span.ml-5= params[:id]
+
+  .jokes.list-group.mt-10
+    = render @jokes
+
+  .baoxiao-pagination
+    = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
+
+= render 'share/right_bar'

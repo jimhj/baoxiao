@@ -1,4 +1,8 @@
 .jokes {
+  .list-group-item {
+    padding: 10px 15px 0px 15px;
+  }
+
   .list-group-item-user {
     font-size: 12px;
     color: #999;
@@ -24,17 +28,31 @@
     }
   }
 
-  .status > ul > li {
-    float: left;
-    > a { font-size: 18px; }
-    > a.voteJoke.disabled {
-      color: #777;
-      opacity: 0.5;
+  .status > .tags {
+    margin-right: 10px;
+    i.fa.fa-tags {
+      color: $brand-primary;
+    }
+
+    > a {
+      font-size: 12px;
+      margin-left: 5px;
+    }
+  }
+
+  .status ul.counts li {
+    float: left; 
+    > a { 
+      font-size: 18px; 
+      &.voteJoke.disabled {
+        color: #777;
+        opacity: 0.5;        
+      }
     }
     span.bds_more i.fa.fa-share-square-o {
       color: $brand-primary;
       font-size: 18px;
-    }
+    }    
   }
 
   .pagebar {
@@ -146,4 +164,66 @@ ul.joke-pictures {
   > .pagination {
     margin: 0;
   }
+}
+
+ul.tag.nav li {
+  a { 
+    &, &:hover { 
+      background-color: #FFF; 
+      color: $brand-primary;
+      border-left: 4px solid $brand-primary;
+    }
+  }
+
+  @media (max-width: $grid-float-breakpoint) {
+    width: 100%;
+    text-align: center;
+    a {
+      border-top: 4px solid $brand-primary;
+      border-left: none; 
+    }
+  }  
+}
+
+.tag-cloud {
+  .tag {
+    padding: 5px 10px;
+    background-color: #DDD;
+    color: #FFF;
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .tag2 {
+    font-size: 12px;
+    background-color: lighten($brand-info, 20%);
+  }
+
+  .tag3 {
+    font-size: 14px;
+    background-color: $brand-info;
+  }
+
+  .tag4 {
+    font-size: 16px;
+    background-color: $brand-success;
+  }  
+
+  .tag5 {
+    font-size: 18px;
+    background-color: $brand-warning;
+  }
+
+  .tag6 {
+    font-size: 20px;
+    background-color: $brand-primary;
+  }    
+
+  .tag7 {
+    font-size: 22px;
+    background-color: $brand-danger;
+  }    
 }
