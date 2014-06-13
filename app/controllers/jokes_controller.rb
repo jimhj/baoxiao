@@ -23,10 +23,16 @@ class JokesController < ApplicationController
   
   def show
     @joke = Joke.find(params[:id])
+    @page_title = @joke.title || @joke.content.truncate(100, omission: '')
   end
 
   def hot
     @jokes = Joke.order('hot DESC').paginate(page_opts)
+    render template: 'index/index'
+  end
+
+  def random
+    @jokes = Joke.random.paginate(page_opts)
     render template: 'index/index'
   end
 
@@ -68,7 +74,7 @@ class JokesController < ApplicationController
   end
 
   def page_opts
-    { page: params[:page], per_page: 20, total_entries: 20000 }
+    { page: params[:page], per_page: 20, total_entries: 2000 }
   end
 
   def joke_params

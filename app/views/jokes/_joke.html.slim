@@ -1,19 +1,19 @@
 - cache [joke, locale] do
   .list-group-item id="vote-for-joke-#{joke.id}"
-    - unless joke.anonymous?
-      .list-group-item-user.clearfix.mb-10
-        a href="#{user_path(joke.user)}" 
-          = image_tag joke.user.avatar.thumb.url
-        a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
+    .list-group-item-user.clearfix.mb-10
+      - unless joke.anonymous?
+        .pull-left
+          a href="#{user_path(joke.user)}" 
+            = image_tag joke.user.avatar.thumb.url
+          a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
+
+      .pull-right
+
     - if joke.title.present?
       .list-group-title.clearfix.mb-10
-        .pull-left
-          h4.list-group-item-heading
-            a href="#{joke_path(joke.id)}"= joke.title
-        - if joke.from.present?
-          .pull-right
-            span 来源：
-            a= joke.from      
+        h4.list-group-item-heading
+          a href="#{joke_path(joke.id)}"= joke.title
+
     .list-group-item-text
       .content= joke.content
       - if joke.picture.present?
@@ -33,6 +33,9 @@
           a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
             i.fa.fa-thumbs-o-down
             span.ml-2= joke.down_votes_count
+        li.ml-20
+          a.readon href="#{joke_path(joke)}": i.fa.fa-eye
+
         - if false
           li.ml-20
             a href="#{joke_path(joke.id)}"

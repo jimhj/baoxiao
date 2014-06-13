@@ -9,6 +9,14 @@ class Joke < ActiveRecord::Base
 
   scope :recents, -> { where.not(title: nil).order('created_at DESC').limit(10) }
   scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC').limit(6) }
+  scope :random, -> { 
+    # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
+    find_by_sql(
+      <<-SQL
+        select * from jokes where random() < 0.1 limit 1000       
+      SQL
+    ) 
+  }
 
   belongs_to :user
 

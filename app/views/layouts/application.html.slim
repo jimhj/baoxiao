@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 html
   head
-    title 爆笑集中营
+    title= @page_title ? "#{@page_title} - 爆笑集中营" : "爆笑集中营"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -42,7 +42,14 @@ html
             i.fa.fa-bars
         #header.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li: a href="#{hot_jokes_path}" 最热
+            li
+              a href="#{hot_jokes_path}" 
+                i.fa.fa-fire
+                span.ml-5 最热
+            li
+              a href="#{random_jokes_path}" 
+                i.fa.fa-random
+                span.ml-5 随机
             li: a href="#{qiubai_jokes_path}" 
               = image_tag 'qiubai.jpeg'
               span.ml-5 糗事百科

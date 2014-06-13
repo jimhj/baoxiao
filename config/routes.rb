@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :qiubai
       get :mahua
       get :hot
+      get :random
       get :search
       get :check_title
       get :check_content    
