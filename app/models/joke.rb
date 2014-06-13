@@ -5,7 +5,7 @@ class Joke < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
-  validates :content, presence: true, uniqueness: true, length: { minimum: 5, maximum: 200 }
+  validates :content, presence: true, uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, length: { minimum: 2, maximum: 300 }
 
   scope :recents, -> { where.not(title: nil).order('created_at DESC').limit(10) }
   scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC').limit(6) }

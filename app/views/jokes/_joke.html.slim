@@ -1,16 +1,19 @@
 .list-group-item id="vote-for-joke-#{joke.id}"
-  .list-group-item-user
-    - unless joke.anonymous?
+  - unless joke.anonymous?
+    .list-group-item-user.clearfix.mb-10
       a href="#{user_path(joke.user)}" 
         = image_tag joke.user.avatar.thumb.url
       a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
-    time.mr-5 大约1小时前
-    - if joke.from.present?
-      a= joke.from
   - if joke.title.present?
-    h4.list-group-item-heading.mt-10
-      a href="#{joke_path(joke.id)}"= joke.title
-  .list-group-item-text.mt-10
+    .list-group-title.clearfix.mb-10
+      .pull-left
+        h4.list-group-item-heading
+          a href="#{joke_path(joke.id)}"= joke.title
+      - if joke.from.present?
+        .pull-right
+          span 来源：
+          a= joke.from      
+  .list-group-item-text
     .content= joke.content
     - if joke.picture.present?
       .thumb.mt-10
@@ -35,6 +38,6 @@
             i.fa.fa-comment-o
             span.ml-2= joke.comments_count
       li.pull-right.dropdown
-        #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}'}"
+        #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
           span.bds_more style="background: none !important;height: 100%;"
             i.fa.fa-share-square-o

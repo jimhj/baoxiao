@@ -7,13 +7,16 @@
         = render 'share/form_error_messages', form: f
         .form-group
           = f.label :title, class: 'control-label'
-          = f.text_field :title, placeholder: '标题, 40字以内', class: 'form-control'
+          = f.text_field :title, placeholder: '40字以内', class: 'form-control'
+
         .form-group
           = f.label :content, class: 'control-label'
-          = f.text_area :content, placeholder: '正文, 200字以内', class: 'form-control', rows: '10'
+          = f.text_area :content, placeholder: '300字以内', class: 'form-control', rows: '10'
+
         .form-group
           = f.label :picture, class: 'control-label'
           = f.file_field :picture
+
         .checkbox
           label
             = f.check_box :anonymous
@@ -29,21 +32,21 @@ javascript:
       },
       'joke[content]': {
         required: true,
-        remote: '/jokes/check_content',
-        minlength: 5,
-        maxlength: 200
+        //remote: '/jokes/check_content',
+        minlength: 2,
+        maxlength: 300
       }
     },
     messages: {
       'joke[title]': {
         remote: '#{@joke.errors.generate_message :title, :taken}',
-        maxlength: '#{@joke.errors.generate_message :title, :length}'
+        maxlength: '#{@joke.errors.generate_message :title, :too_long, count: 40}'
       },
       'joke[content]': {
         required: '#{@joke.errors.generate_message :content, :blank}',
-        remote: '#{@joke.errors.generate_message :content, :taken}',
-        minlength: '#{@joke.errors.generate_message :content, :length}',
-        maxlength: '#{@joke.errors.generate_message :content, :length}'
+        //remote: '#{@joke.errors.generate_message :content, :taken}',
+        minlength: '#{@joke.errors.generate_message :content, :too_short, count: 2}',
+        maxlength: '#{@joke.errors.generate_message :content, :too_long, count: 300}'
       }
     }
   });
