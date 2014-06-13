@@ -1,6 +1,6 @@
 module Parser
   class Qiubai < Base
-    SCRAP_FROM = 'http://www.qiushibaike.com/hot'
+    SCRAP_FROM = 'http://www.qiushibaike.com/late'
 
     def scrap
       @opts[:page_start].upto(@opts[:page_stop]).each do |page|
@@ -32,7 +32,9 @@ module Parser
             Rails.logger.info("#{content} 保存失败")
             Rails.logger.info(joke.errors.full_messages)
           end
-        end              
+          
+          GC.start
+        end             
       end
     end
 

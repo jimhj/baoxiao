@@ -68,7 +68,7 @@ class JokesController < ApplicationController
   end
 
   def page_opts
-    { page: params[:page], per_page: 20, total_entries: 500 }
+    { page: params[:page], per_page: 20, total_entries: 20000 }
   end
 
   def joke_params

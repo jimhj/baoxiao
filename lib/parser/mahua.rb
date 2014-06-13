@@ -37,6 +37,8 @@ module Parser
             Rails.logger.info("#{content} 保存失败")
             Rails.logger.info(joke.errors.full_messages)
           end
+
+          GC.start
         end              
       end
     end
