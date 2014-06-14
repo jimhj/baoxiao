@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613064909) do
+ActiveRecord::Schema.define(version: 20140614013806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 20140613064909) do
     t.datetime "updated_at"
   end
 
+  add_index "jokes", ["from", "status", "published_at"], name: "index_jokes_on_from_and_status_and_published_at", using: :btree
+  add_index "jokes", ["from", "status"], name: "index_jokes_on_from_and_status", using: :btree
   add_index "jokes", ["from"], name: "index_jokes_on_from", using: :btree
+  add_index "jokes", ["hot", "status"], name: "index_jokes_on_hot_and_status", using: :btree
   add_index "jokes", ["hot"], name: "index_jokes_on_hot", using: :btree
   add_index "jokes", ["user_id"], name: "index_jokes_on_user_id", using: :btree
 

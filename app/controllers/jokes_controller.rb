@@ -37,7 +37,7 @@ class JokesController < ApplicationController
   end
 
   def search
-    @jokes = Joke.search_with_hightlight(params[:q])
+    @results = Joke.search_with_hightlight(params[:q])
                  .paginate(page: params[:page], per_page: 20).results
     
   end  
