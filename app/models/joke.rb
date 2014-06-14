@@ -23,7 +23,9 @@ class Joke < ActiveRecord::Base
   belongs_to :user
 
   after_create :update_hot
-  after_touch :update_hot  
+  after_touch :update_hot
+
+  enum status: [ :pending, :approved, :rejected ]
 
   HOT_WORDS = %w{伤不起 校园 围观 ML 美女 火星文 非主流 一句话不割 穿越 秒杀 萝莉 hold 腐女 TT 御姐 mm 正太 你懂的}
 

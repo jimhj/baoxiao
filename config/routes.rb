@@ -30,4 +30,10 @@ Rails.application.routes.draw do
       get :check_name
     end
   end
+
+  namespace :admin do
+    root to: 'dashboard#index'
+    resources :users
+    resources :jokes
+  end
 end

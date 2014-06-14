@@ -1,0 +1,37 @@
+.bs-docs-section
+  .page-header 查询结果
+  table.table.table-striped
+    thead
+      tr
+        th #
+        th title
+        th content
+        th picture
+        th status
+        th up votes 
+        th down votes
+        th from
+        th user
+        th created_at
+        th -
+        th -
+    tbody
+      - @jokes.each do |j|
+        tr
+          td= j.id
+          td= j.title
+          td= j.content
+          td
+            = image_tag j.picture.thumb.url, style: 'max-width: 60'
+          td= j.status
+          td= j.up_votes_count
+          td= j.down_votes_count
+          td= j.from
+          td
+            a href="#this"= j.user.name
+          td= j.created_at.strftime('%F %T')
+          td: a href="#{admin_joke_path(j)}" data-method="DELETE" 删除
+          td: a href="#{}" data-method="DELETE" 通过
+
+  .pagination
+    = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2

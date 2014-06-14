@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
   def voted_for?(joke)
     voted_joke_ids.include? joke.id
   end
+
+  def admin?
+    Settings.admin_emails.include? email
+  end
 end

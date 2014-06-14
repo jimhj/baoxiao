@@ -1,0 +1,29 @@
+.bs-docs-section
+  .page-header 查询结果
+  table.table.table-striped
+    thead
+      tr
+        th #
+        th name
+        th email
+        th login
+        th confirmed?
+        th created at
+        th locked?
+        th -
+        th -
+    tbody
+      - @users.each do |u|
+        tr
+          td= u.id
+          td= u.name
+          td= u.email
+          td= u.login
+          td= u.confirmed
+          td= u.created_at.strftime('%F %T')
+          td= u.locked_at.present?
+          td: a href="#{admin_user_path(u)}" data-method="DELETE" 删除
+          td: a href="#{}" data-method="DELETE" 冻结
+
+  .pagination
+    = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 2

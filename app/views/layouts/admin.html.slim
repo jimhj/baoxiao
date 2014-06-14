@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+html
+  head
+    title 管理后台
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = favicon_link_tag
+    = csrf_meta_tags
+  body
+    header.navbar.navbar-fixed-top.navbar-inverse.bs-docs-nav role="banner"
+      .container
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"
+            i.fa.fa-bars
+          a.navbar-brand href="#{admin_root_path}" 管理后台
+
+        nav.collapse.navbar-collapse.bs-navbar-collapse role="navigation"
+          ul.nav.navbar-nav
+            li.active
+              a href="#" 用户
+            li
+              a href="#" 笑话
+
+            li
+              a href="#" 广告
+
+    .container.bs-docs-container          
+      .row
+        .col-md-3
+          .bs-sidebar.hidden-print.affix role="complementary"
+            ul.nav.bs-sidenav
+              li class=('active' if params[:controller] == 'admin/users')
+                a href="#{admin_users_path}" 用户
+                ul.nav
+                  li: a href="#{admin_users_path}" 列表
+                  li: a href="#" 新建
+                  li: a href="#" 查询
+              li class=('active' if params[:controller] == 'admin/jokes')
+                a href="#{admin_jokes_path}" 笑话
+                ul.nav
+                  li: a href="#" 列表
+                  li: a href="#" 新建
+                  li: a href="#" 查询
+              li
+                a href="#" 广告
+                ul.nav
+                  li: a href="#" 列表
+                  li: a href="#" 新建
+                  li: a href="#" 查询
+
+        .col-md-9 role="main"
+          = yield
