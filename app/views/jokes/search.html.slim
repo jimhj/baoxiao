@@ -2,47 +2,46 @@
   .jokes.list-group
     - @results.each do |result|
       - joke = result._source
-      - cache("jokes/#{joke.id}-#{Time.parse(joke.updated_at).to_i}/#{locale}/search") do
-        .list-group-item id="vote-for-joke-#{joke.id}"
-          .list-group-item-user.clearfix.mb-10
-            - unless joke.anonymous?
-              .pull-left
-                a href="#{user_path(joke.user)}" 
-                  = image_tag joke.user.avatar.thumb.url
-                a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
+      .list-group-item id="vote-for-joke-#{joke.id}"
+        .list-group-item-user.clearfix.mb-10
+          - unless joke.anonymous?
+            .pull-left
+              a href="#{user_path(joke.user)}" 
+                = image_tag joke.user.avatar.thumb.url
+              a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
 
-          - if joke.title.present?
-            .list-group-title.clearfix.mb-10
-              h4.list-group-item-heading
-                a href="#{joke_path(joke.id)}"= raw (result.highlight.title || [joke.title]).first
+        - if joke.title.present?
+          .list-group-title.clearfix.mb-10
+            h4.list-group-item-heading
+              a href="#{joke_path(joke.id)}"= raw (result.highlight.title || [joke.title]).first
 
-          .list-group-item-text.mt-10
-            .content= raw (result.highlight.content || [joke.content]).first
-            - if joke.picture.present?
-              .thumb.mt-10
-                a href="#{joke_path(joke.id)}"
-                  - if mobile?
-                    = image_tag joke.picture.small.url
-                  - else
-                    = image_tag joke.picture.normal.url          
+        .list-group-item-text.mt-10
+          .content= raw (result.highlight.content || [joke.content]).first
+          - if joke.picture.present?
+            .thumb.mt-10
+              a href="#{joke_path(joke.id)}"
+                - if mobile?
+                  = image_tag joke.picture.small.url
+                - else
+                  = image_tag joke.picture.normal.url          
 
-          .status.mt-10.clearfix
-            .pull-left.tags
-            ul.list-unstyled.counts.pull-right.clearfix
-              li
-                a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
-                  i.fa.fa-thumbs-o-up
-                  span.ml-2= joke.up_votes_count
-              li.ml-15
-                a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
-                  i.fa.fa-thumbs-o-down
-                  span.ml-2= joke.down_votes_count
-              li.ml-15
-                a.readon href="#{joke_path(joke)}": i.fa.fa-eye
-              li.ml-15
-                #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
-                  span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
-                    i.fa.fa-share-square-o
+        .status.mt-10.clearfix
+          .pull-left.tags
+          ul.list-unstyled.counts.pull-right.clearfix
+            li
+              a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
+                i.fa.fa-thumbs-o-up
+                span.ml-2= joke.up_votes_count
+            li.ml-15
+              a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
+                i.fa.fa-thumbs-o-down
+                span.ml-2= joke.down_votes_count
+            li.ml-15
+              a.readon href="#{joke_path(joke)}": i.fa.fa-eye
+            li.ml-15
+              #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
+                span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
+                  i.fa.fa-share-square-o
   .baoxiao-pagination
     = will_paginate @results, renderer: BootstrapPagination::Rails, inner_window: 2
 
