@@ -23,11 +23,6 @@
               = image_tag joke.picture.normal.url
 
     .status.mt-10.clearfix
-      .pull-left.tags
-        i.fa.fa-tags
-        - joke.tags.each do |tag|
-          a href="#{tag_path(tag.name)}"= tag
-
       ul.list-unstyled.counts.pull-right.clearfix
         li
           a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
@@ -43,3 +38,7 @@
           #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
             span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
               i.fa.fa-share-square-o
+      .tags
+        i.fa.fa-tags
+        - joke.tags.each do |tag|
+          a href="#{tag_path(tag.name)}"= tag
