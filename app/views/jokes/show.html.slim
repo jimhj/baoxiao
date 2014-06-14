@@ -32,29 +32,7 @@
         a.btn.btn-primary href="#" 登录
         span.ml-5 后发表评论
 
-.col-md-4
-  .panel.search
-    .panel-body
-      = form_tag search_jokes_path, role: 'form', method: 'GET' do
-        .input-group.mb-10
-          input.form-control type="text" placeholder="关键词" name="q"
-          span.input-group-btn
-            button.btn.btn-default type="submit": i.fa.fa-search
-
-      ul.list-unstyled.clearfix
-        - Joke::HOT_WORDS.each do |word|
-          li
-            a href="#{search_jokes_path(q: word)}"= word
-        li: a ......
-
-  .panel.recent
-    .panel-heading 
-      h3.panel-title 类似笑点
-    .panel-body
-      ul.list-unstyled
-        - @joke.more_like_this.each do |joke|
-          li.mb-10
-            a href="#{joke_path(joke)}"= joke.title
+= render 'share/right_bar'
 
 javascript:
   $(document).ready(function () {
