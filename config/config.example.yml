@@ -1,0 +1,13 @@
+defaults: &defaults
+  app_name: "爆笑集中营"
+  admin_emails:
+    - "admin@admin.com"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

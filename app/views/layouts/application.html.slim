@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 html
   head
-    title= @page_title ? "#{@page_title} - 爆笑集中营" : "爆笑集中营"
+    title= @page_title ? "#{@page_title} - #{Settings.app_name}" : "#{Settings.app_name}"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     meta name="viewport" content="width=device-width, initial-scale=1.0"
