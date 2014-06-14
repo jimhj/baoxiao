@@ -5,5 +5,5 @@ baoxiao.AD =
       $partial =  $(item['partial'])
       $partial.addClass "ad-#{item['version']}"
       $(
-        $('.jokes .list-group-item')[(i + 1) * 5]
+        $('.jokes .list-group-item')[(i + 1) * 5 - 1]
       ).before $partial
