@@ -1,3 +1,4 @@
+# Jsonp callbacks
 baoxiao.AD = 
   insertListAds : (ads = []) ->
     for item, i in ads
