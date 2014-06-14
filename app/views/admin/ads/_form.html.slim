@@ -1,0 +1,13 @@
+= form_for @ad, :url => @ad.new_record? ? admin_ads_path : admin_ad_path(@ad), :class => 'form' do |f|
+  = render 'share/form_error_messages', form: f  
+  .form-group
+    = f.text_field :name, placeholder: '广告名称', tabindex: 2, class: 'form-control'
+  .form-group
+    = f.select :ad_type, [%w(LIST LIST)], {}, class: 'form-control'
+  .form-group
+    = f.text_area :body, placeholder: '广告HTML', tabindex: 2, class: 'form-control', rows: 10
+  .checkbox
+    label
+      = f.check_box :active
+      = f.label :active, '生效'
+  input.btn.btn-primary type="submit" value="#{@ad.new_record? ? '发布' : '保存'}"

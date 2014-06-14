@@ -1,0 +1,27 @@
+.bs-docs-section
+  .page-header 查询结果
+  table.table.table-striped
+    thead
+      tr
+        th #
+        th name
+        th type
+        th version
+        th created_at
+        th active
+        th -
+        th -
+    tbody
+      - @ads.each do |a|
+        tr
+          td= a.id
+          td= a.name
+          td= a.ad_type
+          td= a.version
+          td= a.created_at.strftime('%F %T')
+          td= a.active 
+          td: a href="#{edit_admin_ad_path(a)}" 编辑
+          td: a href="#{admin_ad_path(a)}" data-method="DELETE" data-confirm="确定吗？" 删除
+
+  .pagination
+    = will_paginate @ads, renderer: BootstrapPagination::Rails, inner_window: 2

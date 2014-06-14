@@ -6,7 +6,7 @@
 #= require nprogress
 #= require baoxiao
 #= require_tree ./plugins
-
+#= require ad
 
 $(document).on 'page:fetch', ->
   NProgress.start()

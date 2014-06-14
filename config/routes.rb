@@ -31,9 +31,14 @@ Rails.application.routes.draw do
     end
   end
 
+  scope 'ad', as: 'ad' do
+    root to: 'ad#handle'
+  end
+
   namespace :admin do
     root to: 'dashboard#index'
     resources :users
     resources :jokes
+    resources :ads
   end
 end

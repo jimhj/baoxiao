@@ -21,9 +21,11 @@ html
               a href="#" 用户
             li
               a href="#" 笑话
-
             li
               a href="#" 广告
+
+          ul.nav.navbar-nav.navbar-right
+            li: a= current_user.name
 
     .container.bs-docs-container          
       .row
@@ -42,11 +44,11 @@ html
                   li: a href="#" 列表
                   li: a href="#" 新建
                   li: a href="#" 查询
-              li
-                a href="#" 广告
+              li class=('active' if params[:controller] == 'admin/ads')
+                a href="#{admin_ads_path}" 广告
                 ul.nav
-                  li: a href="#" 列表
-                  li: a href="#" 新建
+                  li: a href="#{admin_ads_path}" 列表
+                  li: a href="#{new_admin_ad_path}" 新建
                   li: a href="#" 查询
 
         .col-md-9 role="main"
