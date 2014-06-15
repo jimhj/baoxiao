@@ -45,4 +45,5 @@
   .baoxiao-pagination
     = will_paginate @results, renderer: BootstrapPagination::Rails, inner_window: 2
 
-= render 'share/right_bar'
+- unless mobile?
+  = render 'share/right_bar'

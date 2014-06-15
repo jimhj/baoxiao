@@ -75,7 +75,8 @@
         a.btn.btn-primary href="#" 登录
         span.ml-5 后发表评论
 
-= render 'share/right_bar'
+- unless mobile?
+  = render 'share/right_bar'
 
 javascript:
   $(document).ready(function () {
