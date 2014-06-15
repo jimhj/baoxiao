@@ -30,6 +30,11 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   .panel.siteAd .panel-body {
     padding: 5px 6px 1px 6px;
   }
+
+  .group-ads.fixed {
+    top: 70px;
+    position: fixed;
+  }
 }
 
 .main > .container {

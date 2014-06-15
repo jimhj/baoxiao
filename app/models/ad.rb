@@ -2,8 +2,8 @@ class Ad < ActiveRecord::Base
   validates_presence_of :name, :body
   enum status: [:enable, :disable]
 
-  scope :for_list, -> { where(ad_type: 'LIST') }
-  scope :for_sidebar, -> { where(ad_type: 'SIDEBAR') }
+  scope :for_list, -> { where(ad_type: 'LIST', active: true).order('created_at ASC') }
+  scope :for_sidebar, -> { where(ad_type: 'SIDEBAR', active: true).order('created_at ASC') }
 
   before_save :expire_ad_cache
   before_destroy :expire_ad_cache

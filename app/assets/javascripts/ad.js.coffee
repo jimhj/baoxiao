@@ -1,14 +1,19 @@
-# baoxiao.AD = 
-#   init : ->
+baoxiao.AD = 
+  init : ->
+    $ad = $('.group-ads')
+    if $ad.length > 0
+      console.log 123123
+      @floatingSideBarAd $ad
 
-#   loadAds :
+  floatingSideBarAd : ($ad) ->
+    top = $ad.offset().top
+    console.log top
+    $(window).scroll (e) ->
+      y = $(window).scrollTop()
+      if y > top - 50 # 50 is the navbar height.
+        $ad.addClass 'fixed'
+      else
+        $ad.removeClass 'fixed'
 
-#   loadListAds : (version = []) ->
-#     for item, i in ads
-#       $partial =  $(item['partial'])
-#       $partial.addClass "ad-#{item['version']}"
-#       $(
-#         $('.jokes .list-group-item')[(i + 1) * 5 - 1]
-#       ).before $partial
-
-#   loadSideBarAds : (version = []) ->
+$(document).ready ->
+  baoxiao.AD.init()

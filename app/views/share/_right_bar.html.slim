@@ -2,10 +2,9 @@
   - if !mobile?
     - cache "ads/sidebar_1", expires_in: 1.day do
       - if ad = Ad.for_sidebar[0]
-        .panel.siteAd class="#{ad.try(:version)}"
+        .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
           .panel-body 
             = raw ad.try(:body)
-
   .panel.search
     .panel-body
       = form_tag search_jokes_path, role: 'form', method: 'GET' do
@@ -20,12 +19,6 @@
             li
               a href="#{tag_path(tag.name)}"= tag.name
           li: a href="#{tags_path}" 更多...
-  - if !mobile?
-    - cache "ads/sidebar_2", expires_in: 1.day do
-      - if ad2 = Ad.for_sidebar[1]
-        .panel.siteAd class="#{ad2.try(:version)}"
-          .panel-body 
-            = raw ad2.try(:body)
 
   - cache "jokes/recents", expires_in: 1.hour do
     .panel.recent
@@ -40,8 +33,15 @@
                 span= joke.title.truncate(8, omission: '')
 
   - if !mobile?
-    - cache "ads/sidebar_3", expires_in: 1.day do
-      - if ad3 = Ad.for_sidebar[2] 
-        .panel.siteAd class="#{ad3.try(:version)}"
-          .panel-body 
-            = raw ad3.try(:body)
+    .group-ads
+      - cache "ads/sidebar_2", expires_in: 1.day do
+        - if ad = Ad.for_sidebar[1]
+          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+            .panel-body 
+              = raw ad.try(:body)
+
+      - cache "ads/sidebar_3", expires_in: 1.day do
+        - if ad = Ad.for_sidebar[2]
+          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+            .panel-body 
+              = raw ad.try(:body)
