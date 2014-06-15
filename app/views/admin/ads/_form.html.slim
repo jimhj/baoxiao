@@ -3,7 +3,7 @@
   .form-group
     = f.text_field :name, placeholder: '广告名称', tabindex: 2, class: 'form-control'
   .form-group
-    = f.select :ad_type, [%w(LIST LIST)], {}, class: 'form-control'
+    = f.select :ad_type, [%w(LIST LIST), %w(SIDEBAR SIDEBAR)], {}, class: 'form-control'
   .form-group
     = f.text_area :body, placeholder: '广告HTML', tabindex: 2, class: 'form-control', rows: 10
   .checkbox

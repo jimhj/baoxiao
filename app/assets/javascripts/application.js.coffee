@@ -1,6 +1,5 @@
 #= require jquery
 #= require jquery_ujs
-#= require turbolinks
 #= require bootstrap
 #= require jquery.validate
 #= require nprogress
@@ -14,5 +13,4 @@ $(document).on 'page:change', ->
   NProgress.done()
 $(document).on 'page:restore', ->
   NProgress.remove()
-
 

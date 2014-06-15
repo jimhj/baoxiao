@@ -41,6 +41,6 @@ class Admin::AdsController < Admin::ApplicationController
   end
 
   def ad_params
-    params.require(:ad).permit(:name, :body, :active)
+    params.require(:ad).permit(:name, :body, :ad_type, :active)
   end
 end

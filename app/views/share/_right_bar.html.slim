@@ -1,4 +1,11 @@
 .col-md-4
+  - if !mobile?
+    - cache "ads/sidebar_1", expires_in: 1.day do
+      - if ad = Ad.for_sidebar[0]
+        .panel.siteAd class="#{ad.try(:version)}"
+          .panel-body 
+            = raw ad.try(:body)
+
   .panel.search
     .panel-body
       = form_tag search_jokes_path, role: 'form', method: 'GET' do
@@ -7,28 +14,34 @@
           span.input-group-btn
             button.btn.btn-default type="submit": i.fa.fa-search
 
-      ul.list-unstyled.clearfix
-        - Joke.tags_on(:tags).limit(20).each do |tag|
-          li
-            a href="#{tag_path(tag.name)}"= tag.name
-        li: a href="#{tags_path}" 更多...
+      - cache "jokes/recent_tags", expires_in: 1.day do
+        ul.list-unstyled.clearfix
+          - Joke.tags_on(:tags).limit(20).each do |tag|
+            li
+              a href="#{tag_path(tag.name)}"= tag.name
+          li: a href="#{tags_path}" 更多...
+  - if !mobile?
+    - cache "ads/sidebar_2", expires_in: 1.day do
+      - if ad2 = Ad.for_sidebar[1]
+        .panel.siteAd class="#{ad2.try(:version)}"
+          .panel-body 
+            = raw ad2.try(:body)
 
-  .panel.recent
-    .panel-heading 
-      h3.panel-title 最新的文字笑话
-    .panel-body
-      ul.list-unstyled
-        - Joke.recents.each do |joke|
-          li.mb-10
-            a href="#{joke_path(joke)}"= joke.title
+  - cache "jokes/recents", expires_in: 1.hour do
+    .panel.recent
+      .panel-heading 
+        h3.panel-title 最新的搞笑图片
+      .panel-body
+        ul.list-unstyled.joke-pictures.clearfix
+          - Joke.recent_pictures.each do |joke|
+            li
+              a href="#{joke_path(joke)}"
+                = image_tag joke.picture.thumb.url
+                span= joke.title.truncate(8, omission: '')
 
-  .panel.recent
-    .panel-heading 
-      h3.panel-title 最新的搞笑图片
-    .panel-body
-      ul.list-unstyled.joke-pictures.clearfix
-        - Joke.recent_pictures.each do |joke|
-          li
-            a href="#{joke_path(joke)}"
-              = image_tag joke.picture.thumb.url
-              span= joke.title.truncate(8, omission: '')
+  - if !mobile?
+    - cache "ads/sidebar_3", expires_in: 1.day do
+      - if ad3 = Ad.for_sidebar[2] 
+        .panel.siteAd class="#{ad3.try(:version)}"
+          .panel-body 
+            = raw ad3.try(:body)
