@@ -37,7 +37,7 @@ class Ad < ActiveRecord::Base
     when "DETAIL"
       expire_fragment 'ads_detail_1'
       expire_fragment 'ads_detail_2'
-      expire_fragment 'ads_detail_2'
+      expire_fragment 'ads_detail_3'
     when "RECOMMAND"
       expire_fragment 'ads_recommand_1'
       expire_fragment 'ads_recommand_2'
