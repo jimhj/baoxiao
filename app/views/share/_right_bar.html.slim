@@ -24,9 +24,9 @@
     .panel-heading 
       h3.panel-title 热门笑点  
     .panel-body
-      - cache "jokes/hot", expires_in: 1.day do
+      - cache "jokes/hot", expires_in: 1.hour do
         ul.list-unstyled.clearfix
-          - Joke.hot.each do |joke|
+          - Joke.hot.limit(10).each do |joke|
             li.clearfix.mb-10
               .pull-left
                 a href="#{joke_path(joke)}" title="#{joke.title}"= joke.title.truncate(18)
@@ -41,13 +41,13 @@
             = raw ad.try(:body)
 
   .group-ads
-    - cache "jokes/recents", expires_in: 1.hour do
+    - cache "jokes/recent_pictures", expires_in: 1.hour do
       .panel.recent
         .panel-heading 
-          h3.panel-title 最新的搞笑图片
+          h3.panel-title 最新笑图
         .panel-body
           ul.list-unstyled.joke-pictures.clearfix
-            - Joke.recent_pictures.each do |joke|
+            - Joke.recent_pictures.limit(4).each do |joke|
               li
                 a href="#{joke_path(joke)}"
                   = image_tag joke.picture.thumb.url

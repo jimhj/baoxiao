@@ -120,6 +120,14 @@
   font-size: 12px;
 }
 
+// .panel.recommad {
+//   @media (max-width: $grid-float-breakpoint) {
+//     .panel-body {
+//       text-align: center;
+//     } 
+//   }
+// }
+
 .comments {
   .panel-heading { color: $brand-primary; }
   .panel-body { padding: 0; }

@@ -9,9 +9,10 @@ class Joke < ActiveRecord::Base
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
   validates :content, presence: true, uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, length: { minimum: 2, maximum: 300 }
 
-  scope :hot, -> { where.not(title: nil).order('hot DESC').limit(10) }
-  scope :recents, -> { where.not(title: nil).order('created_at DESC').limit(10) }
-  scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC').limit(4) }
+  scope :hot, -> { where.not(title: nil).order('hot DESC') }
+  scope :recents, -> { where.not(title: nil).order('created_at DESC') }
+  scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC') }
+  scope :hot_pictures, -> { where.not(title: nil, picture: nil).order('hot DESC') }
   scope :random, -> { 
     # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
     find_by_sql(
