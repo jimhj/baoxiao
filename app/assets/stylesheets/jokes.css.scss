@@ -115,6 +115,11 @@
   }
 }
 
+.panel.hot li .pull-right {
+  color: #999;
+  font-size: 12px;
+}
+
 .comments {
   .panel-heading { color: $brand-primary; }
   .panel-body { padding: 0; }
