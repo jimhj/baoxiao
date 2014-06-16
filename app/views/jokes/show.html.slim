@@ -58,45 +58,45 @@
       span.key.key-right
 
   - if !mobile?
-    - cache "ads/detail_1", expires_in: 1.day do
+    - cache "ads_detail_1", skip_digest: true do
       - if ad = Ad.for_detail[0]
-        .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+        .panel.siteAd class="ad-#{ad.try(:version)}"
           .panel-body 
             = raw ad.try(:body)
 
-    - cache "jokes/hot_pictures_1", expires_in: 1.hour do
+    - cache "ads_recommand_1", skip_digest: true do
       .panel.recommad
         .panel-heading
-          h3.panel-title 热门笑图
+          h3.panel-title 热门动图
         .panel-body
           ul.list-unstyled.joke-pictures.clearfix
-            - Joke.hot_pictures.limit(8).each do |joke|
+            - Ad.recommad_jokes(0).each do |joke|
               li.mr-25
                 a href="#{joke_path(joke)}"
                   = image_tag joke.picture.thumb.url
                   span= joke.title.truncate(8, omission: '')
 
-      - cache "ads/detail_2", expires_in: 1.day do
+      - cache "ads_detail_2", skip_digest: true do
         - if ad = Ad.for_detail[1]
-          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+          .panel.siteAd class="ad-#{ad.try(:version)}"
             .panel-body 
               = raw ad.try(:body)
 
-    - cache "jokes/hot_pictures_2", expires_in: 1.hour do
+    - cache "ads_recommand_2", skip_digest: true do
       .panel.recommad
         .panel-heading
           h3.panel-title 热门笑图
         .panel-body
           ul.list-unstyled.joke-pictures.clearfix
-            - Joke.hot_pictures.limit(8).each do |joke|
+            - Ad.recommad_jokes(1).each do |joke|
               li.mr-25
                 a href="#{joke_path(joke)}"
                   = image_tag joke.picture.thumb.url
                   span= joke.title.truncate(8, omission: '')
 
-      - cache "ads/detail_3", expires_in: 1.day do
+      - cache "ads_detail_3", skip_digest: true do
         - if ad = Ad.for_detail[2]
-          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+          .panel.siteAd class="ad-#{ad.try(:version)}"
             .panel-body 
               = raw ad.try(:body)
 

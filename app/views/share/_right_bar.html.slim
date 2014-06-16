@@ -1,6 +1,6 @@
 .col-md-4
   - if !mobile?
-    - cache "ads/sidebar_1", expires_in: 1.day do
+    - cache "ads_sidebar_1", skip_digest: true do
       - if ad = Ad.for_sidebar[0]
         .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
           .panel-body 
@@ -13,7 +13,7 @@
           span.input-group-btn
             button.btn.btn-default type="submit": i.fa.fa-search
 
-      - cache "jokes/recent_tags", expires_in: 1.day do
+      - cache "jokes/recent_tags", expires_in: 6.hour do
         ul.list-unstyled.clearfix
           - Joke.tags_on(:tags).limit(20).each do |tag|
             li
@@ -34,7 +34,7 @@
                 span= joke.up_votes_count
 
   - if !mobile?
-    - cache "ads/sidebar_2", expires_in: 1.day do
+    - cache "ads_sidebar_2", skip_digest: true do
       - if ad = Ad.for_sidebar[1]
         .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
           .panel-body 
@@ -54,7 +54,7 @@
                     = image_tag joke.picture.thumb.url
                     span= joke.title.truncate(8, omission: '')
      
-      - cache "ads/sidebar_3", expires_in: 1.day do
+      - cache "ads_sidebar_3", skip_digest: true do
         - if ad = Ad.for_sidebar[2]
           .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
             .panel-body 

@@ -1,0 +1,23 @@
+.bs-docs-section
+  .page-header 查询结果
+  table.table.table-striped
+    thead
+      tr
+        th #
+        th name
+        th taggings count
+        th -
+        th -
+    tbody
+      - @tags.each do |t|
+        tr
+          td= t.id
+          td
+            a href="#{jokes_admin_tag_path(t.name)}"= t.name
+          td= t.taggings_count
+
+          td: a href="#this" data-method="DELETE" 编辑
+          td: a href="#this" data-method="DELETE" 删除
+
+  .pagination
+    = will_paginate @tags, renderer: BootstrapPagination::Rails, inner_window: 2

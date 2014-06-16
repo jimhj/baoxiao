@@ -39,6 +39,13 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :users
     resources :jokes
+
+    resources :tags do
+      member do
+        get :jokes
+      end
+    end
+    
     resources :ads
   end
 end

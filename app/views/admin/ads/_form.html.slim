@@ -12,3 +12,17 @@
       = f.label :active, '生效'
       
   input.btn.btn-primary type="submit" value="#{@ad.new_record? ? '发布' : '保存'}"
+
+javascript:
+  $(function () {
+    $("#ad_ad_type").change(function () {
+      var val = $(this).val();
+      var $ad = $('#ad_body');
+
+      if ($(this).val() == 'RECOMMAND') {
+        $ad.attr('placeholder', '输入要推荐的笑话ID，以逗号隔开, 如 1,2,3,4');
+      } else {
+        $ad.attr('placeholder', '广告HTML');
+      }
+    });
+  });
