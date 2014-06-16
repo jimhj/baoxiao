@@ -13,6 +13,7 @@ class Joke < ActiveRecord::Base
   scope :recents, -> { where.not(title: nil).order('created_at DESC') }
   scope :recent_pictures, -> { where.not(title: nil, picture: nil).order('created_at DESC') }
   scope :hot_pictures, -> { where.not(title: nil, picture: nil).order('hot DESC') }
+
   scope :random, -> { 
     # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
     find_by_sql(

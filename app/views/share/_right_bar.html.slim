@@ -41,18 +41,19 @@
             = raw ad.try(:body)
 
   .group-ads
-    - cache "jokes/recent_pictures", expires_in: 1.hour do
-      .panel.recent
-        .panel-heading 
-          h3.panel-title 最新笑图
-        .panel-body
-          ul.list-unstyled.joke-pictures.clearfix
-            - Joke.recent_pictures.limit(4).each do |joke|
-              li
-                a href="#{joke_path(joke)}"
-                  = image_tag joke.picture.thumb.url
-                  span= joke.title.truncate(8, omission: '')
     - if !mobile?
+      - cache "jokes/recent_pictures", expires_in: 1.hour do
+        .panel.recent
+          .panel-heading 
+            h3.panel-title 最新笑图
+          .panel-body
+            ul.list-unstyled.joke-pictures.clearfix
+              - Joke.recent_pictures.limit(4).each do |joke|
+                li
+                  a href="#{joke_path(joke)}"
+                    = image_tag joke.picture.thumb.url
+                    span= joke.title.truncate(8, omission: '')
+     
       - cache "ads/sidebar_3", expires_in: 1.day do
         - if ad = Ad.for_sidebar[2]
           .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"

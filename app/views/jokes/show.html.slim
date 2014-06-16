@@ -64,7 +64,7 @@
           .panel-body 
             = raw ad.try(:body)
 
-    - cache "jokes/hot_pictures", expires_in: 1.day do
+    - cache "jokes/hot_pictures_1", expires_in: 1.hour do
       .panel.recommad
         .panel-heading
           h3.panel-title 热门笑图
@@ -78,6 +78,24 @@
 
       - cache "ads/detail_2", expires_in: 1.day do
         - if ad = Ad.for_detail[1]
+          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+            .panel-body 
+              = raw ad.try(:body)
+
+    - cache "jokes/hot_pictures_2", expires_in: 1.hour do
+      .panel.recommad
+        .panel-heading
+          h3.panel-title 热门笑图
+        .panel-body
+          ul.list-unstyled.joke-pictures.clearfix
+            - Joke.hot_pictures.limit(8).each do |joke|
+              li.mr-25
+                a href="#{joke_path(joke)}"
+                  = image_tag joke.picture.thumb.url
+                  span= joke.title.truncate(8, omission: '')
+
+      - cache "ads/detail_3", expires_in: 1.day do
+        - if ad = Ad.for_detail[2]
           .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
             .panel-body 
               = raw ad.try(:body)
@@ -99,8 +117,7 @@
   /     a.btn.btn-primary href="#" 登录
   /     span.ml-5 后发表评论
 
-- unless mobile?
-  = render 'share/right_bar'
+= render 'share/right_bar'
 
 javascript:
   $(document).ready(function () {
