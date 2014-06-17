@@ -32,8 +32,9 @@ class JokesController < ApplicationController
   end
 
   def random
-    @jokes = Joke.random.paginate(page_opts)
-    render template: 'index/index'
+    @joke = Joke.random || Joke.order('hot DESC').first
+    @page_title = @joke.title || @joke.content.truncate(100, omission: '')
+    render template: 'jokes/show'
   end
 
   def search

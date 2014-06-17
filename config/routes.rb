@@ -38,7 +38,15 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :users
-    resources :jokes
+
+    resources :jokes do
+      member do
+        post :recommend
+        delete :unrecommend
+        post :approve
+        post :reject
+      end
+    end
 
     resources :tags do
       member do

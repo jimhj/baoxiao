@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614144743) do
+ActiveRecord::Schema.define(version: 20140617134125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140614144743) do
     t.integer  "user_id"
     t.boolean  "anonymous"
     t.string   "title"
-    t.text     "content",                        null: false
+    t.text     "content",                          null: false
     t.string   "picture"
     t.integer  "status",           default: 0
     t.integer  "up_votes_count",   default: 0
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140614144743) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "recommended",      default: false
   end
 
   add_index "jokes", ["from", "status", "published_at"], name: "index_jokes_on_from_and_status_and_published_at", using: :btree
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140614144743) do
   add_index "jokes", ["from"], name: "index_jokes_on_from", using: :btree
   add_index "jokes", ["hot", "status"], name: "index_jokes_on_hot_and_status", using: :btree
   add_index "jokes", ["hot"], name: "index_jokes_on_hot", using: :btree
+  add_index "jokes", ["recommended", "status"], name: "index_jokes_on_recommended_and_status", using: :btree
   add_index "jokes", ["user_id"], name: "index_jokes_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|

@@ -9,19 +9,12 @@ class Joke < ActiveRecord::Base
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
   validates :content, presence: true, uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, length: { minimum: 2, maximum: 300 }
 
+  default_scope { where(status: Joke.statuses[:approved]) }
+
   scope :hot, -> { where.not(title: nil).order('hot DESC') }
   scope :hot_pictures, -> { hot.where.not(picture: nil) }
   scope :recents, -> { where.not(title: nil).order('created_at DESC') }
   scope :recent_pictures, -> { recents.where.not(picture: nil) }
-
-  scope :random, -> { 
-    # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
-    find_by_sql(
-      <<-SQL
-        select * from jokes where random() < 0.1 limit 1000;       
-      SQL
-    ) 
-  }
 
   belongs_to :user
 
@@ -31,6 +24,25 @@ class Joke < ActiveRecord::Base
   enum status: [ :pending, :approved, :rejected ]
 
   HOT_WORDS = %w{伤不起 校园 围观 ML 美女 火星文 非主流 一句话不割 穿越 秒杀 萝莉 hold 腐女 TT 御姐 mm 正太 你懂的}
+
+  def self.random
+    # See: http://stackoverflow.com/questions/8674718/best-way-to-select-random-rows-postgresql
+    sql = <<-SQL
+      select * from jokes where random() < 0.01 limit 1;
+    SQL
+
+    find_by_sql(sql).first
+  end
+
+  def self.recommends(total = 8)
+    uncached do
+      find_by_sql(
+        <<-SQL
+          SELECT * FROM jokes where recommended is true and status = 1 order by random() LIMIT #{total};
+        SQL
+      )
+    end
+  end
 
   def from
     case read_attribute(:from)
