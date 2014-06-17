@@ -41,6 +41,7 @@ module Parser
           joke.up_votes_count = up_votes.to_i
           joke.down_votes_count = down_votes.to_i.abs
           joke.from = 'MH'
+          joke.status = Joke.statuses[:approved]
           
           unless joke.save            
             Rails.logger.info("#{content} 保存失败")
