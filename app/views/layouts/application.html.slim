@@ -25,7 +25,8 @@ html
                 a href="#{logout_path}" data-method="DELETE" 退出            
             - else
               li
-                a data-target="#" data-toggle="dropdown": #{current_user.name} <span class="caret"></span>
+                a data-target="#" data-toggle="dropdown"
+                  | #{current_user.name} <span class="caret"></span>
                 ul.dropdown-menu
                   li
                     a href="#{user_path(current_user)}"
@@ -66,7 +67,6 @@ html
           = yield
 
   = render 'share/baidu_share_script'
-
   javascript:  
     $('a.voteJoke').click(function () {
       if (baoxiao.currentUser) {
@@ -91,6 +91,10 @@ html
     = render 'share/login_modal'
 
   - if mobile?
+    - cache "ads_mobile_1", skip_digest: true do
+      - if ad = Ad.for_mobile[0]
+        = raw ad.try :body
+
     javascript:
       $(document).ready(function () {
         $('[data-toggle=dropdown]').each(function() {

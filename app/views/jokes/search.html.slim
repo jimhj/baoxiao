@@ -13,10 +13,10 @@
         - if joke.title.present?
           .list-group-title.clearfix.mb-10
             h4.list-group-item-heading
-              a href="#{joke_path(joke.id)}"= raw (result.highlight.title || [joke.title]).first
+              a href="#{joke_path(joke.id)}"= sanitize (result.highlight.title || [joke.title]).first
 
         .list-group-item-text.mt-10
-          .content= raw (result.highlight.content || [joke.content]).first
+          .content= sanitize (result.highlight.content || [joke.content]).first
           - if joke.picture.present?
             .thumb.mt-10
               a href="#{joke_path(joke.id)}"

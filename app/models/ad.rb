@@ -2,7 +2,7 @@ class Ad < ActiveRecord::Base
   validates_presence_of :name, :body
   enum status: [:enable, :disable]
 
-  AD_TYPES = %w(LIST SIDEBAR DETAIL RECOMMAND)
+  AD_TYPES = %w(LIST SIDEBAR DETAIL RECOMMAND MOBILE)
 
   class << self
     AD_TYPES.each do |ad_type|
@@ -41,12 +41,14 @@ class Ad < ActiveRecord::Base
     when "RECOMMAND"
       expire_fragment 'ads_recommand_1'
       expire_fragment 'ads_recommand_2'
+    when "MOBILE"
+      expire_fragment 'ads_mobile_1'
     end
   end
 
   private
 
-  def expire_fragment cache_key, opts = nil
+  def expire_fragment cache_key
     ActionController::Base.new.expire_fragment cache_key
   end
 end
