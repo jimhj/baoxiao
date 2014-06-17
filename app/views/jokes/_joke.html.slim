@@ -1,9 +1,9 @@
-- if joke_counter == 4 && !mobile?
+- if defined?(joke_counter) && joke_counter == 4 && !mobile?
   - cache "ads_list_1", skip_digest: true do
     - if ad = Ad.for_list.first
       .list-group-item class="ad-#{ad.try(:version)} siteAd"
         = raw ad.try(:body)
-- if joke_counter == 9 && !mobile?
+- if defined?(joke_counter) && joke_counter == 9 && !mobile?
   - cache "ads_list_2", skip_digest: true do
     - if ad2 = Ad.for_list.last
       .list-group-item class="ad-#{ad2.try(:version)} siteAd"
@@ -36,11 +36,11 @@
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix
         li
-          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1"
+          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1" data-joke_id="#{joke.id}"
             i.fa.fa-thumbs-o-up
             span.ml-2= joke.up_votes_count
         li.ml-15
-          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1"
+          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1" data-joke_id="#{joke.id}"
             i.fa.fa-thumbs-o-down
             span.ml-2= joke.down_votes_count
         li.ml-15

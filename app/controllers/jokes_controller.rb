@@ -1,5 +1,5 @@
 class JokesController < ApplicationController
-  before_action :login_required, only: [:new, :create, :vote]
+  before_action :login_required, only: [:new, :create]
 
   def new
     @joke = current_user.jokes.new
@@ -16,9 +16,13 @@ class JokesController < ApplicationController
 
   def vote
     joke = Joke.find(params[:id])
-    return if current_user.voted_for?(joke)
-    result = current_user.vote_for(joke, params[:vote_value])
-    render json: { success: result }
+    if login?
+      return if current_user.voted_for?(joke)
+      result = current_user.vote_for(joke, params[:vote_value])
+    else
+      joke.vote_by_anonymous params[:vote_value]
+    end
+    render json: { success: true }
   end
   
   def show

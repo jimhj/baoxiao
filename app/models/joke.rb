@@ -83,6 +83,10 @@ class Joke < ActiveRecord::Base
     update_attribute :hot, calculate_hot
   end
 
+  def vote_by_anonymous flag
+    flag.to_i > 0 ? increment!(:up_votes_count) : increment!(:down_votes_count)   
+  end
+
   def self.search_with_hightlight q
     highlight_opts = {
       "term_vector"     => "with_positions_offsets" 

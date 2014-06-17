@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require jquery.validate
+#= require jquery.cookie
 #= require nprogress
 #= require baoxiao
 #= require_tree ./plugins
