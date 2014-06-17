@@ -64,17 +64,16 @@
           .panel-body 
             = raw ad.try(:body)
 
-    - cache "jokes/recommends_1", skip_digest: true do
-      .panel.recommad
-        .panel-heading
-          h3.panel-title 热门动图
-        .panel-body
-          ul.list-unstyled.joke-pictures.clearfix
-            - Joke.recommends.each do |joke|
-              li.mr-25
-                a href="#{joke_path(joke)}"
-                  = image_tag joke.picture.thumb.url
-                  span= joke.title.truncate(8, omission: '')
+    .panel.recommad
+      .panel-heading
+        h3.panel-title 热门动图
+      .panel-body
+        ul.list-unstyled.joke-pictures.clearfix
+          - Joke.recommends.each do |joke|
+            li.mr-25
+              a href="#{joke_path(joke)}"
+                = image_tag joke.picture.thumb.url
+                span= joke.title.truncate(8, omission: '')
 
     - cache "ads_detail_2", skip_digest: true do
       - if ad = Ad.for_detail[1]
@@ -82,17 +81,16 @@
           .panel-body 
             = raw ad.try(:body)
 
-    - cache "jokes/recommends_2", skip_digest: true do
-      .panel.recommad
-        .panel-heading
-          h3.panel-title 热门笑图
-        .panel-body
-          ul.list-unstyled.joke-pictures.clearfix
-            - Joke.recommends.each do |joke|
-              li.mr-25
-                a href="#{joke_path(joke)}"
-                  = image_tag joke.picture.thumb.url
-                  span= joke.title.truncate(8, omission: '')
+    .panel.recommad
+      .panel-heading
+        h3.panel-title 热门笑图
+      .panel-body
+        ul.list-unstyled.joke-pictures.clearfix
+          - Joke.recommends.each do |joke|
+            li.mr-25
+              a href="#{joke_path(joke)}"
+                = image_tag joke.picture.thumb.url
+                span= joke.title.truncate(8, omission: '')
 
     - cache "ads_detail_3", skip_digest: true do
       - if ad = Ad.for_detail[2]

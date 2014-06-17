@@ -1,6 +1,8 @@
 class Admin::TagsController < Admin::ApplicationController
+  require 'will_paginate/array'
+
   def index
-    @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC').paginate(page: params[:page], per_page: 50)
+    @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC')
   end
 
   def jokes

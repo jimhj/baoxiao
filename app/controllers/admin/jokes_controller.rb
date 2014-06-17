@@ -20,13 +20,13 @@ class Admin::JokesController < Admin::ApplicationController
 
   def recommend
     @joke.update_attribute :recommended, true
-    expire_recommends_cache
+    # expire_recommends_cache
     redirect_to :back
   end
 
   def unrecommend
     @joke.update_attribute :recommended, false
-    expire_recommends_cache
+    # expire_recommends_cache
     redirect_to :back    
   end
 
