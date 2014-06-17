@@ -19,6 +19,19 @@ $brand-primary: #F19670;
 }
 
 i.fa.fa-plus { font-size: 18px; font-weight: normal; }
+
+body {
+  @media (max-width: $grid-float-breakpoint) {
+    .navbar-fixed-top {
+      position: inherit;
+    }
+
+    .main {
+      margin-top: 0px;
+    }
+  }
+}
+
 .main {
   margin-top: 70px;
   em { background-color: #FFF681; }

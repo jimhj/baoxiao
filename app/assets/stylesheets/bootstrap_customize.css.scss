@@ -12,9 +12,28 @@ body {
 
   a { color: #FFF; font-size: 16px }
 
+  ul.nav.mobile {
+    > li {
+      position: relative;
+    }
+
+    span.logo {
+      width: 32px;
+      height: 32px;
+      background: transparent image-url('logo_32.png') no-repeat;
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 0px;
+    }
+    
+    span.logo-text {
+      margin-left: 18px;
+    }    
+  }
+
   .navbar-header {
     position: relative;
-    
     span.logo {
       width: 48px;
       height: 48px;
