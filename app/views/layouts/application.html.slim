@@ -79,25 +79,6 @@ html
           = yield
 
   = render 'share/baidu_share_script'
-  javascript:  
-    $('a.voteJoke').click(function () {
-      if ($(this).is('.disabled')) {
-        return false;
-      }
-
-      var count;
-      var url = $(this).data('href');
-      $.post(url, { vote_value : $(this).data('vote_value') });
-      $(this).parents('ul').find('.voteJoke').addClass('disabled').unbind('click');
-      count = parseInt($(this).find('span').text());
-      $(this).find('span').text(count + 1);
-
-      if (!baoxiao.currentUser) {
-        var anonymous_votes = ($.cookie('anonymous_votes') || "").split(',');
-        anonymous_votes.push($(this).data('joke_id'));
-        $.cookie('anonymous_votes', anonymous_votes);
-      }
-    });
 
   - if login?
     javascript:
@@ -111,10 +92,3 @@ html
     - cache "ads_mobile_1", skip_digest: true do
       - if ad = Ad.for_mobile[0]
         = raw ad.try :body
-
-    javascript:
-      $(document).ready(function () {
-        $('[data-toggle=dropdown]').each(function() {
-         this.addEventListener('click', function() {}, false);
-        });    
-      });
