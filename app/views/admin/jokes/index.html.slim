@@ -22,7 +22,7 @@
           - klass = 'danger'
         - else
           - klass = ''
-        tr class=(klass)
+        tr class="#{klass} joke-#{j.id}"
           td= j.id
           td style="max-width: 200px;"= j.content.truncate(80)
           td= image_tag j.picture.thumb.url
@@ -32,20 +32,20 @@
           td= j.from
           td
             a href="#{user_path(j.user)}" target="_blank"= j.user.name
-          td
+          td.status
             - if j.pending?
-              a href="#{approve_admin_joke_path(j)}" data-method="POST" 通过
-              a href="#{reject_admin_joke_path(j)}" data-method="POST" 拒绝
+              a.approve href="#{approve_admin_joke_path(j)}" data-method="POST" data-remote="true"  通过
+              a.reject href="#{reject_admin_joke_path(j)}" data-method="POST" data-remote="true" 拒绝
             - elsif j.approved?
-              a href="#{reject_admin_joke_path(j)}" data-method="POST" 拒绝
+              a.reject href="#{reject_admin_joke_path(j)}" data-method="POST" data-remote="true" 拒绝
             - else j.rejected?
-              a href="#{approve_admin_joke_path(j)}" data-method="POST" 通过
+              a.approve href="#{approve_admin_joke_path(j)}" data-method="POST" data-remote="true" 通过
 
-          td
+          td.recommend
             - if j.recommended?
-              a href="#{unrecommend_admin_joke_path(j)}" data-method="DELETE" 取消推荐
+              a href="#{unrecommend_admin_joke_path(j)}" data-method="DELETE" data-remote="true" 取消推荐
             - else
-              a href="#{recommend_admin_joke_path(j)}" data-method="POST" 推荐
+              a href="#{recommend_admin_joke_path(j)}" data-method="POST" data-remote="true" 推荐
 
   .pagination
     = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2

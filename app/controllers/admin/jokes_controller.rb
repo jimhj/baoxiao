@@ -10,24 +10,20 @@ class Admin::JokesController < Admin::ApplicationController
 
   def approve
     @joke.approved!
-    redirect_to :back
   end
 
   def reject
     @joke.rejected!
-    redirect_to :back
   end
 
   def recommend
     @joke.update_attribute :recommended, true
-    # expire_recommends_cache
-    redirect_to :back
+
   end
 
   def unrecommend
     @joke.update_attribute :recommended, false
-    # expire_recommends_cache
-    redirect_to :back    
+   
   end
 
   private

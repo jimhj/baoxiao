@@ -1,0 +1,1 @@
+$('.joke-<%= @joke.id%>').removeClass('warning').find('.recommend').empty().html('<%= link_to("推荐", recommend_admin_joke_path(@joke), data: { remote: true, method: "POST"}) %>');

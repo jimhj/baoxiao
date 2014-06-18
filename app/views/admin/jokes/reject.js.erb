@@ -1,0 +1,1 @@
+$('.joke-<%= @joke.id%>').addClass('danger').find('.status').empty().html('<%= link_to("通过", approve_admin_joke_path(@joke), data: { remote: true, method: "POST"}) %>');
