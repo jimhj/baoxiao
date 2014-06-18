@@ -55,7 +55,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  # config.action_controller.asset_host = "http://bxcdn.qiniudn.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -83,6 +83,7 @@ Rails.application.configure do
 end
 
 CarrierWave.configure do |config|
-  config.asset_host = "http://baoxiao.wakmj.com"
+  # config.asset_host = "http://baoxiao.wakmj.com"
+  config.asset_host = "http://bxcdn.qiniudn.com"
 end
 
