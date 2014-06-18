@@ -29,7 +29,7 @@
           - Joke.recommends.each do |joke|
             li.mr-25
               a href="#{joke_path(joke)}"
-                = image_tag 'logo_48.png', "class" => 'lazy', "data-original" => joke.picture.thumb.url
+                = image_tag 'lazyload.gif', "class" => 'lazy', "data-original" => joke.picture.thumb.url
                 span= (joke.title || "").truncate(8, omission: '')
 
     - cache "ads_detail_2", skip_digest: true do
@@ -46,7 +46,7 @@
           - Joke.recommends.each do |joke|
             li.mr-25
               a href="#{joke_path(joke)}"
-                = image_tag 'logo_48.png', "class" => 'lazy', "data-original" => joke.picture.thumb.url
+                = image_tag 'lazyload.gif', "class" => 'lazy', "data-original" => joke.picture.thumb.url
                 span= (joke.title || "").truncate(8, omission: '')
 
     - cache "ads_detail_3", skip_digest: true do

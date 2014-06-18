@@ -29,9 +29,9 @@
         .thumb.mt-10
           a href="#{joke_path(joke.id)}"
             - if mobile?
-              img.lazy src="#{asset_path('logo_48.png')}" data-original="#{joke.picture.small.url}"
+              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.small.url}"
             - else
-              img.lazy src="#{asset_path('logo_48.png')}" data-original="#{joke.picture.normal.url}"
+              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.normal.url}"
 
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix
