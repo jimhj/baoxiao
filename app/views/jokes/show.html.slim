@@ -30,7 +30,7 @@
             li.mr-25
               a href="#{joke_path(joke)}"
                 = image_tag joke.picture.thumb.url
-                span= joke.title.truncate(8, omission: '')
+                span= (joke.title || "").truncate(8, omission: '')
 
     - cache "ads_detail_2", skip_digest: true do
       - if ad = Ad.for_detail[1]
