@@ -78,6 +78,22 @@ html
         .row
           = yield
 
+    .footer
+      .container
+        .row
+          .col-md-8
+            ul.list-unstyled.clearfix.bottom-nav
+              li
+                a href="#"
+                  i.fa.fa-tablet 
+                  span.ml-5 客户端
+              li
+                a href="#{tags_path}" 
+                  i.fa.fa-cloud
+                  span.ml-5 标签云
+          .col-md-4.copyright
+            ul.list-unstyled
+              li Copyright 2005-2014 baoxiao.wakmj.com 版权所有
   = render 'share/baidu_share_script'
 
   - if login?

@@ -45,8 +45,45 @@ body {
   }
 
   .group-ads.fixed {
-    top: 70px;
+    top: 48px;
     position: fixed;
+  }
+}
+
+.footer {
+  background-color: #323232;
+  &, a {
+    color: #989898;
+    font-size: 12px;    
+  }
+
+  a { font-size: 14px; }
+
+  > .container > .row {
+    padding: 20px 0px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  ul {
+    margin-bottom: 0px;
+  }
+
+  ul.bottom-nav li {
+    float: left;
+    margin-right: 20px;
+  }
+
+  .copyright ul li {
+    float: right;
+  }
+
+  @media (max-width: $grid-float-breakpoint) {
+    .copyright ul li {
+      float: left;
+      margin-top: 10px;
+    }
+
   }
 }
 
