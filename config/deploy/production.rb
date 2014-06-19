@@ -16,7 +16,7 @@
 # extended properties on the server.
 set :password, ask('Server password', nil)
 fetch(:default_env).merge!( rvm_path: "/home/xiao/.rvm/bin/rvm" )
-server '106.187.101.105', 
+server '211.144.137.88', 
         user: 'xiao',
         roles: %w{web app db},
         password: fetch(:password)
