@@ -164,14 +164,15 @@ ul.joke-pictures {
     margin-left: 10px;
     margin-bottom: 10px;
     text-align: center;
+    width: 120px;
   }
 
   li a { font-size: 12px; }
 
-  li a img { 
-    width: 120px;
-    height: 90px;
-  }
+  // li a img { 
+  //   width: 120px;
+  //   height: 90px;
+  // }
 
   li a > span {
     display: block;

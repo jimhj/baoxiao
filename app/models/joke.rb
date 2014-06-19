@@ -44,6 +44,13 @@ class Joke < ActiveRecord::Base
     end
   end
 
+  before_create do
+    if up_votes_count.blank? || up_votes_count.zero?
+      self.up_votes_count = rand(1000)
+      self.down_votes_count = self.up_votes_count * rand(50) / 100
+    end
+  end
+
   def from
     case read_attribute(:from)
     when 'QB'; then '糗事百科';

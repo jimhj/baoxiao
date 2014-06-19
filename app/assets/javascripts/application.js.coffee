@@ -20,6 +20,7 @@ $(document).ready ->
   # initial events
   $("img.lazy").lazyload
     effect: "fadeIn"
+    threshold: 300
 
   $('[data-toggle=dropdown]').each ->
     func = -> 
