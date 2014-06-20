@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'api'
+  mount Baoxiao::API => "/"
+
   root to: 'index#index'
 
   get 'sign_up', to: 'users#new', as: 'sign_up'

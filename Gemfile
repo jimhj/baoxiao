@@ -52,6 +52,10 @@ gem 'elasticsearch-rails', '~> 0.1.3'
 # Settings
 gem "settingslogic", "~> 2.0.9"
 
+# API
+gem "grape", '~> 0.7.0'
+gem "grape-entity", '~> 0.4.3'
+
 group :development do
   gem 'spring'  
   
