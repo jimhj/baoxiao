@@ -5,7 +5,7 @@ shared_path = "#{app_path}/shared"
 current_path = "#{app_path}/current"
 
 # Set unicorn options
-worker_processes 4
+worker_processes 8
 preload_app true   # Preload our app for more speed
 timeout 180
 
