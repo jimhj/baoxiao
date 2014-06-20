@@ -51,7 +51,8 @@
               - Joke.recent_pictures.limit(4).each do |joke|
                 li
                   a href="#{joke_path(joke)}"
-                    = image_tag joke.picture.thumb.url
+                    .thumbnail
+                      = image_tag joke.picture.thumb.url
                     span= joke.title.truncate(8, omission: '')
      
       - cache "ads_sidebar_3", skip_digest: true do
