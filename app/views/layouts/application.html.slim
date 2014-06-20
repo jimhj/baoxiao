@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 html
   head
-    title= @page_title ? "#{@page_title} - #{Settings.app_name}" : "#{Settings.app_name}"
+    = render_page_title
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    meta name="keywords" content="#{@meta_keywords}"
+    meta name="description" content="#{@meta_description}"  
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = favicon_link_tag
     = csrf_meta_tags
@@ -18,7 +20,7 @@ html
             li
               a href="#{root_path}"
                 span.logo 
-                span.logo-text 爆笑集中营
+                span.logo-text= Settings.app_name
 
           ul.nav.navbar-nav.navbar-right
             li
@@ -32,7 +34,7 @@ html
         - else
           .navbar-header
             span.logo
-            a.navbar-brand href="#{root_path}" 爆笑集中营
+            a.navbar-brand href="#{root_path}"= Settings.app_name
           ul.nav.navbar-nav.navbar-right
             li
               a href="#{new_joke_path}"

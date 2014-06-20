@@ -10,6 +10,15 @@ module ApplicationHelper
     agent_str =~ Regexp.new(MOBILE_USER_AGENTS)
   end
 
+  def render_page_title
+    site_name = Settings.app_name
+    title = "#{site_name}_#{Settings.app_title}"
+    unless @page_title.blank?
+      title = "#{@page_title}_#{title}" 
+    end 
+    content_tag("title", title, nil, false)
+  end  
+
   def social_share_items(joke)
     share_list = { weibo: '微博', renren: '人人', qq: 'QQ空间' }
     # if mobile?

@@ -28,6 +28,7 @@ class JokesController < ApplicationController
   def show
     @joke = Joke.find(params[:id])
     @page_title = @joke.title || @joke.content.truncate(100, omission: '')
+    set_seo_meta @joke.title, nil, nil
   end
 
   def hot

@@ -99,4 +99,10 @@ class ApplicationController < ActionController::Base
       httponly: true
     }
   end
+
+  def set_seo_meta(title = nil, meta_keywords = nil, meta_description = nil)
+    @page_title = title if title.length > 0
+    @meta_keywords = meta_keywords || Settings.app_keywords
+    @meta_description = meta_description || Settings.app_description
+  end  
 end
