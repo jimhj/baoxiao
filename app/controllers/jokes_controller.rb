@@ -3,6 +3,7 @@ class JokesController < ApplicationController
 
   def new
     @joke = current_user.jokes.new
+    set_seo_meta "#{t('indexs.new')}_#{Settings.app_title}" 
   end
 
   def create
@@ -27,25 +28,33 @@ class JokesController < ApplicationController
   
   def show
     @joke = Joke.find(params[:id])
-    @page_title = @joke.title || @joke.content.truncate(100, omission: '')
-    set_seo_meta @joke.title, nil, nil
-  end
-
-  def hot
-    @jokes = Joke.order('hot DESC').paginate(page_opts)
-    render template: 'index/index'
+    set_meta_data
   end
 
   def random
     @joke = Joke.random || Joke.order('hot DESC').first
-    @page_title = @joke.title || @joke.content.truncate(100, omission: '')
+    set_meta_data
     render template: 'jokes/show'
+  end  
+
+  def recent
+    @jokes = Joke.includes(:user).order('id DESC')
+                                 .paginate(page: params[:page], per_page: 20, total_entries: 2000)
+    set_seo_meta "#{t('indexs.recent')}_#{Settings.app_title}" 
+    render template: 'index/index'
+  end
+
+  def hot
+    @jokes = Joke.order('hot DESC').paginate(page_opts)
+    set_seo_meta "#{t('indexs.hot')}_#{Settings.app_title}"
+    render template: 'index/index'
   end
 
   def search
     @results = Joke.search_with_hightlight(params[:q])
                  .paginate(page: params[:page], per_page: 20).results
-    
+
+    set_seo_meta "#{t('indexs.search')}_#{params[:q]}_#{Settings.app_title}"
   end  
 
   def qiubai
@@ -76,6 +85,7 @@ class JokesController < ApplicationController
 
   def find_jokes(type)
     @jokes = Joke.order('id DESC').where(from: type).paginate(page_opts)
+    set_seo_meta
     render template: 'index/index'
   end
 
@@ -85,5 +95,13 @@ class JokesController < ApplicationController
 
   def joke_params
     params.require(:joke).permit(:title, :content, :picture, :anonymous)
+  end
+
+  def set_meta_data
+    title = @joke.title.presence || @joke.content
+    tag_list = @joke.tags.map(&:name)
+    keywords = ([title] + tag_list).join(',')
+    description = ([title, @joke.content] + tag_list).join(',')
+    set_seo_meta title, keywords, description    
   end
 end

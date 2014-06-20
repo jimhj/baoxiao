@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def new
     store_location params[:return_to]
     @user = User.new
+
+    set_seo_meta "#{t('indexs.register')}_#{Settings.app_title}"
   end
 
   def create
@@ -20,7 +22,9 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @jokes = @user.jokes
     @jokes = @jokes.where(anonymous: false) unless @user == current_user
-    @jokes = @jokes.order('id DESC').paginate(page: params[:page])    
+    @jokes = @jokes.order('id DESC').paginate(page: params[:page])
+
+    set_seo_meta "#{t('users.title', name: @user.name)}_#{Settings.app_title}"   
   end
 
   def check_email

@@ -10,12 +10,12 @@ baoxiao.AD =
     w = $ad.width()
     $(window).scroll (e) ->
       y = $(window).scrollTop()
-      if y > top - 50 # 50 is the navbar height.
+      if y > top - 70 # 50 is the navbar height.
         if y + $(window).innerHeight() >= $('body').height()
-          h = $('body').height() - $ad.height() - 50
+          h = $('body').height() - $ad.height() - 90
           $ad.removeClass('fixed').css({ position: 'absolute', top: h, width: w })
         else
-          $ad.css({ position: 'fixed', top: 48, width: w })
+          $ad.css({ position: 'fixed', top: 50, width: w })
       else
         $ad.css({ position: 'static' })
 

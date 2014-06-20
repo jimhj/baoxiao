@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get :qiubai
       get :mahua
+      get :recent
       get :hot
       get :random
       get :search

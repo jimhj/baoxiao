@@ -36,3 +36,16 @@ zh-CN:
   will_paginate:
     previous_label: 上一页
     next_label: 下一页
+  indexs:
+    recent: '最新笑话'
+    hot: '最热笑话'
+    tags: '热门标签'
+    search: '搜索笑话'
+    new: '投稿'
+    register: '注册'
+  users:
+    title: '%{name}的笑话'
+  tags:
+    meta:
+      title: '%{tag}爆笑图片, %{tag}笑话'
+      description: '%{tag}大全与千万网友一起分享最新最热的%{tag}、%{tag}图片、%{tag}动态图、冷笑话、糗事笑话、成人笑话、经典笑话、内涵段子等笑话大全'

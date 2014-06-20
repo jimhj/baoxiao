@@ -11,10 +11,9 @@ module ApplicationHelper
   end
 
   def render_page_title
-    site_name = Settings.app_name
     title = Settings.app_title
     unless @page_title.blank?
-      title = "#{@page_title.gsub(/\n\s+/, '')}_#{title}" 
+      title = "#{@page_title.gsub(/\n\s+/, '')}" 
     end 
     content_tag("title", title, nil, false)
   end  
