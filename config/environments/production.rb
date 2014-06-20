@@ -83,7 +83,7 @@ Rails.application.configure do
 end
 
 CarrierWave.configure do |config|
-  config.asset_host = "http://baoxiao.wakmj.com"
+  config.asset_host = "http://www.xiaohuabolan.com"
   # config.asset_host = "http://bxcdn.qiniudn.com"
 end
 
