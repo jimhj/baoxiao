@@ -1,5 +1,8 @@
 defaults: &defaults
-  app_name: "爆笑集中营"
+  app_name: "笑话大全"
+  app_title: "最新搞笑图片_爆笑冷笑话_内涵幽默_笑话博览"
+  app_keywords: '笑话,搞笑图片,冷笑话,笑话博览'
+  app_description: '笑话博览笑话大全与千万网友一起分享最新最热的爆笑笑话、搞笑图片、动态图、冷笑话、糗事笑话、成人笑话、经典笑话、内涵段子等笑话大全。'
   admin_emails:
     - "xxxxxx@xxxxx.com"
 
