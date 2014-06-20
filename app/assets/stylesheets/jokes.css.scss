@@ -163,20 +163,17 @@ ul.joke-pictures {
     float: left;
     margin-left: 10px;
     margin-bottom: 10px;
-    text-align: center;
-    width: 120px;
+    text-align: center;    
   }
 
-  li a { font-size: 12px; }
-
-  // li a img { 
-  //   width: 120px;
-  //   height: 90px;
-  // }
-
-  li a > span {
-    display: block;
-    margin-top: 2px;
+  li a { 
+    font-size: 12px; 
+    .thumbnail {
+      width: 120px;
+      height: 90px;
+      margin-bottom: 0px;
+      border: none;
+    }
   }
 }
 

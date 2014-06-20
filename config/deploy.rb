@@ -12,6 +12,7 @@ set :linked_files, %w{config/database.yml config/secrets.yml config/config.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
 
 set :keep_releases, 10
+set :default_shell, '/bin/bash -l'
 
 namespace :deploy do
  desc "Start Application"
@@ -39,8 +40,8 @@ namespace :deploy do
   task :rebuild_search_indexs do
     on roles(:app) do
       with :rails_env => :production do
-        execute "cd #{current_path} && bundle exec rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
-        # execute :bundle, "exec rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+        # execute "cd #{current_path} && bundle exec rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
+        execute :bundle, "exec rake environment elasticsearch:import:model CLASS='Joke' FORCE=y"
       end
     end
   end
