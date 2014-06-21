@@ -8,3 +8,14 @@
     padding: 0 0;
   }
 }
+
+
+.tag-cloud {
+  text-align: center;
+  
+  .tag {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }   
+}

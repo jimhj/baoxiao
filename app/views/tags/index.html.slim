@@ -1,5 +1,7 @@
 .col-md-10.col-md-offset-1
   .panel.tag-cloud
     .panel-body.clearfix
-      - tag_cloud(@tags, %w(tag1 tag2 tag3 tag4 tag5 tag6 tag7)) do |tag, tag_class|
-        = link_to tag.name, tag_path(tag.name), :class => "#{tag_class} tag"
+      / - tag_cloud(@tags, %w(tag1 tag2 tag3 tag4 tag5 tag6 tag7)) do |tag, tag_class|
+      /   = link_to tag.name, tag_path(tag.name), :class => "#{tag_class} tag"
+      - @tags.each do |tag|
+        = render_tag tag
