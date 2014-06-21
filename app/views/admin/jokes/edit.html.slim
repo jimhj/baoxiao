@@ -14,9 +14,14 @@
               = f.file_field :picture, :class => 'form-control', :rows => 10
             .form-group
               = f.text_field :tag_list, :value => @joke.tags.map(&:name).join(','), :class => 'form-control', :rows => 10
-            .form-group
-              = f.check_box :recommended
-              = f.label :recommended
+            .checkbox
+              label
+                = f.check_box :recommended
+                = f.label :recommended
+            .checkbox
+              label
+                = f.check_box :anonymous
+                = f.label :anonymous
             = f.submit "确定修改", :class => 'btn btn-primary'
 
     .col-md-4

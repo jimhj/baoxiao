@@ -33,7 +33,7 @@ class Admin::JokesController < Admin::ApplicationController
     picture = joke_params.delete(:picture)
     tag_list = joke_params.delete(:tag_list)
 
-    if @joke.update_attributes joke
+    if @joke.update_attributes joke_params
       if picture
         @joke.picture = picture
         @joke.save
@@ -80,7 +80,7 @@ class Admin::JokesController < Admin::ApplicationController
   end
 
   def joke_params
-    params.require(:joke).permit(:title, :content, :picture, :tag_list, :recommended)
+    params.require(:joke).permit(:title, :content, :picture, :tag_list, :recommended, :anonymous)
   end
 
   def expire_recommends_cache
