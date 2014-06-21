@@ -15,8 +15,8 @@ class Admin::JokesController < Admin::ApplicationController
     tag_list = joke_params.delete(:tag_list)
     @joke = current_user.jokes.build joke_params
     if @joke.save
-      tag_list = tag_list.split(',').uniq.compact
-      current_user.tag(@joke, with: tag_list, on: :tags)      
+      @joke.tag_list = tag_list  
+      @joke.save  
       redirect_to :back
     else
       render :new
@@ -34,16 +34,9 @@ class Admin::JokesController < Admin::ApplicationController
     tag_list = joke_params.delete(:tag_list)
 
     if @joke.update_attributes joke_params
-      if picture
-        @joke.picture = picture
-        @joke.save
-      end
-
-      if !tag_list.blank?
-        @joke.tags.destroy_all
-        tag_list = tag_list.split(',').uniq.compact
-        current_user.tag(@joke, with: tag_list, on: :tags)
-      end
+      @joke.picture = picture if picture
+      @joke.tag_list = tag_list
+      @joke.save
       redirect_to :back
     else
       render :edit
