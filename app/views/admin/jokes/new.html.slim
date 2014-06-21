@@ -1,0 +1,23 @@
+.bs-docs-section
+  .page-header 新建笑话
+  .row
+    .col-md-6
+      .panel
+        .panel-body
+          = render 'share/flash_messages'
+          = form_for @joke, :url => admin_jokes_path(@joke), :class => 'form' do |f|
+            = render 'share/form_error_messages', form: f
+            .form-group
+              = f.text_field :title, :class => 'form-control', placeholder: '标题'
+            .form-group
+              = f.text_area :content, :class => 'form-control', :rows => 10
+            .form-group
+              = f.file_field :picture, :class => 'form-control', :rows => 10
+            .form-group
+              = f.text_field :tag_list, :class => 'form-control', :placeholder => '如：搞笑图，内涵'
+            .form-group
+              = f.check_box :recommended
+              = f.label :recommended
+            = f.submit "确定修改", :class => 'btn btn-primary'
+
+    .col-md-4

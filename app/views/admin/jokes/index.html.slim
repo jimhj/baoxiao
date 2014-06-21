@@ -1,5 +1,11 @@
 .bs-docs-section
   .page-header 查询结果
+  = form_tag search_admin_jokes_path, :class => 'form-inline', :method => 'GET', :role => 'form' do
+    .form-group
+      input.form-control type="text" name="q" placeholder="搜索"
+    button.btn.btn-default type="submit" 搜索
+  hr
+
   table.table.table-striped
     thead
       tr
@@ -12,6 +18,7 @@
         th from
         th user
         
+        th -
         th -
         th -
     tbody
@@ -46,6 +53,8 @@
               a href="#{unrecommend_admin_joke_path(j)}" data-method="DELETE" data-remote="true" 取消推荐
             - else
               a href="#{recommend_admin_joke_path(j)}" data-method="POST" data-remote="true" 推荐
+          td
+            a href="#{edit_admin_joke_path(j)}" 编辑
 
   .pagination
     = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2

@@ -50,6 +50,10 @@ Rails.application.routes.draw do
         post :approve
         post :reject
       end
+
+      collection do
+        get :search
+      end
     end
 
     resources :tags do

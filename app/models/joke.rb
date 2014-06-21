@@ -11,9 +11,9 @@ class Joke < ActiveRecord::Base
 
   default_scope { where(status: Joke.statuses[:approved]) }
 
-  scope :hot, -> { where.not(title: nil).order('hot DESC') }
+  scope :hot, -> { where.not("title is null or title = ''").order('hot DESC') }
   scope :hot_pictures, -> { hot.where.not(picture: nil) }
-  scope :recents, -> { where.not(title: nil).order('created_at DESC') }
+  scope :recents, -> { where.not("title is null or title = ''").order('created_at DESC') }
   scope :recent_pictures, -> { recents.where.not(picture: nil) }
 
   belongs_to :user

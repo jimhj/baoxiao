@@ -15,6 +15,7 @@ zh-CN:
         content: 正文
         picture: 真相图
         anonymous: 匿名发布
+        recommended: 推荐
     errors:
       models:
         user:

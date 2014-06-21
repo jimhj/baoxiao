@@ -29,7 +29,7 @@ html
 
     .container-fluid.bs-docs-container          
       .row
-        .col-md-3
+        .col-md-2
           .bs-sidebar.hidden-print.affix role="complementary"
             ul.nav.bs-sidenav
               li class=('active' if params[:controller] == 'admin/users')
@@ -42,8 +42,7 @@ html
                 a href="#{admin_jokes_path}" 笑话
                 ul.nav
                   li: a href="#{admin_jokes_path}" 列表
-                  li: a href="#" 新建
-                  li: a href="#" 查询
+                  li: a href="#{new_admin_joke_path}" 新建
               li class=('active' if params[:controller] == 'admin/tags')
                 a href="#{admin_tags_path}" 标签
                 ul.nav
@@ -57,5 +56,5 @@ html
                   li: a href="#{new_admin_ad_path}" 新建
                   li: a href="#" 查询
 
-        .col-md-9 role="main"
+        .col-md-10 role="main"
           = yield
