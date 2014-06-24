@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
+#= require jquery.autosize
 #= require jquery.validate
 #= require jquery.cookie
 #= require jquery.lazyload
@@ -17,6 +18,8 @@ $(document).on 'page:restore', ->
   NProgress.remove()
 
 $(document).ready ->
+  $('[data-behaviors~=autosize]').autosize()
+  
   # initial events
   $("img.lazy").lazyload
     effect: "fadeIn"

@@ -11,7 +11,7 @@
 
         .form-group
           = f.label :content, class: 'control-label'
-          = f.text_area :content, placeholder: '300字以内', class: 'form-control', rows: '16'
+          = f.text_area :content, placeholder: '300字以内', class: 'form-control', rows: '10', data: { behaviors: 'autosize' }
 
         .checkbox
           label

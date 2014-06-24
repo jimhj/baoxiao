@@ -19,6 +19,8 @@
   }  
 
   .list-group-item-text {
+    .content { line-height: 24px; }
+
     .thumb img {
       max-width: 100%;
     }
@@ -56,9 +58,14 @@
         opacity: 0.5;        
       }
     }
+
     span.bds_more i.fa.fa-share-square-o {
       color: $brand-primary;
       font-size: 18px;
+    }
+
+    @media (max-width: $grid-float-breakpoint) {
+      &.sharing { display: none; }
     }    
   }
 
@@ -70,7 +77,6 @@
     padding-bottom: 20px;
     margin-top: -20px;
     border-top: 1px solid #DDD;
-    // z-index: 9999;
   }
 
   .tips {

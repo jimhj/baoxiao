@@ -13,7 +13,7 @@
           span.input-group-btn
             button.btn.btn-default type="submit": i.fa.fa-search
 
-      - cache "jokes/recent_tags", expires_in: 6.hour do
+      - cache "jokes/recent_tags", expires_in: 1.hour do
         ul.list-unstyled.clearfix
           - Joke.tags_on(:tags).limit(20).each do |tag|
             li

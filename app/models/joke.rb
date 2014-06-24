@@ -7,7 +7,10 @@ class Joke < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
-  validates :content, presence: true, uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, length: { minimum: 2, maximum: 300 }
+  validates :content, presence: true, 
+                      uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, 
+                      length: { minimum: 2, maximum: 300 },
+                      unless: Proc.new { |joke| joke.user.admin? }
 
   default_scope { where(status: Joke.statuses[:approved]) }
 
@@ -20,6 +23,13 @@ class Joke < ActiveRecord::Base
 
   after_create :update_hot
   after_touch :update_hot
+
+  before_create do
+    if up_votes_count.blank? || up_votes_count.zero?
+      self.up_votes_count = rand(1000)
+      self.down_votes_count = self.up_votes_count * rand(50) / 100
+    end
+  end  
 
   enum status: [ :pending, :approved, :rejected ]
 
@@ -41,13 +51,6 @@ class Joke < ActiveRecord::Base
           SELECT * FROM jokes where recommended is true and status = 1 order by random() LIMIT #{total};
         SQL
       )
-    end
-  end
-
-  before_create do
-    if up_votes_count.blank? || up_votes_count.zero?
-      self.up_votes_count = rand(1000)
-      self.down_votes_count = self.up_votes_count * rand(50) / 100
     end
   end
 

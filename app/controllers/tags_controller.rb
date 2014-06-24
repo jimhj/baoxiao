@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   caches_action :index, :expires_in => 1.hour
 
   def index
-    @tags = Joke.tag_counts_on(:tags)
+    @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC')
     set_seo_meta "#{t('indexs.tags')}_#{Settings.app_title}"
   end
 
