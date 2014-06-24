@@ -15,7 +15,7 @@
 
       - cache "jokes/recent_tags", expires_in: 1.hour do
         ul.list-unstyled.clearfix
-          - Joke.tags_on(:tags).limit(20).each do |tag|
+          - Joke.tags_on(:tags).order('taggings_count DESC').limit(20).each do |tag|
             li
               a href="#{tag_path(tag.name)}"= tag.name
           li: a href="#{tags_path}" 更多...
