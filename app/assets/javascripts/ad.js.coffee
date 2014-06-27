@@ -16,12 +16,12 @@ baoxiao.AD =
 
       $(window).scroll (e) ->
         y = $(window).scrollTop()
-        if y > ad_top - 50
+        if y > ad_top
           if y + $(window).innerHeight() >= $('body').height()
-            h = $('body').height() - $ad.height() - 90
+            h = y - $ad.height()
             $ad.removeClass('fixed').css({ position: 'absolute', top: h, width: ad_w })
           else
-            $ad.css({ position: 'fixed', top: 50, width: ad_w })
+            $ad.css({ position: 'fixed', top: 0, width: ad_w })
         else
           $ad.css({ position: 'static' })
 

@@ -9,12 +9,10 @@ xml.rss(:version=>"2.0"){
         title = joke.title.blank? ? joke.content.truncate(30) : joke.title
         xml.item do
           xml.title title
-          xml.description joke.content
-          if joke.picture.present?
-            xml.image do
-              xml.url joke.picture.normal.url
-              xml.title title
-              xml.link joke_url joke
+          xml.description do
+              xml.p(joke.content)
+            if joke.picture.present?
+              xml.img(src: joke.picture.normal.url)
             end
           end
           xml.author "www.xiaohuabolan.com"
