@@ -10,12 +10,12 @@ xml.rss(:version=>"2.0"){
         xml.item do
           xml.title title
           xml.description joke.content
-          xml.image do
-            if joke.picture.present?
+          if joke.picture.present?
+            xml.image do
               xml.url joke.picture.normal.url
+              xml.title title
+              xml.link joke_url joke
             end
-            xml.title title
-            xml.link joke_url joke
           end
           xml.author "www.xiaohuabolan.com"
           xml.pubDate(joke.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
