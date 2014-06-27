@@ -10,7 +10,7 @@ xml.rss(:version=>"2.0"){
         xml.item do
           xml.title title
           xml.description do
-              xml.p(joke.content)
+            xml.cdata!(simple_format(joke.content))
             if joke.picture.present?
               xml.img(src: joke.picture.normal.url)
             end
