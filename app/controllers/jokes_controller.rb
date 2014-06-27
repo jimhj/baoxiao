@@ -50,6 +50,11 @@ class JokesController < ApplicationController
     render template: 'index/index'
   end
 
+  def feed
+    @jokes = Joke.order('id DESC').limit(20)
+    render layout: false
+  end
+
   def search
     @results = Joke.search_with_hightlight(params[:q])
                  .paginate(page: params[:page], per_page: 20).results

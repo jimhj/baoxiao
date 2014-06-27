@@ -9,6 +9,7 @@ body {
 .navbar {
   background-color: $brand-primary;
   border-bottom: none;
+  z-index: 1;
 
   a { color: #FFF; font-size: 16px }
 

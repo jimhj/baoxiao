@@ -41,3 +41,6 @@ $(document).ready ->
       anonymous_votes = ($.cookie('anonymous_votes') || "").split(',')
       anonymous_votes.push $(this).data('joke_id')
       $.cookie 'anonymous_votes', anonymous_votes, path: '/'
+
+  $('.site-top a.feed').click ->
+    $('#qq-feed').modal()

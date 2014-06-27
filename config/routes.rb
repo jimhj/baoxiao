@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       get :random
       get :search
       get :check_title
-      get :check_content    
+      get :check_content
+      get :feed, defaults: { format: 'xml' }  
     end
 
     member do

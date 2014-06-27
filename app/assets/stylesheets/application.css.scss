@@ -21,21 +21,39 @@ $brand-primary: #F19670;
 
 i.fa.fa-plus { font-size: 18px; font-weight: normal; }
 
-body {
-  @media (max-width: $grid-float-breakpoint) {
-    .navbar-fixed-top {
-      position: inherit;
-    }
+.site-top {
+  position: relative;
+  width: 100%;
+  height: 193px;
+  background: transparent image-url('top_repeat.png') repeat-x;
+  z-index: 2;
+  margin-bottom: -14px;
 
-    .main {
-      margin-top: 0px;
-      min-height: none;
-    }
+  .big-ad {
+    width: 100%;
+    height: 193px;
+    background-image: image-url('big_ad.png');
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain; 
+  }
+
+  a.feed {
+    position: absolute;
+    top: 0px;
+    right: 34%;
+    border-radius: 0px 0px 4px 4px;
+    border-left: 2px dashed #FFF;
+    border-right: 2px dashed #FFF;
+    border-bottom: 2px dashed #FFF;
   }
 }
 
 .main {
-  margin-top: 70px;
+  margin-top: 20px;
   min-height: 452px;
 
   em { background-color: #FFF681; }
