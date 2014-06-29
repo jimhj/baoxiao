@@ -9,6 +9,7 @@ class Admin::JokesController < Admin::ApplicationController
 
   def new
     @joke = current_user.jokes.new
+    @joke.anonymous = true
   end
 
   def create
