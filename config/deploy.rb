@@ -8,7 +8,7 @@ set :rails_env, 'production'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.0'
 
-set :linked_files, %w{config/database.yml config/secrets.yml config/config.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/config.yml config/newrelic.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
 
 set :keep_releases, 10
