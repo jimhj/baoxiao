@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
@@ -55,6 +55,10 @@ gem "settingslogic", "~> 2.0.9"
 # API
 gem "grape", '~> 0.7.0'
 gem "grape-entity", '~> 0.4.3'
+
+group :production do
+  gem 'newrelic_rpm'
+end
 
 group :development do
   gem 'spring'  
