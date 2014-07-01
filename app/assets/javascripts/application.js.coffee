@@ -44,3 +44,13 @@ $(document).ready ->
 
   $('.site-top a.feed').click ->
     $('#qq-feed').modal()
+
+  $(window).scroll ->
+    if $(this).scrollTop() > 100
+      $('.scrollToTop').fadeIn()
+    else
+      $('.scrollToTop').fadeOut()
+
+  $('.scrollToTop').click ->
+    $('html, body').animate { scrollTop : 0 }, 800
+    return false;

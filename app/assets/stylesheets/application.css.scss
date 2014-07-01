@@ -150,3 +150,17 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   }
 }
 
+a.scrollToTop {
+  width: 37px; 
+  height: 63px;
+  text-decoration: none;
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  background: image-url('scroll_to_top.png') no-repeat;
+  display: none;
+  &:hover {
+    opacity: 0.6;
+  }  
+}
+

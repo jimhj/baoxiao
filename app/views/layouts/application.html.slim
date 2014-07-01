@@ -78,16 +78,10 @@ html
                 a href="#{random_jokes_path}" 
                   i.fa.fa-random
                   span.ml-5 随机
-              li: a href="#{qiubai_jokes_path}" 
-                = image_tag 'qiubai.jpeg'
-                span.ml-5 糗事百科
-              li: a href="#{mahua_jokes_path}"
-                = image_tag 'mahua.ico'
-                span.ml-5 快乐麻花
-              - if false
-                li: a href="#" 
-                  = image_tag 'hahamx.ico'
-                  span.ml-5 哈哈.MX
+              li
+                a href="#{tags_path}" 
+                  i.fa.fa-tags
+                  span.ml-5 标签
 
     .main
       .container
@@ -113,6 +107,9 @@ html
   = render 'share/baidu_share_script'
   = render 'share/ba'
   = render 'share/qq_feed'
+  
+  - unless moible?
+    a.scrollToTop href="#"
 
   - if login?
     javascript:

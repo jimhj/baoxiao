@@ -16,11 +16,7 @@ class ApplicationController < ActionController::Base
                 ActionController::UnknownFormat, 
                 ActionController::UnknownHttpMethod do |exception|
 
-      render :template => "/errors/404", 
-             :format => [:html], 
-             :handler => [:erb, :slim], 
-             :status => 404, 
-             :layout => "application"
+      redirect_to random_jokes_path
     end
   end
 
