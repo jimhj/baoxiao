@@ -65,4 +65,6 @@ Rails.application.routes.draw do
     
     resources :ads
   end
+
+  get '/404' => 'errors#not_found'
 end

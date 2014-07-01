@@ -9,16 +9,15 @@ class ApplicationController < ActionController::Base
 
   class AccessDenied < Exception; end
 
-  unless Rails.application.config.consider_all_requests_local
-    rescue_from ActiveRecord::RecordNotFound,
-                ActionController::RoutingError,
-                ActionController::UnknownController,
-                ActionController::UnknownFormat, 
-                ActionController::UnknownHttpMethod do |exception|
+  # rescue_from ActiveRecord::RecordNotFound,
+  #               ActionController::RoutingError,
+  #               ActionController::UnknownController,
+  #               ActionController::UnknownFormat, 
+  #               ActionController::UnknownHttpMethod do |exception|
+  #   p 123123123
 
-      redirect_to random_jokes_path
-    end
-  end
+  #   redirect_to random_jokes_path
+  # end
 
   def login_required
     unless login?
