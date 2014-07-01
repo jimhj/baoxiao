@@ -9,6 +9,21 @@ class ApplicationController < ActionController::Base
 
   class AccessDenied < Exception; end
 
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from ActiveRecord::RecordNotFound,
+                ActionController::RoutingError,
+                ActionController::UnknownController,
+                ActionController::UnknownFormat, 
+                ActionController::UnknownHttpMethod do |exception|
+
+      render :template => "/errors/404", 
+             :format => [:html], 
+             :handler => [:erb, :slim], 
+             :status => 404, 
+             :layout => "application"
+    end
+  end
+
   def login_required
     unless login?
       flash[:warning] = t('sessions.flashes.login_required')
