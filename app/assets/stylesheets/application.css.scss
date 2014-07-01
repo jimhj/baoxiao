@@ -29,6 +29,10 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   z-index: 2;
   margin-bottom: -14px;
 
+  @media (max-width: $grid-float-breakpoint) {
+    display: none;
+  }
+
   .big-ad {
     width: 100%;
     height: 193px;
