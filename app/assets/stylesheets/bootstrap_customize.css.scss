@@ -109,6 +109,7 @@ body {
   border: none;
   border-top: 2px solid $brand-primary;
   .panel-heading {
+    color: $brand-primary;
     background-color: lighten(#E9E9E9, 6%);
     .panel-title { color: $brand-primary; }
   }

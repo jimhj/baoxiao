@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :settings do
+    resource :profile, only: [:show, :update]
+  end  
+
   scope 'ad', as: 'ad' do
     root to: 'ad#handle'
   end
@@ -68,5 +72,7 @@ Rails.application.routes.draw do
     resources :friend_sites
   end
 
-  get '/404' => 'errors#not_found'
+  if Rails.env.production?
+    get '/404' => 'errors#not_found'
+  end
 end

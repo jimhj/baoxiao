@@ -60,6 +60,10 @@ html
                     a href="#{user_path(current_user)}"
                       i.fa.fa-user 
                       span.ml-5 我的主页
+                  li
+                    a href="#{settings_profile_path}"
+                      i.fa.fa-cogs 
+                      span.ml-5 资料设置
                   li.divider
                   li
                     a href="#{logout_path}" data-method="DELETE"
