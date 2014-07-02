@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617134125) do
+ActiveRecord::Schema.define(version: 20140702080115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20140617134125) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ad_type",    default: "LIST"
+  end
+
+  create_table "friend_sites", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "priority",   default: 1000, null: false
+    t.integer  "status",     default: 0
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "jokes", force: true do |t|

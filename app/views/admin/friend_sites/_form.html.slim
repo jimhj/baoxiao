@@ -1,0 +1,15 @@
+= form_for @site, :url => @site.new_record? ? admin_friend_sites_path : admin_friend_site_path(@site), :class => 'form' do |f|
+  = render 'share/form_error_messages', form: f  
+  .form-group
+    = f.text_field :name, placeholder: '链接名称', tabindex: 2, class: 'form-control'
+  .form-group
+    = f.text_field :title, placeholder: '链接title', tabindex: 2, class: 'form-control'
+  .form-group
+    = f.text_field :url, placeholder: '链接地址', tabindex: 2, class: 'form-control'
+  .form-group
+    = f.text_field :priority, placeholder: '排序值', tabindex: 2, class: 'form-control'
+  .form-group
+    = f.select :status, FriendSite.statuses.reverse_each.map{|k, v| [v, k]}, {}, class: 'form-control'
+    label 0 审核中 1 通过 2 拒绝
+
+  input.btn.btn-primary type="submit" value="#{@site.new_record? ? '发布' : '保存'}"

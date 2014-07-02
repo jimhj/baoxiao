@@ -55,6 +55,12 @@ html
                   li: a href="#{admin_ads_path}" 列表
                   li: a href="#{new_admin_ad_path}" 新建
                   li: a href="#" 查询
+              li class=('active' if params[:controller] == 'admin/friend_sites')
+                a href="#{admin_friend_sites_path}" 友链
+                ul.nav
+                  li: a href="#{admin_friend_sites_path}" 列表
+                  li: a href="#{new_admin_friend_site_path}" 新建
+                  li: a href="#" 查询
 
         .col-md-10 role="main"
           = yield

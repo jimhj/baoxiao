@@ -77,38 +77,47 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
 }
 
 .footer {
-  background-color: #323232;
-  // margin-top: 120px;
-  &, a {
-    color: #989898;
+  background-color: #3A3129;
+  & {
+    color: #615A42;
     font-size: 12px;    
   }
 
-  a { font-size: 14px; }
+  a {
+    color: #9D9894;
+    font-size: 14px; 
+  }
 
   > .container > .row {
-    padding: 20px 0px;
+    padding: 20px 0px 10px 0px;
     width: 90%;
     margin: 0 auto;
+
+    &.friend-sites {
+      padding: 0 0px 10px 0px;
+    }
   }
 
   ul {
     margin-bottom: 0px;
+    &.bottom-nav { font-size: 14px; }
   }
 
   ul.bottom-nav li {
     float: left;
-    margin-right: 20px;
   }
 
   .copyright ul li {
     float: right;
+    margin-left: 10px;
   }
 
   @media (max-width: $grid-float-breakpoint) {
     .copyright ul li {
       float: left;
-      margin-top: 10px;
+      margin-top: 5px;
+      margin-left: 0;
+      margin-right: 10px;
     }
 
   }

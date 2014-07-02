@@ -93,7 +93,16 @@ html
       .container
         .row
           .col-md-8
-            ul.list-unstyled.clearfix.bottom-nav
+            - cache FriendSite.approved do
+              ul.list-unstyled.clearfix.bottom-nav
+                li
+                  i.fa.fa-link
+                  span.ml-2 友情链接
+                - FriendSite.approved.each do |site|
+                  li.ml-5
+                    a href="#{site.url}" target="_blank" title="#{site.title}"= site.name                             
+          .col-md-4.copyright
+            ul.list-unstyled.clearfix
               li
                 a href="#"
                   i.fa.fa-tablet 
@@ -101,10 +110,10 @@ html
               li
                 a href="#{tags_path}" 
                   i.fa.fa-cloud
-                  span.ml-5 标签云
-          .col-md-4.copyright
-            ul.list-unstyled
+                  span.ml-5 标签云          
+            ul.list-unstyled.mt-5
               li © 2008-2018 笑话博览 版权所有
+
   = render 'share/baidu_share_script'
   = render 'share/ba'
   = render 'share/qq_feed'

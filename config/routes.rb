@@ -64,6 +64,8 @@ Rails.application.routes.draw do
     end
     
     resources :ads
+
+    resources :friend_sites
   end
 
   get '/404' => 'errors#not_found'
