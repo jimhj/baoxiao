@@ -92,19 +92,10 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     padding: 20px 0px 10px 0px;
     width: 90%;
     margin: 0 auto;
-
-    &.friend-sites {
-      padding: 0 0px 10px 0px;
-    }
   }
 
   ul {
     margin-bottom: 0px;
-    &.bottom-nav { font-size: 14px; }
-  }
-
-  ul.bottom-nav li {
-    float: left;
   }
 
   .copyright ul li {
@@ -127,6 +118,10 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   > .row {
     width: 90%;
     margin: 0 auto;
+    .friend-sites .panel-heading {
+      color: $brand-primary;
+    }
+    .friend-sites .panel-body ul { margin-bottom: 0px; }
   }
 
   @media (max-width: $grid-float-breakpoint) {
@@ -146,8 +141,7 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
       .col-md-8 .list-group-item {
         border-radius: 0;
       }
-      .tips { display: none; }
-      .recent { display: none; }       
+      .tips, .recent, .friend-sites { display: none; }
     }
 
     .baoxiao-pagination {

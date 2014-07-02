@@ -92,26 +92,18 @@ html
     .footer
       .container
         .row
-          .col-md-8
-            - cache FriendSite.approved do
-              ul.list-unstyled.clearfix.bottom-nav
-                li
-                  i.fa.fa-link
-                  span.ml-2 友情链接
-                - FriendSite.approved.each do |site|
-                  li.ml-5
-                    a href="#{site.url}" target="_blank" title="#{site.title}"= site.name                             
-          .col-md-4.copyright
-            ul.list-unstyled.clearfix
-              li
+          .col-md-8 
+            ul.list-unstyled.clearfix.bottom-nav
+              li.pull-left
                 a href="#"
                   i.fa.fa-tablet 
                   span.ml-5 客户端
-              li
+              li.ml-10.pull-left
                 a href="#{tags_path}" 
                   i.fa.fa-cloud
-                  span.ml-5 标签云          
-            ul.list-unstyled.mt-5
+                  span.ml-5 标签云                                    
+          .col-md-4.copyright
+            ul.list-unstyled
               li © 2008-2018 笑话博览 版权所有
 
   = render 'share/baidu_share_script'

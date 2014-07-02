@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140702080115) do
   create_table "friend_sites", force: true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "priority",   default: 1000, null: false
+    t.integer  "priority",   default: 1000
     t.integer  "status",     default: 0
     t.integer  "user_id"
     t.datetime "created_at"

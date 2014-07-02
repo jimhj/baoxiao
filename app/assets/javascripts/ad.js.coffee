@@ -18,8 +18,7 @@ baoxiao.AD =
         y = $(window).scrollTop()
         if y > ad_top
           if y + $(window).innerHeight() >= $('body').height()
-            # h = y - $(window).innerHeight() - $ad.height()
-            h = $('.jokes').height() - $ad.height()
+            h = y - $('.navbar').height() - $('.site-top').height() - 7
             $ad.removeClass('fixed').css({ position: 'absolute', top: h, width: ad_w })
           else
             $ad.css({ position: 'fixed', top: 0, width: ad_w })
