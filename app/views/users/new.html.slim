@@ -27,8 +27,7 @@ javascript:
       'user[name]': {
         required: true,
         remote: '/users/check_name',
-        format: /^[a-z0-9-]+$/i,
-        minlength: 4,
+        minlength: 2,
         maxlength: 20
       },
       'user[password]': {
@@ -44,7 +43,6 @@ javascript:
       'user[name]': {
         required: '#{@user.errors.generate_message :name, :blank}',
         remote: '#{@user.errors.generate_message :name, :taken}',
-        format: '#{@user.errors.generate_message :name, :format}',
         minlength: '#{@user.errors.generate_message :name, :length}',
         maxlength: '#{@user.errors.generate_message :name, :length}'
       },

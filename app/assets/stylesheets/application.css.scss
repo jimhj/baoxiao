@@ -11,6 +11,7 @@ $brand-primary: #F19670;
 @import "jokes";
 @import "users";
 @import "tags";
+@import "settings";
 
 @each $margin in 2, 5, 10, 15, 20, 25, 30, 50 {
   .ml-#{$margin} { margin-left: #{$margin}px; }

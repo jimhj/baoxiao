@@ -1,0 +1,22 @@
+body[class^=profiles] {
+  .list-group a {
+    color: $brand-primary;
+  }
+}
+
+.profiles-show {
+  .user-image-uploader {
+    @include clearfix;
+
+    .image {
+      float: left;
+      width: 80px;
+      height: 80px;
+    }
+
+    .uploader {
+      // float: left;
+      margin-left: 100px;
+    }
+  }
+}

@@ -8,3 +8,35 @@
         = render 'share/flash_messages'
         = render 'share/form_error_messages', form: f
         .form-group
+          = f.label :avatar, class: 'control-label col-sm-3'
+          .col-sm-6.user-image-uploader
+            .image
+              img.img-rounded alt="avatar" src=current_user.avatar.thumb.url
+            .uploader
+              = f.file_field :avatar, tabIndex: 1
+              .checkbox
+                label
+                  = f.check_box :remove_avatar, tabIndex: 2
+                  '
+                  | 删除头像        
+        .form-group
+          = f.label :name, class: 'control-label col-sm-3'
+          .col-sm-6
+            = f.text_field :name, class: 'form-control', tabIndex: 3
+        .form-group
+          .col-sm-6.col-sm-push-3
+            = f.submit "保存资料", class: 'btn btn-primary', tabIndex: 5
+
+javascript:
+  $('form.user-form').validate({
+    rules: {
+      'user[name]': {
+        required: true,
+      }
+    },
+    messages: {
+      'user[name]': {
+        required: '#{@user.errors.generate_message :name, :blank}'
+      }
+    }
+  });
