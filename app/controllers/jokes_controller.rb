@@ -30,12 +30,14 @@ class JokesController < ApplicationController
   def show
     @joke = Joke.find(params[:id])
     set_meta_data
+    fresh_when(etag: @joke)
   end
 
   def random
     @joke = Joke.random || Joke.order('hot DESC').first
     set_meta_data
     render template: 'jokes/show'
+    fresh_when(etag: @joke)
   end  
 
   def recent
