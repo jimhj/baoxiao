@@ -19,9 +19,11 @@ class Joke < ActiveRecord::Base
   scope :recents, -> { where.not("title is null or title = ''").order('created_at DESC') }
   scope :recent_pictures, -> { recents.where.not(picture: nil) }
 
+  store :picture_meta_info, accessors: [:normal, :small, :thumb]
+
   belongs_to :user
 
-  after_create :update_hot
+  after_create :update_hot, :store_picture_meta_info
   after_touch :update_hot
 
   before_create do
@@ -29,7 +31,7 @@ class Joke < ActiveRecord::Base
       self.up_votes_count = rand(1000)
       self.down_votes_count = self.up_votes_count * rand(50) / 100
     end
-  end  
+  end
 
   enum status: [ :pending, :approved, :rejected ]
 
@@ -92,6 +94,22 @@ class Joke < ActiveRecord::Base
     reload
     update_attribute :hot, calculate_hot
   end
+
+  def store_picture_meta_info
+    return if self.picture.nil?
+    self.picture.versions.each do |version, uploader|
+      image = MiniMagick::Image.open uploader.path
+      self.picture_meta_info[version] = {
+        'size'      =>   uploader.size,
+        'width'     =>   image[:width],
+        'height'    =>   image[:height]
+      }
+      image.destroy!
+    end
+    self.save(validate: false)
+  end
+
+  handle_asynchronously :store_picture_meta_info, queue: 'store_picture_meta_info'
 
   def vote_by_anonymous flag
     flag.to_i > 0 ? increment!(:up_votes_count) : increment!(:down_votes_count)   

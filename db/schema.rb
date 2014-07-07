@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702080115) do
+ActiveRecord::Schema.define(version: 20140707141843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20140702080115) do
     t.datetime "updated_at"
     t.string   "ad_type",    default: "LIST"
   end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "friend_sites", force: true do |t|
     t.string   "name"
@@ -41,18 +57,19 @@ ActiveRecord::Schema.define(version: 20140702080115) do
     t.integer  "user_id"
     t.boolean  "anonymous"
     t.string   "title"
-    t.text     "content",                          null: false
+    t.text     "content",                           null: false
     t.string   "picture"
-    t.integer  "status",           default: 0
-    t.integer  "up_votes_count",   default: 0
-    t.integer  "down_votes_count", default: 0
+    t.integer  "status",            default: 0
+    t.integer  "up_votes_count",    default: 0
+    t.integer  "down_votes_count",  default: 0
     t.integer  "comments_count"
     t.string   "from"
-    t.float    "hot",              default: 0.0
+    t.float    "hot",               default: 0.0
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "recommended",      default: false
+    t.boolean  "recommended",       default: false
+    t.text     "picture_meta_info"
   end
 
   add_index "jokes", ["from", "status", "published_at"], name: "index_jokes_on_from_and_status_and_published_at", using: :btree

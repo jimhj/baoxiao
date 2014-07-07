@@ -49,6 +49,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'elasticsearch-model', '~> 0.1.3'
 gem 'elasticsearch-rails', '~> 0.1.3'
 
+# Background Job
+gem "daemons", '1.1.9'
+gem 'delayed_job_active_record', '4.0.1'
+
 # Settings
 gem "settingslogic", "~> 2.0.9"
 

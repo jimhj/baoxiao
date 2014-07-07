@@ -14,6 +14,18 @@ module Baoxiao
           model.picture.small.url
         end
       end
+
+      expose :bytes do |model|
+        (model.picture_meta_info["small"] || {})["size"]
+      end
+
+      expose :dimensions do |model|
+        {
+          width: (model.picture_meta_info["small"] || {})["width"],
+          height: (model.picture_meta_info["small"] || {})["height"]
+        }
+      end
+
       expose :user, :using => APIEntities::User
     end
   end
