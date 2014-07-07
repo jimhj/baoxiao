@@ -10,20 +10,24 @@ module Baoxiao
     class Joke < Grape::Entity
       expose :id, :title, :content, :created_at, :anonymous, :up_votes_count, :down_votes_count
       expose :picture_url do |model|
-        if model.picture?
-          if model.picture_meta_info.blank?
-            model.store_picture_meta_info
-            model.reload
-          end          
+        if model.picture?        
           model.picture.small.url
         end
       end
 
       expose :bytes do |model|
+        if model.picture_meta_info.blank?
+          model.store_picture_meta_info
+          model.reload
+        end          
         (model.picture_meta_info["small"] || {})["size"]
       end
 
       expose :dimensions do |model|
+        if model.picture_meta_info.blank?
+          model.store_picture_meta_info
+          model.reload
+        end          
         {
           width: (model.picture_meta_info["small"] || {})["width"],
           height: (model.picture_meta_info["small"] || {})["height"]
