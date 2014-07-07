@@ -98,6 +98,7 @@ class Joke < ActiveRecord::Base
   def store_picture_meta_info
     return if self.picture.nil?
     self.picture.versions.each do |version, uploader|
+      next if uploader.path.blank?
       image = MiniMagick::Image.open uploader.path
       self.picture_meta_info[version.to_s] = {
         'size'      =>   uploader.size,
