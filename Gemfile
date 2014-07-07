@@ -51,7 +51,8 @@ gem 'elasticsearch-rails', '~> 0.1.3'
 
 # Background Job
 gem "daemons", '1.1.9'
-gem 'delayed_job_active_record', '4.0.1'
+# gem 'delayed_job_active_record', '4.0.1'
+gem 'delayed_job_active_record', :git => 'git@github.com:panter/delayed_job_active_record.git'
 
 # Settings
 gem "settingslogic", "~> 2.0.9"
