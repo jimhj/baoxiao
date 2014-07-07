@@ -11,6 +11,10 @@ module Baoxiao
       expose :id, :title, :content, :created_at, :anonymous, :up_votes_count, :down_votes_count
       expose :picture_url do |model|
         if model.picture?
+          if model.picture_meta_info.blank?
+            model.store_picture_meta_info
+            model.reload
+          end          
           model.picture.small.url
         end
       end
