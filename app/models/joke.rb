@@ -99,7 +99,7 @@ class Joke < ActiveRecord::Base
     return if self.picture.nil?
     self.picture.versions.each do |version, uploader|
       image = MiniMagick::Image.open uploader.path
-      self.picture_meta_info[version] = {
+      self.picture_meta_info[version.to_s] = {
         'size'      =>   uploader.size,
         'width'     =>   image[:width],
         'height'    =>   image[:height]

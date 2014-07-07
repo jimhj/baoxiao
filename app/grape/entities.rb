@@ -15,19 +15,11 @@ module Baoxiao
         end
       end
 
-      expose :bytes do |model|
-        if model.picture_meta_info.blank?
-          model.store_picture_meta_info
-          model.reload
-        end          
+      expose :bytes do |model|      
         (model.picture_meta_info["small"] || {})["size"]
       end
 
-      expose :dimensions do |model|
-        if model.picture_meta_info.blank?
-          model.store_picture_meta_info
-          model.reload
-        end          
+      expose :dimensions do |model|        
         {
           width: (model.picture_meta_info["small"] || {})["width"],
           height: (model.picture_meta_info["small"] || {})["height"]
