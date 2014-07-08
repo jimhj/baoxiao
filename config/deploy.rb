@@ -19,7 +19,6 @@ namespace :deploy do
   task :start do
     on roles(:app) do
       execute :bundle, 'exec unicorn_rails -c config/unicorn.rb -D'
-      execute "RAILS_ENV=production #{current_path}/bin/delayed_job -n2 start"
     end
   end
 
@@ -27,7 +26,6 @@ namespace :deploy do
   task :stop do
     on roles(:app) do
       execute "kill -QUIT `cat #{current_path}/tmp/pids/unicorn.pid`"
-      execute "RAILS_ENV=production #{current_path}/bin/delayed_job stop"
     end
   end
 
@@ -35,7 +33,14 @@ namespace :deploy do
   task :restart do
     on roles(:app) do
       execute "kill -USR2 `cat #{current_path}/tmp/pids/unicorn.pid`"
-      execute "RAILS_ENV=production #{current_path}/bin/delayed_job restart"
+    end
+  end
+
+  task :restart_delayed_job do
+    on roles(:app) do
+      with :rails_env => :production do
+        execute "#{current_path}/bin/delayed_job restart"
+      end
     end
   end
 
@@ -50,7 +55,7 @@ namespace :deploy do
   end
 
   before 'deploy:start', 'rvm:hook'
-  after :publishing, 'deploy:restart'
+  after :publishing, 'deploy:restart', 'deploy:restart_delayed_job'
   before 'deploy:rebuild_search_indexs', 'rvm:hook'
   # after :publishing, 'deploy:rebuild_search_indexs'
 end
