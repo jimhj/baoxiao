@@ -52,7 +52,7 @@
                 li
                   a href="#{joke_path(joke)}"
                     .thumbnail
-                      = image_tag joke.picture.thumb.url
+                      = image_tag joke.picture.thumb.url, alt: joke.picture_alt
                     span= joke.title.truncate(8, omission: '')
      
       - cache "ads_sidebar_3", skip_digest: true do

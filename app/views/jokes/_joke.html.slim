@@ -15,7 +15,7 @@
       - unless joke.anonymous?
         .pull-left
           a href="#{user_path(joke.user)}" 
-            = image_tag joke.user.avatar.thumb.url
+            = image_tag joke.user.avatar.thumb.url, alt: joke.user.name
           a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
 
     - if joke.title.present?
@@ -29,9 +29,9 @@
         .thumb.mt-10
           a href="#{joke_path(joke.id)}"
             - if mobile?
-              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.small.url}"
+              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.small.url}" alt="#{joke.picture_alt}"
             - else
-              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.normal.url}"
+              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.normal.url}" alt="#{joke.picture_alt}"
 
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix

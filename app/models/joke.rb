@@ -63,6 +63,14 @@ class Joke < ActiveRecord::Base
     end
   end
 
+  def picture_alt
+    if title.blank?
+      (content || "").split(/,|，/).last
+    else
+      title
+    end
+  end
+
   def prev
     Joke.where("id > ?", id).order("id ASC").first    
   end
