@@ -12,7 +12,7 @@ xml.rss(:version=>"2.0"){
           xml.description do
             xml.cdata!(simple_format(joke.content))
             if joke.picture.present?
-              xml.img(src: joke.picture.normal.url)
+              xml.cdata!(%Q(<img src="#{joke.picture.normal.url}"/>))
             end
           end
           xml.author "www.xiaohuabolan.com"
