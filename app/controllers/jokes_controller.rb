@@ -35,9 +35,7 @@ class JokesController < ApplicationController
 
   def random
     @joke = Joke.random || Joke.order('hot DESC').first
-    set_meta_data
-    render template: 'jokes/show'
-    fresh_when(etag: @joke)
+    redirect_to joke_path(@joke)
   end  
 
   def recent
