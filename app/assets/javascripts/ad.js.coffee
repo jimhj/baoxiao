@@ -11,7 +11,10 @@ baoxiao.AD =
     ad_top = $ad.offset().top
 
     fixAd = ->
-      left_h = $('.jokes').height()
+      left_h = if $('body').is('.jokes-show')
+        left_h = $('.col-md-8').height()
+      else
+        $('.jokes').height()
       right_bar_h = $('.col-md-4').height()      
       return if left_h <= right_bar_h
 
