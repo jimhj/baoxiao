@@ -28,10 +28,7 @@
       - if joke.picture.present?
         .thumb.mt-10
           a href="#{joke_path(joke.id)}"
-            - if mobile?
-              img.lazy src="#{asset_path('lazyload.gif')}" data-original="#{joke.picture.small.url}" alt="#{joke.picture_alt}"
-            - else
-              img src="#{joke.picture.normal.url}" alt="#{joke.picture_alt}"
+            img src="#{joke.picture.normal.url}" alt="#{joke.picture_alt}"
 
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix

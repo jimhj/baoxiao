@@ -12,7 +12,7 @@ baoxiao.AD =
 
     fixAd = ->
       left_h = if $('body').is('.jokes-show')
-        left_h = $('.col-md-8').height()
+        left_h = $('.col-md-8').height() - 20
       else
         $('.jokes').height()
       right_bar_h = $('.col-md-4').height()      
@@ -21,14 +21,15 @@ baoxiao.AD =
       $(window).scroll (e) ->
         y = $(window).scrollTop()            
         if y > ad_top
-          if y + ad_h - 312 + 38 + 10 + 4 > left_h
+          if y + ad_h - 312 + 38 > left_h
             $ad.css({ position: 'absolute', top: left_h - ad_h, width: ad_w })
           else
             $ad.css({ position: 'fixed', top: 0, width: ad_w })
         else
           $ad.css({ position: 'static' })
 
-    fixAd()
+    $('.col-md-8').imagesLoaded ->
+      fixAd()
 
 $(document).ready ->
   baoxiao.AD.init()

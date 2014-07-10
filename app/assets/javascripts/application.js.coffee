@@ -4,7 +4,7 @@
 #= require jquery.autosize
 #= require jquery.validate
 #= require jquery.cookie
-#= require jquery.lazyload
+#= require imagesloaded.pkgd.min
 #= require nprogress
 #= require baoxiao
 #= require_tree ./plugins
@@ -19,11 +19,6 @@ $(document).on 'page:restore', ->
 
 $(document).ready ->
   $('[data-behaviors~=autosize]').autosize()
-  
-  # initial events
-  $("img.lazy").lazyload
-    effect: "fadeIn"
-    threshold: 300
 
   $('[data-toggle=dropdown]').each ->
     func = -> 
