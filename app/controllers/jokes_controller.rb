@@ -104,10 +104,14 @@ class JokesController < ApplicationController
   end
 
   def set_meta_data
-    title = @joke.title || ""
+    title = @joke.title.presence || @joke.content
     tag_list = @joke.tags.map(&:name)
     keywords = ([title] + tag_list).join(',')
-    description = ([title, @joke.content] + tag_list).join(',')
+    description = if @joke.title.blank?
+      ([@joke.content] + tag_list).join(',')
+    else
+      ([title, @joke.content] + tag_list).join(',')
+    end
     set_seo_meta title, keywords, description    
   end
 end
