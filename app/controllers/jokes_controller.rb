@@ -104,7 +104,7 @@ class JokesController < ApplicationController
   end
 
   def set_meta_data
-    title = @joke.title.presence || @joke.content
+    title = @joke.title
     tag_list = @joke.tags.map(&:name)
     keywords = ([title] + tag_list).join(',')
     description = ([title, @joke.content] + tag_list).join(',')
