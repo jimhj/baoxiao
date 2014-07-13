@@ -4,6 +4,7 @@
 
 $brand-primary: #F19670;
 // $brand-primary: #32BC78;
+$navbar-border-radius: 0;
 
 @import "bootstrap";
 @import "bootstrap_customize";
@@ -75,12 +76,24 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     top: 48px;
     position: fixed;
   }
+
+  @media (min-width : 768px) and (max-width : 1024px) {
+    > .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    > .container > .row {
+      width: 100%;
+      .sideBarAd { display: none; }
+    }
+  }  
 }
 
-.main > .container {
+.main > .container {   
   > .row {
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;  
     .friend-sites { display: none; }
     .friend-sites .panel-heading {
       color: $brand-primary;
@@ -88,14 +101,17 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     .friend-sites .panel-body ul { margin-bottom: 0px; }
   }
 
+  @media (min-width: $screen-lg-min) {
+    > .row {
+      width: 90%;
+    }
+  }
+
   @media (max-width: $grid-float-breakpoint) {
     padding-left: 0;
     padding-right: 0;
 
     > .row {
-      width: 100%;
-      margin: 0 auto;
-
       .col-md-6, .col-md-8, .panel {
         padding-left: 0;
         padding-right: 0;
@@ -120,7 +136,6 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     }
   }
 }
-
 
 body.index-index .main > .container > .row .friend-sites { display: block; }
 
