@@ -60,6 +60,7 @@ class Joke < ActiveRecord::Base
     case read_attribute(:from)
     when 'QB'; then '糗事百科';
     when 'MH'; then '快乐麻花';
+    when "HH"; then '傲游哈哈';
     end
   end
 
