@@ -11,6 +11,7 @@
 
 - cache [joke, locale] do
   .list-group-item id="vote-for-joke-#{joke.id}"
+    .header_bar  
     .list-group-item-user.clearfix.mb-10
       - unless joke.anonymous?
         .pull-left

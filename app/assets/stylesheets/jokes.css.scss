@@ -1,6 +1,19 @@
 .jokes {
   .list-group-item {
     padding: 10px 15px 0px 15px;
+    .header_bar {
+      background: image-url('header_bar.png') top center;
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 9;
+      border-radius: 4px;
+    }
+    @media (max-width: $grid-float-breakpoint) {
+      .header_bar { display: none; }
+    }    
   }
 
   .list-group-item-user {
@@ -207,4 +220,8 @@ ul.tag.nav li {
       border-left: none; 
     }
   }  
+}
+
+.jokes-show .header_bar {
+  display: none;
 }
