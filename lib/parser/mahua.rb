@@ -1,6 +1,7 @@
 module Parser
   class Mahua < Base
-    SCRAP_FROM = 'http://www.mahua.com/diggjokes'
+    # SCRAP_FROM = 'http://www.mahua.com/diggjokes'
+    SCRAP_FROM = 'http://www.mahua.com/newjokes/text'
 
     def scrap
       @opts[:page_start].upto(@opts[:page_stop]).each do |page|
@@ -8,8 +9,15 @@ module Parser
         Rails.logger.info("开始抓取第 #{page} 页")
 
         url = Mahua::SCRAP_FROM
-        unless page == 1
-          url = "#{Mahua::SCRAP_FROM}/index_#{page}.htm" 
+
+        # unless page == 1
+        #   url = "#{Mahua::SCRAP_FROM}/index_#{page}.htm" 
+        # end
+
+        if page == 1
+          url = "#{Mahua::SCRAP_FROM}/index.htm" 
+        else
+          url =  "#{Mahua::SCRAP_FROM}/index_#{2276 + page}.htm" 
         end
           
         Rails.logger.info(url)
@@ -36,7 +44,10 @@ module Parser
           joke = @user.jokes.build
           joke.anonymous = true
           joke.title = title
-          joke.content = content.presence || title
+          joke.content = content.blank? ? title : content
+          if joke.content.blank?
+            next
+          end
           joke.remote_picture_url = picture if picture
           joke.up_votes_count = up_votes.to_i
           joke.down_votes_count = down_votes.to_i.abs
