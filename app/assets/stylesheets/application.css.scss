@@ -58,7 +58,7 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   }
 }
 
-body[class="jokes-show"], body[class^="sessions"] {
+body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {
   .site-top { display: none; }
 }
 
