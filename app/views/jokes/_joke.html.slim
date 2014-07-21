@@ -34,11 +34,11 @@
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix
         li
-          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1" data-joke_id="#{joke.id}"
+          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="1" data-joke_id="#{joke.id}" title="顶"
             i.fa.fa-thumbs-o-up
             span.ml-2= joke.up_votes_count
         li.ml-15
-          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1" data-joke_id="#{joke.id}"
+          a.voteJoke href="javascript:;" data-href="#{vote_joke_path(joke)}" data-vote_value="-1" data-joke_id="#{joke.id}" title="埋"
             i.fa.fa-thumbs-o-down
             span.ml-2= joke.down_votes_count
         li.ml-15
