@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707141843) do
+ActiveRecord::Schema.define(version: 20140721133749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140707141843) do
   create_table "friend_sites", force: true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "priority",   default: 1000, null: false
+    t.integer  "priority",   default: 1000
     t.integer  "status",     default: 0
     t.integer  "user_id"
     t.datetime "created_at"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140707141843) do
   add_index "jokes", ["hot", "status"], name: "index_jokes_on_hot_and_status", using: :btree
   add_index "jokes", ["hot"], name: "index_jokes_on_hot", using: :btree
   add_index "jokes", ["recommended", "status"], name: "index_jokes_on_recommended_and_status", using: :btree
+  add_index "jokes", ["status"], name: "index_jokes_on_status", using: :btree
   add_index "jokes", ["user_id"], name: "index_jokes_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
