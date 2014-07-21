@@ -58,6 +58,17 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   }
 }
 
+body[class="jokes-show"], body[class^="sessions"] {
+  .site-top { display: none; }
+}
+
+// body {
+//   // height: 100%;
+//   min-height: 100%;
+//   overflow:auto;
+//   padding-bottom: 150px;
+// }
+
 .main {
   margin-top: 20px;
   min-height: 452px;
@@ -140,8 +151,12 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
 body.index-index .main > .container > .row .friend-sites { display: block; }
 
 .footer {
+  // position: relative;
   background-color: #3A3129;
-  // padding: 21px 0px;
+  // height: 150px;
+  // margin-top: 150px;
+  // clear: both;
+
   & {
     color: #615A42;
     font-size: 12px;    
@@ -174,7 +189,6 @@ body.index-index .main > .container > .row .friend-sites { display: block; }
       margin-left: 0;
       margin-right: 10px;
     }
-
   }
 }
 
