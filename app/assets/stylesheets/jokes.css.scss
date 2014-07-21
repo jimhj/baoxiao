@@ -8,7 +8,6 @@
       position: absolute;
       top: 0px;
       left: 0px;
-      // z-index: 9;
       border-radius: 4px;
     }
     @media (max-width: $grid-float-breakpoint) {
@@ -222,6 +221,6 @@ ul.tag.nav li {
   }  
 }
 
-.jokes-show .header_bar {
-  display: none;
-}
+// .jokes-show .header_bar {
+//   display: none;
+// }
