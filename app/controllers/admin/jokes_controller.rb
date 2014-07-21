@@ -74,7 +74,7 @@ class Admin::JokesController < Admin::ApplicationController
   end
 
   def joke_params
-    params.require(:joke).permit(:title, :content, :picture, :tag_list, :recommended, :anonymous)
+    params.require(:joke).permit(:title, :content, :picture, :tag_list, :recommended, :anonymous, :remote_picture_url)
   end
 
   def expire_recommends_cache
