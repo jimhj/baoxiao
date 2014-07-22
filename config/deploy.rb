@@ -38,11 +38,9 @@ namespace :deploy do
 
   task :restart_delayed_job do
     on roles(:app) do
-      as: :xiao do
-        with :rails_env => :production do
-          execute "#{current_path}/bin/delayed_job stop"
-          execute "#{current_path}/bin/delayed_job -n2 start"
-        end
+      with :rails_env => :production do
+        execute "#{current_path}/bin/delayed_job stop"
+        execute "#{current_path}/bin/delayed_job -n2 start"
       end
     end
   end
