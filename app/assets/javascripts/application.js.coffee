@@ -5,18 +5,16 @@
 #= require jquery.autosize
 #= require jquery.validate
 #= require jquery.cookie
-#= require imagesloaded.pkgd.min
-#= require nprogress
 #= require baoxiao
 #= require_tree ./plugins
 #= require ad
 
-$(document).on 'page:fetch', ->
-  NProgress.start()
-$(document).on 'page:change', ->
-  NProgress.done()
-$(document).on 'page:restore', ->
-  NProgress.remove()
+# $(document).on 'page:fetch', ->
+#   NProgress.start()
+# $(document).on 'page:change', ->
+#   NProgress.done()
+# $(document).on 'page:restore', ->
+#   NProgress.remove()
 
 $(document).ready ->
   $('[data-behaviors~=autosize]').autosize()

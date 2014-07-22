@@ -28,8 +28,7 @@ baoxiao.AD =
         else
           $ad.css({ position: 'static' })
 
-    $('.col-md-8').imagesLoaded ->
-      fixAd()
+    fixAd()
 
 $(document).ready ->
   baoxiao.AD.init()

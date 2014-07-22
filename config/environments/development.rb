@@ -36,4 +36,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.exceptions_app = self.routes
+
+  config.assets.precompile += %w( html5shiv.js respond.min.js bootstrap-ie7.css )
 end
