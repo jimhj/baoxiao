@@ -5,6 +5,7 @@
 #= require jquery.autosize
 #= require jquery.validate
 #= require jquery.cookie
+#= require imagesloaded.pkgd
 #= require baoxiao
 #= require_tree ./plugins
 #= require ad
