@@ -5,6 +5,7 @@
 // $brand-primary: #F19670;
 $brand-primary: #1A9850;
 $navbar-border-radius: 0;
+$feed-color: #DDB170;
 
 @import "bootstrap";
 @import "bootstrap_customize";
@@ -47,10 +48,11 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     -o-background-size: contain; 
   }
 
+
   a.feed {
     position: absolute;
     top: 0px;
-    right: 34%;
+    left: 10%;
     border-radius: 0px 0px 4px 4px;
     border-left: 2px dashed #FFF;
     border-right: 2px dashed #FFF;
