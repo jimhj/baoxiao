@@ -26,3 +26,10 @@ pre code { background: transparent; }
 table, table a {
   font-size: 12px;
 }
+
+@media (max-width: $grid-float-breakpoint) {
+  .nav > li { display: block; }
+  .bs-sidebar .nav li.active .nav {
+    display: block;
+  }
+} 
