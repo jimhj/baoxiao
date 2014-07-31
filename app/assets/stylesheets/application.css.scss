@@ -52,7 +52,7 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
   a.feed {
     position: absolute;
     top: 0px;
-    left: 10%;
+    right: 10%;
     border-radius: 0px 0px 4px 4px;
     border-left: 2px dashed #FFF;
     border-right: 2px dashed #FFF;
@@ -98,7 +98,6 @@ body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {
 
     > .container > .row {
       width: 100%;
-      .sideBarAd { display: none; }
     }
   }  
 }
@@ -135,6 +134,7 @@ body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {
         border-radius: 0;
       }
       .tips, .recent, .friend-sites { display: none; }
+      .sideBarAd { display: none; }
     }
 
     .baoxiao-pagination {

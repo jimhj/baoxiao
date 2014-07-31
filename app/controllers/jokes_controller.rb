@@ -10,6 +10,8 @@ class JokesController < ApplicationController
   def create
     @joke = current_user.jokes.build joke_params
     if @joke.save
+      expire_fragment(%r{/*/index})
+      expire_fragment(%r{/*/\?page*})
       redirect_to @joke
     else
       render :new

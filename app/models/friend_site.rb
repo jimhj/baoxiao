@@ -6,4 +6,5 @@ class FriendSite < ActiveRecord::Base
   scope :approved, -> {
     where(status: FriendSite.statuses[:approved]).order('priority DESC, id DESC')
   }
+  
 end

@@ -57,7 +57,7 @@ html
               a href="#{new_joke_path}"
                 i.fa.fa-pencil
                 span.ml-5 投稿
-            - if login?
+            - if login? && false
               li
                 a data-target="#" data-toggle="dropdown"
                   | #{current_user.name} <span class="caret"></span>
