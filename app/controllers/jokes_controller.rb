@@ -1,6 +1,6 @@
 class JokesController < ApplicationController
   before_action :login_required, only: [:new, :create]
-  caches_action :feed, expires_in: 1.hours
+  caches_action :feed, :show, expires_in: 1.hours
 
   def new
     @joke = current_user.jokes.new
