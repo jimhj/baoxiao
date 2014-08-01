@@ -13,9 +13,7 @@ class Admin::FriendSitesController < Admin::ApplicationController
     @site = FriendSite.new site_params
     @site.user_id = current_user.id
 
-    if @site.save
-      expire_fragment(%r{/*/index})
-      expire_fragment(%r{/*/\?page*})      
+    if @site.save    
       redirect_to admin_friend_sites_path
     else
       render :new

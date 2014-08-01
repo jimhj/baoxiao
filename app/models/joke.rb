@@ -1,6 +1,7 @@
 class Joke < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include JokeCacheSweeper
 
   acts_as_taggable
 

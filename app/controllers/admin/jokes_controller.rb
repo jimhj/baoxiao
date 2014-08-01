@@ -17,9 +17,7 @@ class Admin::JokesController < Admin::ApplicationController
     @joke = current_user.jokes.build joke_params
     if @joke.save
       @joke.tag_list = tag_list  
-      @joke.save
-      expire_fragment(%r{/*/index})
-      expire_fragment(%r{/*/\?page*})      
+      @joke.save     
       redirect_to :back
     else
       render :new

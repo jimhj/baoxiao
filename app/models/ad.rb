@@ -1,4 +1,6 @@
 class Ad < ActiveRecord::Base
+  include JokeCacheSweeper
+    
   validates_presence_of :name, :body
   enum status: [:enable, :disable]
 
@@ -20,8 +22,8 @@ class Ad < ActiveRecord::Base
     self.version = SecureRandom.hex(8)
   end  
 
-  before_save :expire_ad_cache
-  before_destroy :expire_ad_cache
+  after_save :expire_ad_cache
+  after_destroy :expire_ad_cache
 
   def expire_ad_cache
     # expire_fragment use regexp as cache key just doesn't work.
