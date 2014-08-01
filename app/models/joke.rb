@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Joke < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks

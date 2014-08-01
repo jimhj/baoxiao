@@ -1,6 +1,7 @@
+# encoding: utf-8
 class FriendSite < ActiveRecord::Base
   include JokeCacheSweeper
-  
+
   validates_presence_of :name, :url, :priority
 
   enum status: [ :pending, :approved, :rejected ]
