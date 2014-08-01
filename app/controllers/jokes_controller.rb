@@ -1,6 +1,6 @@
 class JokesController < ApplicationController
   before_action :login_required, only: [:new, :create]
-  caches_action :feed, :show, expires_in: 1.hours
+  caches_action :feed, :show, :hot, :recent, expires_in: 1.hours
 
   def new
     @joke = current_user.jokes.new
@@ -42,13 +42,11 @@ class JokesController < ApplicationController
     @jokes = Joke.includes(:user).order('id DESC')
                                  .paginate(page: params[:page], per_page: 20, total_entries: 2000)
     set_seo_meta "#{t('indexs.recent')}_#{Settings.app_title}" 
-    render template: 'index/index'
   end
 
   def hot
     @jokes = Joke.order('hot DESC').paginate(page_opts)
     set_seo_meta "#{t('indexs.hot')}_#{Settings.app_title}"
-    render template: 'index/index'
   end
 
   def feed
