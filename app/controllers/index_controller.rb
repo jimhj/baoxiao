@@ -7,5 +7,4 @@ class IndexController < ApplicationController
 
     set_seo_meta
   end
-
 end

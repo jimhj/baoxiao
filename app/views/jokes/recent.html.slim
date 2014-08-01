@@ -5,16 +5,15 @@
   .baoxiao-pagination
     = will_paginate @jokes, renderer: BootstrapPagination::Rails, inner_window: 2
 
-- unless mobile?
-  = render 'share/right_bar'
-  .col-md-12
-    .panel.friend-sites
-      .panel-heading
-        i.fa.fa-link 
-        span.ml-5 友情链接
-      .panel-body
-        - cache FriendSite.approved do
-          ul.list-unstyled.clearfix
-            - FriendSite.approved.each do |site|
-              li.ml-5.pull-left
-                a href="#{site.url}" target="_blank" title="#{site.title}"= site.name 
+= render 'share/right_bar'
+.col-md-12
+  .panel.friend-sites
+    .panel-heading
+      i.fa.fa-link 
+      span.ml-5 友情链接
+    .panel-body
+      - cache FriendSite.approved do
+        ul.list-unstyled.clearfix
+          - FriendSite.approved.each do |site|
+            li.ml-5.pull-left
+              a href="#{site.url}" target="_blank" title="#{site.title}"= site.name 

@@ -24,18 +24,28 @@ $(document).ready ->
     func = -> 
     this.addEventListener('click', func, false)
 
+  # update current user or anonymous vote status
+  $.get '/users/voted_ids', (resp) ->
+    if resp
+      voted_ids = resp
+    else
+      voted_ids = ($.cookie('anonymous_votes') || "").split(",")
+    
+    baoxiao.Votes.updateVotes voted_ids
+  , 'json'
+
   $('a.voteJoke').click ->
     return false if $(this).is('.disabled')
     count = parseInt($(this).find('span').text())
     url = $(this).data('href')
-    $.post url, { vote_value : $(this).data('vote_value') }
+    $.post url, { vote_value : $(this).data('vote_value') }, 'json'
     $(this).parents('ul').find('.voteJoke').addClass('disabled').unbind('click')
     $(this).find('span').text(count + 1)
 
-    if not baoxiao.currentUser
-      anonymous_votes = ($.cookie('anonymous_votes') || "").split(',')
-      anonymous_votes.push $(this).data('joke_id')
-      $.cookie 'anonymous_votes', anonymous_votes, path: '/'
+    # if not baoxiao.currentUser
+    anonymous_votes = ($.cookie('anonymous_votes') || "").split(',')
+    anonymous_votes.push $(this).data('joke_id')
+    $.cookie 'anonymous_votes', anonymous_votes, path: '/'
 
   $('.site-top a.feed').click ->
     $('#qq-feed').modal()

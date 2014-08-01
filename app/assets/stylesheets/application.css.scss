@@ -64,6 +64,14 @@ body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {
   .site-top { display: none; }
 }
 
+body {
+  .mobileAd { display: none; }
+  @media (max-width: $grid-float-breakpoint) {
+    .mobileAd { display: block; }
+    .scrollToTop, .site-top { display: none; }
+  }  
+}
+
 // body {
 //   // height: 100%;
 //   min-height: 100%;
@@ -124,7 +132,7 @@ body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {
     padding-right: 0;
 
     > .row {
-      .col-md-6, .col-md-8, .panel {
+      .col-md-6, .col-md-8, .col-md-4, .col-md-12, .panel {
         padding-left: 0;
         padding-right: 0;
         border-radius: 0;    

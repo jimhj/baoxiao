@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+html
+  head
+    = render_page_title
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    <!--[if lt IE 8]>
+      = stylesheet_link_tag 'bootstrap-ie7.css'
+    <![endif]-->    
+    <!--[if lt IE 9]>
+      = javascript_include_tag 'html5shiv.js', 'respond.min'
+    <![endif]-->    
+    meta name="keywords" content="#{@meta_keywords}"
+    meta name="description" content="#{@meta_description}"  
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta http-equiv="Cache-Control" content="no-transform"
+    link rel="apple-touch-icon" href="#{asset_path('icon-76@2x.png')}"
+    = favicon_link_tag
+    = csrf_meta_tags
+    - if login?
+      javascript:
+        baoxiao.currentUser = { id: #{current_user.id} };    
+  body class="#{controller_name}-#{action_name}"
+    - unless mobile?
+      a.scrollToTop href="#"
+      .site-top
+        .big-ad
+        a.btn.btn-danger.feed
+          i.fa.fa-rss
+          span.ml-5 订阅  
+    .header_bar
+
+    .navbar
+      .container.clearfix
+        - if mobile?
+          ul.nav.navbar-nav.pull-left.mobile
+            li
+              a href="#{root_path}"
+                span.logo 
+                span.logo-text= Settings.app_name
+
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href="#{new_joke_path}"
+                i.fa.fa-pencil
+                span.ml-5 投稿
+            - if login?      
+              li
+                a href="#{logout_path}" data-method="DELETE": i.fa.fa-power-off
+                
+        - else
+          .navbar-header
+            span.logo
+            a.navbar-brand href="#{root_path}"= Settings.app_name
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href="#{new_joke_path}"
+                i.fa.fa-pencil
+                span.ml-5 投稿
+            - if login? && false
+              li
+                a data-target="#" data-toggle="dropdown"
+                  | #{current_user.name} <span class="caret"></span>
+                ul.dropdown-menu
+                  li
+                    a href="#{user_path(current_user)}"
+                      i.fa.fa-user 
+                      span.ml-5 我的主页
+                  li
+                    a href="#{settings_profile_path}"
+                      i.fa.fa-cogs 
+                      span.ml-5 资料设置
+                  li.divider
+                  li
+                    a href="#{logout_path}" data-method="DELETE"
+                      i.fa.fa-power-off 
+                      span.ml-5 退出
+          #header.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a href="#{recent_jokes_path}" 
+                  i.fa.fa-refresh
+                  span.ml-5 最新            
+              li
+                a href="#{hot_jokes_path}" 
+                  i.fa.fa-fire
+                  span.ml-5 最热
+              li
+                a href="#{random_jokes_path}" 
+                  i.fa.fa-random
+                  span.ml-5 随机
+              li
+                a href="#{tags_path}" 
+                  i.fa.fa-tags
+                  span.ml-5 笑点
+
+    .main
+      .container
+        .row
+          = yield
+
+    .footer
+      .container
+        .row
+          .col-md-8 
+            ul.list-unstyled.clearfix.bottom-nav
+              li.pull-left
+                a href="#"
+                  i.fa.fa-tablet 
+                  span.ml-5 客户端
+              li.ml-10.pull-left
+                a href="#{tags_path}" 
+                  i.fa.fa-cloud
+                  span.ml-5 笑点                                    
+          .col-md-4.copyright
+            ul.list-unstyled
+              li © 2008-2018 笑话博览 版权所有
+
+  = render 'share/baidu_share_script'
+  = render 'share/ba'
+  = render 'share/qq_feed'
+
+  - if login?
+    javascript:
+      baoxiao.Votes.updateVotes(#{current_user.voted_joke_ids});  
+  - else
+    javascript:
+      var voted_ids = ($.cookie('anonymous_votes') || "").split(",");
+      baoxiao.Votes.updateVotes(voted_ids);
+
+  - if mobile?
+    - cache "ads_mobile_1", skip_digest: true do
+      - if ad = Ad.for_mobile[0]
+        = raw ad.try :body
