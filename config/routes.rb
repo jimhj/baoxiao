@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :recent
       get :hot
       get :random
+      get :rand
       get :search
       get :check_title
       get :check_content

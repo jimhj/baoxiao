@@ -1,6 +1,6 @@
 class JokesController < ApplicationController
   before_action :login_required, only: [:new, :create]
-  caches_action :feed, :hot, :recent, expires_in: 1.hours
+  caches_action :feed, :hot, :recent, expires_in: 30.minutes
 
   def new
     @joke = current_user.jokes.new
@@ -36,7 +36,12 @@ class JokesController < ApplicationController
   def random
     @joke = Joke.random || Joke.order('hot DESC').first
     redirect_to joke_path(@joke)
-  end  
+  end
+
+  def rand
+    @joke = Joke.recommends.sample || Joke.random || Joke.order('hot DESC').first
+    redirect_to joke_path(@joke)
+  end
 
   def recent
     @jokes = Joke.includes(:user).order('id DESC')
