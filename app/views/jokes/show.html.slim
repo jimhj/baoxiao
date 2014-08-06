@@ -14,48 +14,47 @@
       span.key.key-left.mr-5
       span.key.key-right
 
-  - if !mobile?
-    - cache "ads_detail_1", skip_digest: true do
-      - if ad = Ad.for_detail[0]
-        .panel.siteAd class="ad-#{ad.try(:version)}"
-          .panel-body 
-            = raw ad.try(:body)
+  - cache "ads_detail_1", skip_digest: true do
+    - if ad = Ad.for_detail[0]
+      .panel.siteAd class="ad-#{ad.try(:version)}"
+        .panel-body 
+          = raw ad.try(:body)
 
-    .panel.recommad
-      .panel-heading
-        h3.panel-title 热门动图
-      .panel-body
-        ul.list-unstyled.joke-pictures.clearfix
-          - Joke.recommends.each do |joke|
-            li.mr-25
-              a href="#{joke_path(joke)}"
-                .thumbnail
-                  img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
-                span= (joke.title.presence || joke.content).truncate(8, omission: '')
+  .panel.recommad
+    .panel-heading
+      h3.panel-title 热门动图
+    .panel-body
+      ul.list-unstyled.joke-pictures.clearfix
+        - Joke.recommends.each do |joke|
+          li.mr-25
+            a href="#{joke_path(joke)}"
+              .thumbnail
+                img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
+              span= (joke.title.presence || joke.content).truncate(8, omission: '')
 
-    - cache "ads_detail_2", skip_digest: true do
-      - if ad = Ad.for_detail[1]
-        .panel.siteAd class="ad-#{ad.try(:version)}"
-          .panel-body 
-            = raw ad.try(:body)
+  - cache "ads_detail_2", skip_digest: true do
+    - if ad = Ad.for_detail[1]
+      .panel.siteAd class="ad-#{ad.try(:version)}"
+        .panel-body 
+          = raw ad.try(:body)
 
-    .panel.recommad
-      .panel-heading
-        h3.panel-title 热门笑图
-      .panel-body
-        ul.list-unstyled.joke-pictures.clearfix
-          - Joke.recommends.each do |joke|
-            li.mr-25
-              a href="#{joke_path(joke)}"
-                .thumbnail
-                  img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
-                span= (joke.title.presence || joke.content).truncate(8, omission: '')
+  .panel.recommad
+    .panel-heading
+      h3.panel-title 热门笑图
+    .panel-body
+      ul.list-unstyled.joke-pictures.clearfix
+        - Joke.recommends.each do |joke|
+          li.mr-25
+            a href="#{joke_path(joke)}"
+              .thumbnail
+                img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
+              span= (joke.title.presence || joke.content).truncate(8, omission: '')
 
-    - cache "ads_detail_3", skip_digest: true do
-      - if ad = Ad.for_detail[2]
-        .panel.siteAd class="ad-#{ad.try(:version)}"
-          .panel-body 
-            = raw ad.try(:body)
+  - cache "ads_detail_3", skip_digest: true do
+    - if ad = Ad.for_detail[2]
+      .panel.siteAd class="ad-#{ad.try(:version)}"
+        .panel-body 
+          = raw ad.try(:body)
 
   / .panel.comments
   /   .panel-heading 评论 (#{@joke.comments_count || 0})
