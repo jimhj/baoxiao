@@ -4,6 +4,7 @@ class JokesController < ApplicationController
 
   def new
     @joke = current_user.jokes.new
+    @joke.anonymous = true
     set_seo_meta "#{t('indexs.new')}_#{Settings.app_title}" 
   end
 

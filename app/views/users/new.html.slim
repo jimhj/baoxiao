@@ -7,14 +7,14 @@
         = render 'share/form_error_messages', form: f
         .form-group
           = f.label :email, class: 'control-label'
-          = f.text_field :email, placeholder: '你的邮箱地址', tabindex: 2, class: 'form-control'
+          = f.text_field :email, placeholder: '你的邮箱地址', tabindex: 2, class: 'form-control input-lg'
         .form-group
           = f.label :name, class: 'control-label'
-          = f.text_field :name, placeholder: '你的昵称', tabindex: 3, class: 'form-control'
+          = f.text_field :name, placeholder: '你的昵称', tabindex: 3, class: 'form-control input-lg'
         .form-group
           = f.label :password, class: 'control-label'
-          = f.password_field :password, placeholder: '设定密码', tabindex: 4, class: 'form-control'
-        input.btn.btn-primary type="submit" value="提交注册"
+          = f.password_field :password, placeholder: '设定密码', tabindex: 4, class: 'form-control input-lg'
+        input.btn.btn-primary.btn-lg.btn-block type="submit" value="提交注册"
 
 javascript:
   $('#new-user-form').validate({
