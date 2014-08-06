@@ -11,11 +11,11 @@ module Baoxiao
       expose :id, :created_at, :anonymous, :up_votes_count, :down_votes_count
 
       expose :title do |model|
-        model.title.blank? ? nil : model.title
+        model.title.blank? ? '' : model.title
       end
 
       expose :content do |model|
-        model.content.blank? ? nil : model.content
+        model.content.blank? ? '' : model.content
       end      
 
       expose :picture_url do |model|
