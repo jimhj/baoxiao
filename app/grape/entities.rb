@@ -8,7 +8,16 @@ module Baoxiao
     end
 
     class Joke < Grape::Entity
-      expose :id, :title, :content, :created_at, :anonymous, :up_votes_count, :down_votes_count
+      expose :id, :created_at, :anonymous, :up_votes_count, :down_votes_count
+
+      expose :title do |model|
+        model.title.blank? ? nil : model.title
+      end
+
+      expose :content do |model|
+        model.content.blank? ? nil : model.content
+      end      
+
       expose :picture_url do |model|
         if model.picture?        
           model.picture.small.url
