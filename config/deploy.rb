@@ -54,8 +54,10 @@ namespace :deploy do
   desc "Refresh Sitemap"
   task :refresh_sitemap do
     on roles(:app) do
-      with :rails_env => :production do
-        rake 'sitemap:refresh:no_ping'
+      with :rails_env => fetch(:rails_env) do
+        within release_path do
+          rake 'sitemap:refresh:no_ping'
+        end
       end
     end
   end
