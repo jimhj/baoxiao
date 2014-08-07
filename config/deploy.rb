@@ -14,6 +14,8 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 set :keep_releases, 10
 set :default_shell, '/bin/bash -l'
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 namespace :deploy do
  desc "Start Application"
   task :start do
@@ -59,8 +61,7 @@ namespace :deploy do
   task :recreat_sitemap do
     on roles(:app) do
       with :rails_env => :production do
-        rake 'sitemap:clean'
-        rake 'sitemap:create'
+        rake 'sitemap:refresh:no_ping'
       end
     end
   end

@@ -65,6 +65,9 @@ gem "grape-entity", '~> 0.4.3'
 # Sitemap
 gem 'sitemap_generator', '~> 5.0.5'
 
+# Cron jobs
+gem 'whenever', :require => false
+
 group :production do
   gem 'newrelic_rpm'
 end
