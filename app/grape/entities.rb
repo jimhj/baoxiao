@@ -27,13 +27,13 @@ module Baoxiao
       end
 
       expose :bytes do |model|      
-        (model.picture_meta_info["small"] || {})["size"]
+        (model.picture_meta_info["small"] || {})["size"] || ''
       end
 
       expose :dimensions do |model|        
         {
-          width: (model.picture_meta_info["small"] || {})["width"],
-          height: (model.picture_meta_info["small"] || {})["height"]
+          width: (model.picture_meta_info["small"] || {})["width"] || '',
+          height: (model.picture_meta_info["small"] || {})["height"] || ''
         }
       end
 
