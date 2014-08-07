@@ -21,6 +21,8 @@ module Baoxiao
       expose :picture_url do |model|
         if model.picture?        
           model.picture.small.url
+        else
+          ''
         end
       end
 
