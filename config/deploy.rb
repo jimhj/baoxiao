@@ -66,7 +66,8 @@ namespace :deploy do
   end
 
   before 'deploy:start', 'rvm:hook'
-  after :publishing, 'deploy:restart', 'deploy:restart_delayed_job'
+  after :publishing, 'deploy:restart'
   before 'deploy:rebuild_search_indexs', 'rvm:hook'
-  # after :publishing, 'deploy:rebuild_search_indexs'
+  after 'deploy:restart', 'deploy:restart_delayed_job'
+  after 'deploy:restart', 'deploy:recreat_sitemap'
 end

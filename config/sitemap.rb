@@ -26,6 +26,15 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
+  add recent_jokes_path, :priority => 0.7, :changefreq => 'daily'
+  add hot_jokes_path, :priority => 0.7, :changefreq => 'daily'
+
+  add tags_path, :priority => 0.7, :changefreq => 'daily'
+
+  Joke.tag_counts_on(:tags).order('taggings_count DESC').each do |tag|
+    add tag_path(tag.name), lastmod: Time.now
+  end
+
   Joke.find_each do |joke|
     add joke_path(joke), lastmod: joke.updated_at
   end
