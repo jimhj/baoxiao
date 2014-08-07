@@ -55,6 +55,16 @@ namespace :deploy do
     end
   end
 
+  desc "ReCreate Sitemap"
+  task :recreat_sitemap do
+    on roles(:app) do
+      with :rails_env => :production do
+        rake 'sitemap:clean'
+        rake 'sitemap:create'
+      end
+    end
+  end
+
   before 'deploy:start', 'rvm:hook'
   after :publishing, 'deploy:restart', 'deploy:restart_delayed_job'
   before 'deploy:rebuild_search_indexs', 'rvm:hook'

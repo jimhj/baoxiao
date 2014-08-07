@@ -16,6 +16,9 @@
 /tmp
 /public/uploads
 /public/assets
+/public/sitemap.xml
+/public/sitemap.xml.gz
+/public/.DS_Store
 /config/database.yml
 /config/secrets.yml
 /config/config.yml
