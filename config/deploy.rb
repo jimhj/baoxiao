@@ -15,6 +15,8 @@ set :keep_releases, 10
 set :default_shell, '/bin/bash -l'
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+# set :delayed_job_server_role, :worker
+set :delayed_job_args, "-n 2"
 
 namespace :deploy do
  desc "Start Application"
@@ -35,15 +37,7 @@ namespace :deploy do
   task :restart do
     on roles(:app) do
       execute "kill -USR2 `cat #{current_path}/tmp/pids/unicorn.pid`"
-    end
-  end
-
-  task :restart_delayed_job do
-    on roles(:app) do
-      with :rails_env => :production do
-        execute "#{current_path}/bin/delayed_job stop"
-        execute "#{current_path}/bin/delayed_job -n2 start"
-      end
+      invoke 'delayed_job:restart'
     end
   end
 
@@ -57,8 +51,8 @@ namespace :deploy do
     end
   end
 
-  desc "ReCreate Sitemap"
-  task :recreat_sitemap do
+  desc "Refresh Sitemap"
+  task :refresh_sitemap do
     on roles(:app) do
       with :rails_env => :production do
         rake 'sitemap:refresh:no_ping'
@@ -68,7 +62,5 @@ namespace :deploy do
 
   before 'deploy:start', 'rvm:hook'
   after :publishing, 'deploy:restart'
-  before 'deploy:rebuild_search_indexs', 'rvm:hook'
-  after 'deploy:restart', 'deploy:restart_delayed_job'
-  after 'deploy:restart', 'deploy:recreat_sitemap'
+  after 'deploy:restart', 'deploy:refresh_sitemap'
 end
