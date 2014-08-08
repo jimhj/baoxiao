@@ -27,10 +27,9 @@ html
         
     .navbar
       .container.clearfix
-
         .navbar-header
-          span.logo
-          a.navbar-brand href="#{root_path}"= Settings.app_name
+          a.brand 
+            = image_tag 'logo.png'
         ul.nav.navbar-nav.navbar-right
           li
             a href="#{new_joke_path}"
@@ -42,6 +41,10 @@ html
               span.ml-5 退出
         #header.collapse.navbar-collapse
           ul.nav.navbar-nav
+            li
+              a href="#{root_path}" 
+                i.fa.fa-home
+                span.ml-5 首页
             li
               a href="#{recent_jokes_path}" 
                 i.fa.fa-refresh

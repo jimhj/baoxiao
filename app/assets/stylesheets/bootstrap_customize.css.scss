@@ -17,16 +17,6 @@ body {
     > li {
       position: relative;
     }
-
-    span.logo {
-      width: 32px;
-      height: 32px;
-      background: transparent image-url('logo_32.png') no-repeat;
-      display: inline-block;
-      position: absolute;
-      top: 5px;
-      left: 0px;
-    }
     
     span.logo-text {
       margin-left: 18px;
@@ -35,19 +25,6 @@ body {
 
   .navbar-header {
     position: relative;
-    span.logo {
-      width: 48px;
-      height: 48px;
-      background: transparent image-url('logo_48.png') no-repeat;
-      display: inline-block;
-      position: absolute;
-      top: 15px;
-      left: -48px;
-    }
-
-    a.navbar-brand {
-      font-size: 18px;
-    }
 
     button.navbar-toggle {
       font-size: 16px;
@@ -73,12 +50,17 @@ body {
     &:hover a { color: $brand-primary; background-color: #FFF;}
   }
 
+  .navbar-header {
+    display: none;
+  }
+
   @media (max-width: $grid-float-breakpoint) {
     .navbar-header {
+      display: inherit;
       float: left;
-      span.logo { display: none; }
-    }
-        
+      left: calc(50% - 50px);
+      top: 10px;
+    }          
     .navbar-right {
       margin-right: -15px;
 
