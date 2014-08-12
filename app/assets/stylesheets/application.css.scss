@@ -101,6 +101,10 @@ body {
     padding: 5px 6px 1px 6px;
   }
 
+  .panel.siteAd iframe {
+    max-width: 100%;
+  }
+
   .group-ads.fixed {
     top: 48px;
     position: fixed;
