@@ -178,8 +178,12 @@ ul.joke-pictures {
   li { 
     float: left;
     margin-left: 10px;
+    margin-right: 25px;
     margin-bottom: 10px;
-    text-align: center;    
+    text-align: center;  
+    @media (max-width: 1170px) {
+      margin-right: 10px;
+    }
   }
 
   li a { 
@@ -199,6 +203,15 @@ ul.joke-pictures {
       height: 20px;
     }
   }
+}
+
+.col-md-4 ul.joke-pictures li {
+  margin-left: 10px;
+  margin-right: 10px; 
+  @media (max-width: 1170px) {
+    margin-left: 0px;
+    margin-right: 10px;
+  }  
 }
 
 .baoxiao-pagination {
@@ -227,6 +240,6 @@ ul.tag.nav li {
   }  
 }
 
-// .jokes-show .header_bar {
-//   display: none;
-// }
+.jokes-show .jokes h1.list-group-item-heading {
+  font-size: 18px;
+}

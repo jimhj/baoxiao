@@ -1,6 +1,45 @@
 .col-md-8
   .jokes.list-group
-    = render @joke
+    .list-group-item id="vote-for-joke-#{@joke.id}"
+      .header_bar  
+      .list-group-item-user.clearfix.mb-10
+        - unless @joke.anonymous?
+          .pull-left
+            a href="#{user_path(@joke.user)}" 
+              = image_tag @joke.user.avatar.thumb.url, alt: @joke.user.name
+            a.ml-5.mr-5 href="#{user_path(@joke.user)}"= @joke.user.name
+
+      - if @joke.title.present?
+        .list-group-title.clearfix.mb-10
+          h1.list-group-item-heading= @joke.title
+
+      .list-group-item-text
+        .content= simple_format @joke.content
+        - if @joke.picture.present?
+          .thumb.mt-10
+            a href="#{joke_path(@joke.id)}"
+              img src="#{@joke.picture.normal.url}" alt="#{@joke.picture_alt}"
+
+      .status.mt-10.clearfix
+        ul.list-unstyled.counts.pull-right.clearfix
+          li
+            a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="1" data-joke_id="#{@joke.id}" title="顶"
+              i.fa.fa-thumbs-o-up
+              span.ml-2= @joke.up_votes_count
+          li.ml-15
+            a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="-1" data-joke_id="#{@joke.id}" title="踩"
+              i.fa.fa-thumbs-o-down
+              span.ml-2= @joke.down_votes_count
+          li.ml-15
+            a.readon href="#{joke_path(@joke)}": i.fa.fa-eye
+          li.ml-15.sharing
+            #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{@joke.title.presence || @joke.content}', 'pic': '#{@joke.picture.normal.url}', 'url': '#{joke_url(@joke)}'}"
+              span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
+                i.fa.fa-share-square-o
+        .tags
+          i.fa.fa-tags
+          - @tags.each do |tag|
+            a href="#{tag_path(tag.name)}"= tag
     .pagebar.clearfix
       .pull-left
         a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
@@ -14,11 +53,10 @@
       span.key.key-left.mr-5
       span.key.key-right
 
-  - cache "ads_detail_1", skip_digest: true do
-    - if ad = Ad.for_detail[0]
-      .panel.siteAd class="ad-#{ad.try(:version)}"
-        .panel-body 
-          = raw ad.try(:body)
+  - if ad = Ad.for_detail[0]
+    .panel.siteAd class="ad-#{ad.try(:version)}"
+      .panel-body 
+        = raw ad.try(:body)
 
   .panel.recommad
     .panel-heading
@@ -26,17 +64,16 @@
     .panel-body
       ul.list-unstyled.joke-pictures.clearfix
         - Joke.recommends.each do |joke|
-          li.mr-25
+          li
             a href="#{joke_path(joke)}"
               .thumbnail
                 img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
               span= (joke.title.presence || joke.content).truncate(8, omission: '')
 
-  - cache "ads_detail_2", skip_digest: true do
-    - if ad = Ad.for_detail[1]
-      .panel.siteAd class="ad-#{ad.try(:version)}"
-        .panel-body 
-          = raw ad.try(:body)
+  - if ad = Ad.for_detail[1]
+    .panel.siteAd class="ad-#{ad.try(:version)}"
+      .panel-body 
+        = raw ad.try(:body)
 
   .panel.recommad
     .panel-heading
@@ -44,17 +81,16 @@
     .panel-body
       ul.list-unstyled.joke-pictures.clearfix
         - Joke.recommends.each do |joke|
-          li.mr-25
+          li
             a href="#{joke_path(joke)}"
               .thumbnail
                 img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
               span= (joke.title.presence || joke.content).truncate(8, omission: '')
 
-  - cache "ads_detail_3", skip_digest: true do
-    - if ad = Ad.for_detail[2]
-      .panel.siteAd class="ad-#{ad.try(:version)}"
-        .panel-body 
-          = raw ad.try(:body)
+  - if ad = Ad.for_detail[2]
+    .panel.siteAd class="ad-#{ad.try(:version)}"
+      .panel-body 
+        = raw ad.try(:body)
 
   / .panel.comments
   /   .panel-heading 评论 (#{@joke.comments_count || 0})

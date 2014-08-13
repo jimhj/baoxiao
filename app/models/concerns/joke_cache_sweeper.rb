@@ -10,6 +10,7 @@ module JokeCacheSweeper
   def expire_joke_cache
     ActionController::Base.new.expire_fragment(%r{/*/index})
     ActionController::Base.new.expire_fragment(%r{/*/\?page*})
+    # ActionController::Base.new.expire_fragment(%r{/hot\?page*})    
   end
 
   handle_asynchronously :expire_joke_cache, queue: 'expire_joke_cache'

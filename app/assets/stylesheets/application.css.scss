@@ -77,15 +77,15 @@ body {
   @media (max-width: $grid-float-breakpoint) {
     .mobileAd { display: block; }
     .scrollToTop, .site-top { display: none; }
-  }  
-}
+  }
 
-// body {
-//   // height: 100%;
-//   min-height: 100%;
-//   overflow:auto;
-//   padding-bottom: 150px;
-// }
+  @media (max-width: 1170px) {
+    .col-md-4, .col-md-8 {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }   
+}
 
 .main {
   margin-top: 20px;
