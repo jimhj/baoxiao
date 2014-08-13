@@ -62,6 +62,19 @@ namespace :deploy do
     end
   end
 
+  namespace :task do
+    desc "Clear cache"
+    task :clear_all_cache do
+      on roles(:app) do
+        with :rails_env => fetch(:rails_env) do
+          within release_path do
+            rake 'tmp:clear'
+          end
+        end
+      end      
+    end
+  end
+
   before 'deploy:start', 'rvm:hook'
   after :publishing, 'deploy:restart'
   after 'deploy:restart', 'deploy:refresh_sitemap'
