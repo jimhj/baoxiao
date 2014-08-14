@@ -76,6 +76,7 @@ body {
   .mobileAd { display: none; }
   @media (max-width: $grid-float-breakpoint) {
     .mobileAd { display: block; }
+    .siteAd { display: none; }
     .scrollToTop, .site-top { display: none; }
   }
 
@@ -99,10 +100,6 @@ body {
 
   .panel.siteAd .panel-body {
     padding: 5px 6px 1px 6px;
-  }
-
-  .panel.siteAd iframe {
-    max-width: 100%;
   }
 
   .group-ads.fixed {

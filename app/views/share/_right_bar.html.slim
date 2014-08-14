@@ -1,10 +1,9 @@
 .col-md-4
-  - if !mobile?
-    - cache "ads_sidebar_1", skip_digest: true do
-      - if ad = Ad.for_sidebar[0]
-        .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
-          .panel-body 
-            = raw ad.try(:body)
+  - cache "ads_sidebar_1", skip_digest: true do
+    - if ad = Ad.for_sidebar[0]
+      .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+        .panel-body 
+          = raw ad.try(:body)
   .panel.search
     .panel-body
       = form_tag search_jokes_path, role: 'form', method: 'GET' do
@@ -33,30 +32,28 @@
               .pull-right
                 span= joke.up_votes_count
 
-  - if !mobile?
-    - cache "ads_sidebar_2", skip_digest: true do
-      - if ad = Ad.for_sidebar[1]
+  - cache "ads_sidebar_2", skip_digest: true do
+    - if ad = Ad.for_sidebar[1]
+      .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
+        .panel-body 
+          = raw ad.try(:body)
+
+  .group-ads
+    - cache "jokes/recent_pictures", expires_in: 1.hour do
+      .panel.recent
+        .panel-heading 
+          h3.panel-title 最新笑图
+        .panel-body
+          ul.list-unstyled.joke-pictures.clearfix
+            - Joke.recent_pictures.limit(4).each do |joke|
+              li
+                a href="#{joke_path(joke)}"
+                  .thumbnail
+                    = image_tag joke.picture.thumb.url, alt: joke.picture_alt
+                  span= (joke.title.presence || joke.content).truncate(8, omission: '')
+   
+    - cache "ads_sidebar_3", skip_digest: true do
+      - if ad = Ad.for_sidebar[2]
         .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
           .panel-body 
             = raw ad.try(:body)
-
-  .group-ads
-    - if !mobile?
-      - cache "jokes/recent_pictures", expires_in: 1.hour do
-        .panel.recent
-          .panel-heading 
-            h3.panel-title 最新笑图
-          .panel-body
-            ul.list-unstyled.joke-pictures.clearfix
-              - Joke.recent_pictures.limit(4).each do |joke|
-                li
-                  a href="#{joke_path(joke)}"
-                    .thumbnail
-                      = image_tag joke.picture.thumb.url, alt: joke.picture_alt
-                    span= (joke.title.presence || joke.content).truncate(8, omission: '')
-     
-      - cache "ads_sidebar_3", skip_digest: true do
-        - if ad = Ad.for_sidebar[2]
-          .panel.siteAd.sideBarAd class="ad-#{ad.try(:version)}"
-            .panel-body 
-              = raw ad.try(:body)
