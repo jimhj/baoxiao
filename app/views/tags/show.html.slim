@@ -1,9 +1,17 @@
 .col-md-8
-  ul.nav.nav-pills.tag
-    li.active
-      a
-        i.fa.fa-tag
-        span.ml-5= params[:id]
+  .panel.tag
+    .panel-heading
+      h1.panel-title.clearfix
+        .pull-left
+          i.fa.fa-tag
+          span.ml-5= params[:id]
+        .pull-right.count
+          | 相关笑话 #{@tag.taggings_count} 条
+    .panel-body
+      = simple_format @tag.description
+    .panel-footer.clearfix
+      .pull-right
+        = render partial: 'share/baidu_share_at_tag', locals: { description: @tag.description }
 
   .jokes.list-group.mt-10
     = render @jokes

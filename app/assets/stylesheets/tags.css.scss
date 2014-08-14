@@ -19,3 +19,26 @@
     margin-bottom: 5px;
   }   
 }
+
+.tags-show {
+  .panel.tag {
+    .panel-heading h1 { font-size: 18px; }
+    .panel-heading .count {
+      font-size: 12px;
+      color: #999;
+    }
+    .panel-body { line-height: 24px; }
+    .panel-footer { 
+      padding: 5px 0px; 
+      a.bds_tsina { background-position: 0 -104px!important;}
+      a.bds_qzone { background-position: 0 -52px!important;}
+      a.bds_tqq { background-position: 0 -260px!important;}
+      a.bds_renren { background-position: 0 -208px!important;}
+      a.bds_weixin { background-position: 0 -1612px!important;}
+      a.bds_more {
+        background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_24.png?v=4c3f13b3.png)!important;
+        background-position: 0 0!important;
+      }
+    }
+  }
+}

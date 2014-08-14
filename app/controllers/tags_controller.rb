@@ -7,6 +7,7 @@ class TagsController < ApplicationController
   end
 
   def show
+    @tag = ActsAsTaggableOn::Tag.find_by(name: params[:id])
     @jokes = Joke.tagged_with(params[:id]).order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 2000)
 
     page_title = "#{t('tags.meta.title', tag: params[:id])},#{Settings.app_title}"

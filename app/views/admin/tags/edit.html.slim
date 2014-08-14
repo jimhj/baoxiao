@@ -1,0 +1,14 @@
+.bs-docs-section
+  .page-header 编辑标签
+  .row
+    .col-md-10
+      .panel
+        .panel-body
+          = render 'share/flash_messages'
+          = form_for @tag, :url => admin_tag_path(@tag), :class => 'form' do |f|
+            = render 'share/form_error_messages', form: f
+            .form-group
+              = f.text_field :name, :class => 'form-control', placeholder: '标题'
+            .form-group
+              = f.text_area :description, :class => 'form-control', :rows => 10, placeholder: '填写描述'
+            = f.submit "确定修改", :class => 'btn btn-primary'

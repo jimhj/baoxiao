@@ -1,9 +1,9 @@
-- if defined?(joke_counter) && joke_counter == 4 && !mobile?
+- if defined?(joke_counter) && joke_counter == 4
   - cache "ads_list_1", skip_digest: true do
     - if ad = Ad.for_list.first
       .list-group-item class="ad-#{ad.try(:version)} siteAd"
         = raw ad.try(:body)
-- if defined?(joke_counter) && joke_counter == 9 && !mobile?
+- if defined?(joke_counter) && joke_counter == 9
   - cache "ads_list_2", skip_digest: true do
     - if ad2 = Ad.for_list.last
       .list-group-item class="ad-#{ad2.try(:version)} siteAd"
