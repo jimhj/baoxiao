@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  caches_action :index, :show, :expires_in => 30.minutes
+  caches_action :index, :show, :expires_in => 30.minutes, :cache_path => Proc.new { |c| c.params }
 
   def index
     @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC')
