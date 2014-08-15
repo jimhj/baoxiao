@@ -1,5 +1,10 @@
 .bs-docs-section
   .page-header 查询结果
+  = form_tag search_admin_tags_path, :class => 'form-inline', :method => 'GET', :role => 'form' do
+    .form-group
+      input.form-control type="text" name="q" placeholder="搜索"
+    button.btn.btn-default type="submit" 搜索
+  hr  
   table.table.table-striped
     thead
       tr
@@ -20,4 +25,4 @@
           td: a href="#this" 删除
 
   .pagination
-    = will_paginate @tags, renderer: BootstrapPagination::Rails, inner_window: 2
+    / = will_paginate @tags, renderer: BootstrapPagination::Rails, inner_window: 2

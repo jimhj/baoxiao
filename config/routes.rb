@@ -67,6 +67,10 @@ Rails.application.routes.draw do
       member do
         get :jokes
       end
+
+      collection do
+        get :search
+      end
     end
     
     resources :ads

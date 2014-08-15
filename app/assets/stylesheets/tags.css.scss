@@ -22,14 +22,21 @@
 
 .tags-show {
   .panel.tag {
-    .panel-heading h1 { font-size: 18px; }
+    .panel-heading h1 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 24px; 
+    }
+
     .panel-heading .count {
       font-size: 12px;
       color: #999;
-    }
+      margin-top: -20px;
+    }    
+
     .panel-body { line-height: 24px; }
     .panel-footer { 
-      padding: 5px 0px; 
+      padding: 5px 5px; 
       a.bds_tsina { background-position: 0 -104px!important;}
       a.bds_qzone { background-position: 0 -52px!important;}
       a.bds_tqq { background-position: 0 -260px!important;}
@@ -39,6 +46,6 @@
         background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_24.png?v=4c3f13b3.png)!important;
         background-position: 0 0!important;
       }
-    }
+    }    
   }
 }

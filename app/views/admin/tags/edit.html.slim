@@ -10,5 +10,7 @@
             .form-group
               = f.text_field :name, :class => 'form-control', placeholder: '标题'
             .form-group
+              = f.text_field :keywords, :class => 'form-control', placeholder: '填写关键字，逗号隔开'
+            .form-group
               = f.text_area :description, :class => 'form-control', :rows => 10, placeholder: '填写描述'
             = f.submit "确定修改", :class => 'btn btn-primary'

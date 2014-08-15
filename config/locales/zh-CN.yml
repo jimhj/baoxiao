@@ -48,7 +48,7 @@ zh-CN:
     title: '%{name}的笑话'
   tags:
     meta:
-      title: '%{tag}爆笑图片, %{tag}笑话'
+      title: '%{tag}爆笑图片,%{tag}笑话'
       description: '%{tag}大全与千万网友一起分享最新最热的%{tag}、%{tag}图片、%{tag}动态图、冷笑话、糗事笑话、成人笑话、经典笑话、内涵段子等笑话大全'
   settings:
     profiles:

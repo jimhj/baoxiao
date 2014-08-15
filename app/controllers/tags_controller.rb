@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  caches_action :index, :expires_in => 1.hour
+  caches_action :index, :show, :expires_in => 30.minutes
 
   def index
     @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC')
@@ -10,8 +10,21 @@ class TagsController < ApplicationController
     @tag = ActsAsTaggableOn::Tag.find_by(name: params[:id])
     @jokes = Joke.tagged_with(params[:id]).order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 2000)
 
-    page_title = "#{t('tags.meta.title', tag: params[:id])},#{Settings.app_title}"
-    description = "#{t('tags.meta.description', tag: @tag.description)}"
-    set_seo_meta page_title, params[:id], description
+    keywords = if @tag.keywords.blank?
+      t('tags.meta.title', tag: params[:id])
+    else
+      @tag.keywords
+    end
+
+    page_title = "#{keywords.split(/,\s?|，\s?/).join('_')}_#{Settings.app_name}"
+
+    description = if @tag.description.blank?
+      @sample_joke = @jokes.where.not(content: nil).sample
+      @sample_joke.try(:content) || t('tags.meta.description', tag: params[:id])
+    else
+      @tag.description
+    end
+
+    set_seo_meta page_title, keywords, description
   end
 end

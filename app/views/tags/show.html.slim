@@ -1,14 +1,11 @@
 .col-md-8
   .panel.tag
     .panel-heading
-      h1.panel-title.clearfix
-        .pull-left
-          i.fa.fa-tag
-          span.ml-5= params[:id]
-        .pull-right.count
-          | 相关笑话 #{@tag.taggings_count} 条
+      h1= params[:id]
+      .pull-right.count
+        | 相关笑话 #{@tag.taggings_count} 条             
     .panel-body
-      = simple_format @tag.description
+      = simple_format @tag.description.presence || @sample_joke.try(:content)
     .panel-footer.clearfix
       .pull-right
         = render partial: 'share/baidu_share_at_tag', locals: { description: @tag.description }
