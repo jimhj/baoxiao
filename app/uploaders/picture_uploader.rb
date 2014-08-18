@@ -34,9 +34,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   private
   
   def crop(geometry)
-    manipulate! do |img|      
-      img.crop(geometry)
-      img
+    manipulate! do |image|      
+      if image[:height] > 90
+        y = (image[:height] - 90) / 2
+        geometry = "120x90+0+#{y}"
+      end
+      image.crop geometry
+      image
     end    
   end  
 end
