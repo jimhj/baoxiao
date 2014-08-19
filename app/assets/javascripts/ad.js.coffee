@@ -18,7 +18,7 @@ baoxiao.AD =
       right_bar_h = $('.col-md-4').height()      
       return if left_h <= right_bar_h
 
-      $(window).scroll (e) ->
+      scrollFunc = ->
         y = $(window).scrollTop()            
         if y > ad_top
           if y + ad_h - 312 + 38 > left_h
@@ -27,6 +27,12 @@ baoxiao.AD =
             $ad.css({ position: 'fixed', top: 0, width: ad_w })
         else
           $ad.css({ position: 'static' })
+
+      if /iPhone|iPad|iPod/i.test(navigator.userAgent)
+        window.addEventListener 'scroll', scrollFunc
+      else
+        $(window).scroll (e) ->
+          scrollFunc()
 
     $('.col-md-8').imagesLoaded ->
       fixAd()
