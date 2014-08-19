@@ -26,7 +26,7 @@ $(document).ready ->
 
   # update current user or anonymous vote status
   $.get '/users/fetch_current_user_as_json', (resp) ->
-    if resp.current_user
+    if resp.user
       voted_ids = resp.voted_ids
       $('.navbar-nav > li.current_user').replaceWith $(resp.nav)
     else
