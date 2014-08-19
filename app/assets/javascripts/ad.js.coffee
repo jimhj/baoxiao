@@ -29,7 +29,8 @@ baoxiao.AD =
           $ad.css({ position: 'static' })
 
       if /iPhone|iPad|iPod/i.test(navigator.userAgent)
-        window.addEventListener 'scroll', scrollFunc
+        document.addEventListener 'touchmove', scrollFunc, false
+        document.addEventListener 'scroll', scrollFunc, false
       else
         $(window).scroll (e) ->
           scrollFunc()
