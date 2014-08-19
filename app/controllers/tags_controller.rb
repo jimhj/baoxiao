@@ -8,7 +8,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = ActsAsTaggableOn::Tag.find_by(name: params[:id])
-    @jokes = Joke.tagged_with(params[:id]).order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: 2000)
+    @jokes = Joke.tagged_with(params[:id]).order('id DESC').paginate(page: params[:page], per_page: 20, total_entries: @tag.taggings_count)
 
     keywords = if @tag.keywords.blank?
       t('tags.meta.title', tag: params[:id])

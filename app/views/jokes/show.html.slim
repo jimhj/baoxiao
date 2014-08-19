@@ -45,7 +45,7 @@
         a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
           i.fa.fa-chevron-left
       .pull-right
-        a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
+        a.btn.btn-primary.btn-lg.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
           span.mr-5 下一条
           i.fa.fa-chevron-right        
     .tips.clearfix

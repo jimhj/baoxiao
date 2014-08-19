@@ -101,3 +101,8 @@ body {
 .col-md-4 .panel {
   margin-bottom: 10px;
 }
+
+.pagination > li > a, .pagination > li > span, .pagination > .active > a, .pagination > .active > span {
+  font-size: 20px;
+  padding: 8px 14px;
+}
