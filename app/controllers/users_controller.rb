@@ -30,12 +30,13 @@ class UsersController < ApplicationController
   def fetch_current_user_as_json
     if login?
       voted_ids = current_user.voted_joke_ids
+      user = current_user.as_json(except: :password_digest)
       nav = render_to_string('share/_nav_for_user', layout: false)
     else
-      voted_ids = nav = nil
+      voted_ids = nav = user = nil
     end
     
-    render json: { voted_ids: voted_ids, nav: nav, current_user: current_user } 
+    render json: { voted_ids: voted_ids, nav: nav, user: user } 
   end
 
   # def voted_ids
