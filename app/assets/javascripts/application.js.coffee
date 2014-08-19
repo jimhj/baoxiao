@@ -25,9 +25,10 @@ $(document).ready ->
     this.addEventListener('click', func, false)
 
   # update current user or anonymous vote status
-  $.get '/users/voted_ids', (resp) ->
-    if resp
-      voted_ids = resp
+  $.get '/users/fetch_current_user_as_json', (resp) ->
+    if resp.current_user
+      voted_ids = resp.voted_ids
+      $('.navbar-nav > li.current_user').replaceWith $(resp.nav)
     else
       voted_ids = ($.cookie('anonymous_votes') || "").split(",")
     

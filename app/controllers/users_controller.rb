@@ -27,9 +27,20 @@ class UsersController < ApplicationController
     set_seo_meta "#{t('users.title', name: @user.name)}_#{Settings.app_title}"   
   end
 
-  def voted_ids
-    render json: (login? ? current_user.voted_joke_ids : nil)
-  end  
+  def fetch_current_user_as_json
+    if login?
+      voted_ids = current_user.voted_joke_ids
+      nav = render_to_string('share/_nav_for_user', layout: false)
+    else
+      voted_ids = nav = nil
+    end
+    
+    render json: { voted_ids: voted_ids, nav: nav, current_user: current_user } 
+  end
+
+  # def voted_ids
+  #   render json: (login? ? current_user.voted_joke_ids : nil)
+  # end  
 
   def check_email
     respond_to do |format|

@@ -58,7 +58,10 @@ body {
     .navbar-header {
       display: inherit;
       float: left;
-    }          
+    }
+
+    .navbar-brand { padding: 18px 15px; }
+
     .navbar-right {
       margin-right: -15px;
 

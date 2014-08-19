@@ -34,10 +34,12 @@ html
             a href="#{new_joke_path}"
               i.fa.fa-pencil
               span.ml-5 投稿
-          li.hide
-            a href="#{logout_path}" data-method="DELETE"
-              i.fa.fa-power-off 
-              span.ml-5 退出
+          li.current_user
+            a href="#{login_path}"
+              i.fa.fa-sign-in
+              span.ml-5 登录
+
+
         #header.collapse.navbar-collapse
           ul.nav.navbar-nav
             li

@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     collection do
       get :check_email
       get :check_name
-      get :voted_ids
+      get :fetch_current_user_as_json
     end
   end
 
