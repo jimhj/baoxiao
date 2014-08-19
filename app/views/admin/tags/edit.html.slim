@@ -10,6 +10,8 @@
             .form-group
               = f.text_field :name, :class => 'form-control', placeholder: '标题'
             .form-group
+              = f.text_field :seo_title, :class => 'form-control', placeholder: 'SEO标题'
+            .form-group
               = f.text_field :keywords, :class => 'form-control', placeholder: '填写关键字，逗号隔开'
             .form-group
               = f.text_area :description, :class => 'form-control', :rows => 10, placeholder: '填写描述'

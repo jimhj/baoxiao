@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815020317) do
+ActiveRecord::Schema.define(version: 20140819034720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140815020317) do
   create_table "friend_sites", force: true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "priority",   default: 1000
+    t.integer  "priority",   default: 1000, null: false
     t.integer  "status",     default: 0
     t.integer  "user_id"
     t.datetime "created_at"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140815020317) do
     t.integer "taggings_count", default: 0
     t.text    "description"
     t.string  "keywords"
+    t.string  "seo_title"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree

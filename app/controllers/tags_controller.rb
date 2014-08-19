@@ -16,7 +16,11 @@ class TagsController < ApplicationController
       @tag.keywords
     end
 
-    page_title = "#{keywords.split(/,\s?|，\s?/).join('_')}_#{Settings.app_name}"
+    if @tag.seo_title.blank?
+      page_title = "#{params[:id]}_#{keywords.split(/,\s?|，\s?/).join('_')}_#{Settings.app_name}"
+    else
+      page_title = "#{params[:id]}_#{@tag.seo_title}_#{Settings.app_name}"
+    end
 
     description = if @tag.description.blank?
       @sample_joke = @jokes.where.not(content: nil).sample

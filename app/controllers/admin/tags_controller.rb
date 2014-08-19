@@ -34,6 +34,6 @@ class Admin::TagsController < Admin::ApplicationController
   private
 
   def tag_params
-    params.require(:acts_as_taggable_on_tag).permit(:name, :description, :keywords)
+    params.require(:acts_as_taggable_on_tag).permit(:name, :description, :seo_title, :keywords)
   end
 end
