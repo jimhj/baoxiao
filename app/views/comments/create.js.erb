@@ -1,0 +1,8 @@
+var $panel = $('.panel.comments');
+$panel.find('button.btn-primary').button('reset');
+
+<% if @comment.errors.empty? %>
+  $panel.find('.empty-message').remove();
+  $panel.find('.list-group').append('<%= j render @comment %>');
+  $panel.find('input').val('');
+<% end %>

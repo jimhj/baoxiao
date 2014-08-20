@@ -1,7 +1,7 @@
 class JokesController < ApplicationController
   before_action :login_required, only: [:new, :create]
   caches_action :feed, :hot, :recent, :cache_path => Proc.new { |c| c.params }, :expires_in => 30.minutes
-  caches_action :show, :expires_in => 1.day
+  # caches_action :show, :expires_in => 1.day
 
   def new
     @joke = current_user.jokes.new
@@ -32,8 +32,10 @@ class JokesController < ApplicationController
   def show
     @joke = Joke.find(params[:id])
     @tags = @joke.tags
+    @comment = @joke.comments.new
+    @comments = @joke.comments.order('id ASC')
     set_meta_data
-    fresh_when(etag: @joke)
+    # fresh_when(etag: @joke)
   end
 
   def random

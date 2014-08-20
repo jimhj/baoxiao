@@ -1,0 +1,10 @@
+- cache [comment, locale] do
+  .list-group-item.comment.clearfix id="comment-#{comment.id}"
+    .list-group-item-avatar.pull-left
+      a href="#{user_path(comment.user)}"
+        = image_tag comment.user.avatar.thumb.url, alt: comment.user.name
+    .list-group-item-content.pull-left.ml-10
+      .list-group-item-username
+        a href="#{user_path(comment.user)}"= comment.user.name
+      .list-group-item-text= comment.body
+    .list-group-item-report.pull-right= (comment_counter + 1) rescue @joke.comments_count
