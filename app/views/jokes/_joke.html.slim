@@ -30,6 +30,15 @@
         .thumb.mt-10
           a href="#{joke_path(joke.id)}"
             img src="#{joke.picture.normal.url}" alt="#{joke.picture_alt}"
+    - if joke.newbee_comment.present?
+      .newbee-comment.clearfix
+        .pull-left
+          i.fa.fa-comment
+          a.ml-5 href="#{user_path(joke.newbee_comment.user)}"= joke.newbee_comment.user.name
+          | :
+          span.ml-5= joke.newbee_comment.body
+        .pull-right
+          a href="#{joke_path(joke)}" 亮了(#{joke.newbee_comment.likes_count})
 
     .status.mt-10.clearfix
       ul.list-unstyled.counts.pull-right.clearfix

@@ -129,7 +129,7 @@ class Joke < ActiveRecord::Base
   end
 
   def newbee_comment
-    comments.where('likes_count > 10').order('likes_count DESC, id DESC').first
+    comments.where('likes_count > 5').order('likes_count DESC, id DESC').first
   end
 
   def self.search_with_hightlight q
