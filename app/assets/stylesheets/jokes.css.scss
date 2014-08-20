@@ -145,10 +145,15 @@
 }
 
 .comments {
+  position: relative;
+
   .panel-heading { color: $brand-primary; }
   .panel-body { padding: 0; }
   .panel-body .list-group { margin-bottom: 0; }
-  .panel-footer { border-top: none; }
+  
+  .panel-footer {
+    border-top: none; 
+  }
 
   .list-group-item {
     border-bottom: 1px solid #DDD;

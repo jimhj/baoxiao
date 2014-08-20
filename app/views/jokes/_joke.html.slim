@@ -42,7 +42,9 @@
             i.fa.fa-thumbs-o-down
             span.ml-2= joke.down_votes_count
         li.ml-15
-          a.readon href="#{joke_path(joke)}": i.fa.fa-eye
+          a.readon href="#{joke_path(joke)}" title="评论"
+            i.fa.fa-comments
+            span.ml-2= joke.comments_count
         li.ml-15.sharing
           #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{joke.title.presence || joke.content}', 'pic': '#{joke.picture.normal.url}', 'url': '#{joke_url(joke)}'}"
             span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"

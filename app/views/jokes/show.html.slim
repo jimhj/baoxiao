@@ -1,58 +1,89 @@
 .col-md-8
-  .jokes.list-group
-    .list-group-item id="vote-for-joke-#{@joke.id}"
-      .header_bar  
-      .list-group-item-user.clearfix.mb-10
-        - unless @joke.anonymous?
-          .pull-left
-            a href="#{user_path(@joke.user)}" 
-              = image_tag @joke.user.avatar.thumb.url, alt: @joke.user.name
-            a.ml-5.mr-5 href="#{user_path(@joke.user)}"= @joke.user.name
+  - cache @joke do
+    .jokes.list-group
+      .list-group-item id="vote-for-joke-#{@joke.id}"
+        .header_bar  
+        .list-group-item-user.clearfix.mb-10
+          - unless @joke.anonymous?
+            .pull-left
+              a href="#{user_path(@joke.user)}" 
+                = image_tag @joke.user.avatar.thumb.url, alt: @joke.user.name
+              a.ml-5.mr-5 href="#{user_path(@joke.user)}"= @joke.user.name
 
-      - if @joke.title.present?
-        .list-group-title.clearfix.mb-10
-          h1.list-group-item-heading= @joke.title
+        - if @joke.title.present?
+          .list-group-title.clearfix.mb-10
+            h1.list-group-item-heading= @joke.title
 
-      .list-group-item-text
-        .content= simple_format @joke.content
-        - if @joke.picture.present?
-          .thumb.mt-10
-            a href="#{joke_path(@joke.id)}"
-              img src="#{@joke.picture.normal.url}" alt="#{@joke.picture_alt}"
+        .list-group-item-text
+          .content= simple_format @joke.content
+          - if @joke.picture.present?
+            .thumb.mt-10
+              a href="#{joke_path(@joke.id)}"
+                img src="#{@joke.picture.normal.url}" alt="#{@joke.picture_alt}"
 
-      .status.mt-10.clearfix
-        ul.list-unstyled.counts.pull-right.clearfix
-          li
-            a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="1" data-joke_id="#{@joke.id}" title="顶"
-              i.fa.fa-thumbs-o-up
-              span.ml-2= @joke.up_votes_count
-          li.ml-15
-            a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="-1" data-joke_id="#{@joke.id}" title="踩"
-              i.fa.fa-thumbs-o-down
-              span.ml-2= @joke.down_votes_count
-          li.ml-15
-            a.readon href="#{joke_path(@joke)}": i.fa.fa-eye
-          li.ml-15.sharing
-            #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{@joke.title.presence || @joke.content}', 'pic': '#{@joke.picture.normal.url}', 'url': '#{joke_url(@joke)}'}"
-              span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
-                i.fa.fa-share-square-o
-        .tags
-          i.fa.fa-tags
-          - @tags.each do |tag|
-            a href="#{tag_path(tag.name)}"= tag
-    .pagebar.clearfix
+        .status.mt-10.clearfix
+          ul.list-unstyled.counts.pull-right.clearfix
+            li
+              a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="1" data-joke_id="#{@joke.id}" title="顶"
+                i.fa.fa-thumbs-o-up
+                span.ml-2= @joke.up_votes_count
+            li.ml-15
+              a.voteJoke href="javascript:;" data-href="#{vote_joke_path(@joke)}" data-vote_value="-1" data-joke_id="#{@joke.id}" title="踩"
+                i.fa.fa-thumbs-o-down
+                span.ml-2= @joke.down_votes_count
+            li.ml-15
+              a.readon href="#commentsWrapper" title="评论"
+                i.fa.fa-comments
+                span.ml-2= @joke.comments_count
+            li.ml-15.sharing
+              #bdshare.bdshare_t.bds_tools.get-codes-bdshare data="{'text': '#{@joke.title.presence || @joke.content}', 'pic': '#{@joke.picture.normal.url}', 'url': '#{joke_url(@joke)}'}"
+                span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
+                  i.fa.fa-share-square-o
+          .tags
+            i.fa.fa-tags
+            - @tags.each do |tag|
+              a href="#{tag_path(tag.name)}"= tag
+      .pagebar.clearfix
+        .pull-left
+          a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
+            i.fa.fa-chevron-left
+        .pull-right
+          a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
+            span.mr-5 下一条
+            i.fa.fa-chevron-right        
+      .tips.clearfix
+        span.mr-5 按键盘左右键翻页
+        span.key.key-left.mr-5
+        span.key.key-right
+
+  .panel.comments#commentsWrapper
+    .panel-heading.clearfix
       .pull-left
-        a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
-          i.fa.fa-chevron-left
+        span 评论
+        span.text-muted.ml-5= @joke.comments_count || 0
       .pull-right
-        a.btn.btn-primary.btn-lg.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
-          span.mr-5 下一条
-          i.fa.fa-chevron-right        
-    .tips.clearfix
-      span.mr-5 按键盘左右键翻页
-      span.key.key-left.mr-5
-      span.key.key-right
-
+        a href="#commentBox"
+          i.fa.fa-pencil
+          span.ml-5 说两句
+    .panel-body
+      .list-group
+        - if @comments.any?
+          = render @comments
+        - else
+          .list-group-item.text-center.text-muted.empty-message 少年，快点抢沙发啊！
+    .panel-footer#commentBox
+      - if login?
+        = form_for @comment, url: joke_comments_path(@joke), remote: true do |f|
+          .row
+            .col-lg-12
+              .input-group
+                = f.text_field :body, class: 'form-control input-lg', placeholder: '输入评论内容'
+                span.input-group-btn
+                  button.btn.btn-primary.btn-lg data-loading-text="提交中..." type="submit" 评论
+      - else
+        a.btn.btn-primary href="#{login_path(return_to: url_for)}" 登录
+        span.ml-5 后发表评论
+        
   - if ad = Ad.for_detail[0]
     .panel.siteAd class="ad-#{ad.try(:version)}"
       .panel-body 
@@ -92,23 +123,6 @@
       .panel-body 
         = raw ad.try(:body)
 
-  / .panel.comments
-  /   .panel-heading 评论 (#{@joke.comments_count || 0})
-  /   .panel-body
-  /     .list-group
-  /       - 0.times do
-  /         .list-group-item.comment.clearfix
-  /           .list-group-item-avatar.pull-left
-  /             img src="http://pic.qiushibaike.com/system/avtnew/669/6693433/thumb/20140323033803.jpg"
-  /           .list-group-item-content.pull-left.ml-10
-  /             .list-group-item-username
-  /               a href="#" 木哈哈
-  /             .list-group-item-text 不作死不会死，醒的时候咬比较保险,不作死不会死，醒的时候咬比较保险
-  /           .list-group-item-report.pull-right 1
-  /   .panel-footer
-  /     a.btn.btn-primary href="#" 登录
-  /     span.ml-5 后发表评论
-
 = render 'share/right_bar'
 
 javascript:
@@ -133,5 +147,10 @@ javascript:
         window.location.href = link;
       }
       return false;
+    });
+
+    $('.panel.comments').find('button.btn-primary').click(function () {
+      var $t = $(this);
+      $t.button('loading');
     });
   });

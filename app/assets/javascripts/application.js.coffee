@@ -2,6 +2,8 @@
 #= require jquery_ujs
 #= require bootstrap/dropdown
 #= require bootstrap/modal
+#= require bootstrap/button
+#= require bootstrap/alert
 #= require jquery.autosize
 #= require jquery.validate
 #= require jquery.cookie

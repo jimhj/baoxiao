@@ -24,6 +24,7 @@ class Joke < ActiveRecord::Base
   store :picture_meta_info, accessors: [:normal, :small, :thumb]
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   after_create :update_hot, :store_picture_meta_info
   after_touch :update_hot
