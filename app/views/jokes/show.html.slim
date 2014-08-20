@@ -45,10 +45,10 @@
               a href="#{tag_path(tag.name)}"= tag
       .pagebar.clearfix
         .pull-left
-          a.btn.btn-primary.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
+          a.btn.btn-primary.btn-lg.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
             i.fa.fa-chevron-left
         .pull-right
-          a.btn.btn-primary.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
+          a.btn.btn-primary.btn-lg.nextJoke class=('disabled' if @joke.next.nil?) href="#{sibling_joke_path(@joke.next)}"
             span.mr-5 下一条
             i.fa.fa-chevron-right        
       .tips.clearfix
@@ -83,7 +83,7 @@
       - else
         a.btn.btn-primary href="#{login_path(return_to: url_for)}" 登录
         span.ml-5 后发表评论
-        
+
   - if ad = Ad.for_detail[0]
     .panel.siteAd class="ad-#{ad.try(:version)}"
       .panel-body 
