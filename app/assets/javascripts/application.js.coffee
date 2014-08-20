@@ -29,12 +29,15 @@ $(document).ready ->
   # update current user or anonymous vote status
   $.get '/users/fetch_current_user_as_json', (resp) ->
     if resp.user
-      voted_ids = resp.voted_ids
+      voted_ids = resp.user.voted_joke_ids
+      liked_ids = resp.user.liked_comment_ids
       $('.navbar-nav > li.current_user').replaceWith $(resp.nav)
     else
       voted_ids = ($.cookie('anonymous_votes') || "").split(",")
+      liked_ids = ($.cookie('anonymous_likes') || "").split(",")
     
     baoxiao.Votes.updateVotes voted_ids
+    baoxiao.Comments.updateComments liked_ids
   , 'json'
 
   $('a.voteJoke').click ->

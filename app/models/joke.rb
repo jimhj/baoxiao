@@ -128,6 +128,10 @@ class Joke < ActiveRecord::Base
     flag.to_i > 0 ? increment!(:up_votes_count) : increment!(:down_votes_count)   
   end
 
+  def newbee_comment
+    comments.where('likes_count > 10').order('likes_count DESC, id DESC').first
+  end
+
   def self.search_with_hightlight q
     highlight_opts = {
       "term_vector"     => "with_positions_offsets" 

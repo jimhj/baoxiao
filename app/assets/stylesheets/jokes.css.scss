@@ -174,7 +174,8 @@
     .list-group-item-report {
       font-size: 20px;
       padding-top: 10px;
-      color: #e5e5e5;
+      a.likeComment.disabled { color: #999999; }
+      // color: #e5e5e5;
     }
   }
 }

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  post 'comments/:id/like', to: 'comments#like', as: 'like_comment'
+
   resources :tags, only: [:index, :show]
 
   resources :users, only: [:create, :show] do

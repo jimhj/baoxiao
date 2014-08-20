@@ -1,0 +1,10 @@
+var $comment = $('#comment-<%= @comment.id %>');
+
+$comment
+  .find('a.likeComment')
+  .find('span').text('<%= @comment.likes_count %>')
+  .addClass('disabled').unbind('click');
+
+var anonymous_likes = ($.cookie('anonymous_likes') || "").split(",");
+anonymous_likes.push($comment.data('comment_id'));
+$.cookie('anonymous_likes', anonymous_likes, { path: '/' });

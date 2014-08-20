@@ -35,7 +35,7 @@ class JokesController < ApplicationController
     @comment = @joke.comments.new
     @comments = @joke.comments.order('id ASC')
     set_meta_data
-    fresh_when(etag: @joke)
+    # fresh_when(etag: @joke)
   end
 
   def random

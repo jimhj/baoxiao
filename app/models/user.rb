@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
     voted_joke_ids.include? joke.id
   end
 
+  def like(comment)
+    comment.increment! :likes_count
+    liked_comment_ids_will_change!
+    liked_comment_ids.push comment.id
+    save
+  end
+
+  def liked?(comment)
+    liked_comment_ids.include? comment.id
+  end
+
   def admin?
     Settings.admin_emails.include? email
   end

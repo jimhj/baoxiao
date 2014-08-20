@@ -12,6 +12,16 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    if login?
+      return if current_user.liked?(@comment)
+      current_user.like @comment
+    else
+      @comment.like_by_anonymous
+    end
+  end
+
   private
 
   def comment_params
