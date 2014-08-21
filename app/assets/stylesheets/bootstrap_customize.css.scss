@@ -47,7 +47,11 @@ body {
   }  
 
   .navbar-collapse ul.nav li,  ul.navbar-right > li { 
-    &:hover a { color: $brand-primary; background-color: #FFF;}
+    &.open a, &:hover a { color: $brand-primary; background-color: #FFF;}
+    &.current_user i {
+      font-size: 20px;
+      // &.fa-weibo { color: #E6162D; }
+    }
   }
 
   .navbar-header {
