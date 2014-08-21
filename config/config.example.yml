@@ -3,16 +3,20 @@ defaults: &defaults
   app_title: "笑话博览_最新搞笑图片_爆笑冷笑话_内涵幽默"
   app_keywords: '笑话,搞笑图片,冷笑话,笑话博览'
   app_description: '笑话博览笑话大全与千万网友一起分享最新最热的爆笑笑话、搞笑图片、动态图、冷笑话、糗事笑话、成人笑话、经典笑话、内涵段子等笑话大全。'
+  weibo_key: "xxxxxxxx"
+  weibo_secret: "xxxxxxxxxxxxxxxxxxxx"  
   admin_emails:
     - "xxxxxx@xxxxx.com"
 
 development:
   <<: *defaults
-  domain_url: 'http://127.0.0.1:3000'
+  domain_url: 'http://www.xiaohuabolan.com:8000'
+  weibo_callback_url: "http://www.xiaohuabolan.com:8000/auth/weibo/callback"
 
 test:
   <<: *defaults
 
 production:
   <<: *defaults
-  domain_url: 'http://baoxiao.wakmj.com'  
+  domain_url: 'http://www.xiaohuabolan.com'
+  weibo_callback_url: "http://www.xiaohuabolan.com/auth/weibo/callback"

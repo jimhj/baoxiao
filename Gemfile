@@ -46,6 +46,9 @@ gem 'nokogiri', '~> 1.6.2', require: false
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# OAuth
+gem 'omniauth-oauth2', '~> 1.2.0'
+
 # Search
 gem 'elasticsearch-model', '~> 0.1.3'
 gem 'elasticsearch-rails', '~> 0.1.3'
