@@ -1,13 +1,18 @@
 - if mobile?
   li
-    a href="#{user_path(current_user)}"= current_user.name
+    a href="#{new_joke_path}"
+      i.fa.fa-plus
   li
     a href="#{settings_profile_path}": i.fa.fa-cog
   li
     a href="#{logout_path}" data-method="DELETE": i.fa.fa-power-off
 - else
+  li
+    a href="#{new_joke_path}"
+      i.fa.fa-pencil
+      span.ml-5 投稿
   li.dropdown
-    a.dropdown-toggle data-toggle="dropdown"
+    a.dropdown-toggle data-toggle="dropdown" href="javascript:;"
       = current_user.name
       span.caret
     ul.dropdown-menu role="menu"

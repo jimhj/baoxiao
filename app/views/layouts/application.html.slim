@@ -31,14 +31,20 @@ html
         .navbar-header
           a.navbar-brand href="#{root_path}" 笑话博览
         ul.nav.navbar-nav.navbar-right
-          li
-            a href="#{new_joke_path}"
-              i.fa.fa-pencil
-              span.ml-5 投稿
-          li.current_user
-            a href="#{login_path}"
-              i.fa.fa-sign-in
-              span.ml-5 登录
+          li.current_user.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="javascript:;"
+              span 登录
+              span.caret.ml-2
+            ul.dropdown-menu role="menu"
+              li
+                a href="#{login_path}"
+                  i.fa.fa-weibo
+                  span.ml-5 微博登录
+              li
+                a href="#{login_path}"
+                  i.fa.fa-envelope
+                  span.ml-5 邮箱登录
+
 
 
         #header.collapse.navbar-collapse
