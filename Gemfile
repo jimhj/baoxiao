@@ -2,12 +2,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.beta1'
+gem 'rails', '4.1.2'
 gem 'pg'
-gem 'sass-rails', '~> 5.0.0.beta1'
+gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'sprockets-rails', '~> 3.0.0.beta1'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -23,8 +22,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'font-awesome-sass', '~> 4.1.0'
 
 # Slim Template
-gem 'slim', '~> 2.0.3'
-gem 'tilt', '~> 1.1'
+gem 'slim', '~> 2.0.2'
 
 # i18n
 gem 'rails-i18n', '~> 4.0.1'
