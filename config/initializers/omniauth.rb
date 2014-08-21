@@ -1,4 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   require 'weibo'
-  provider :weibo, Setting.weibo_key, Setting.weibo_secret
+  provider :weibo, Settings.weibo_key, Settings.weibo_secret
 end

@@ -15,7 +15,7 @@ module OmniAuth
       }
 
       option :authorize_params, {
-        :redirect_uri => Setting.weibo_callback_url,
+        :redirect_uri => Settings.weibo_callback_url,
         :scope        => 'follow_app_official_microblog'
       } 
 
