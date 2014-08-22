@@ -18,4 +18,9 @@ class AuthController < ApplicationController
     remember_me
     redirect_back_or_default root_url root_url
   end
+
+  def qq_callback
+    auth = request.env["omniauth.auth"]
+    Rails.logger.info auth
+  end
 end
