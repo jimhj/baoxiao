@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :no_login_required, only: [:new, :create]
+  skip_before_action :verify_authenticity_token, only: :destroy
 
   def new
     store_location params[:return_to]

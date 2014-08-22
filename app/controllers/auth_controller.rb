@@ -22,5 +22,18 @@ class AuthController < ApplicationController
   def qq_callback
     auth = request.env["omniauth.auth"]
     Rails.logger.info auth
+    user = User.find_or_create_by!(qq_uid: auth.uid) do |u|
+      if u.new_record?
+        u.email = "#{SecureRandom.hex(6)}@qq.random.com"
+        u.remote_avatar_url = File.join(auth.info.avatar_url, 'avatar.jpg')
+        u.password = SecureRandom.hex(8)
+        u.name = auth.info.name
+      end
+      u.qq_token = auth.credentials.token
+    end
+
+    login_as user
+    remember_me
+    redirect_back_or_default root_url root_url    
   end
 end

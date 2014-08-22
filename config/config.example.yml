@@ -14,6 +14,7 @@ development:
   <<: *defaults
   domain_url: 'http://www.xiaohuabolan.com:8000'
   weibo_callback_url: "http://www.xiaohuabolan.com:8000/auth/weibo/callback"
+  qq_callback_url: "http://www.xiaohuabolan.com:8000/auth/qq/callback"
 
 test:
   <<: *defaults
@@ -22,3 +23,4 @@ production:
   <<: *defaults
   domain_url: 'http://www.xiaohuabolan.com'
   weibo_callback_url: "http://www.xiaohuabolan.com/auth/weibo/callback"
+  qq_callback_url: "http://www.xiaohuabolan.com:8000/auth/qq/callback"

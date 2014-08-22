@@ -5,10 +5,16 @@
     .panel-body
       = form_for @user, html: { id: 'new-user-form' } do |f|
         .form-group
+          a.btn.btn-info.btn-lg.btn-block href="/auth/qq"
+            i.fa.fa-qq
+            span.ml-5 QQ登录      
+        .form-group
           a.btn.btn-danger.btn-lg.btn-block href="/auth/weibo"
             i.fa.fa-weibo
             span.ml-5 微博登录
-        hr        = render 'share/form_error_messages', form: f
+        hr
+
+        = render 'share/form_error_messages', form: f
 
         .form-group
           = f.label :email, class: 'control-label'

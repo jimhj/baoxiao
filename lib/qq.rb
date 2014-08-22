@@ -31,7 +31,7 @@ module OmniAuth
       # or as a URI parameter). This may not be possible with all
       # providers.
 
-      # uid { raw_info['openid'] }
+      uid { raw_info['openid'] }
 
       info do
         {
@@ -58,12 +58,12 @@ module OmniAuth
         resp = access_token.get('oauth2.0/me').body
         resp = MultiJson.load resp.match(/callback\((.*?)\)/)[1].strip
 
-        @raw_info ||= access_token.get("user/get_user_info", :params => { 
+        @user_info ||= access_token.get("user/get_user_info", :params => { 
           :openid             => resp["openid"],
           :oauth_consumer_key => Settings.qq_key
         }).body
 
-        @raw_info = MultiJson.load @raw_info
+        @raw_info = MultiJson.load @user_info
         @raw_info.merge!("openid" => resp["openid"]) 
         @raw_info
       end
