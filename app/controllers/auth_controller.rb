@@ -14,7 +14,8 @@ class AuthController < ApplicationController
       u.weibo_token = auth.credentials.token
     end
 
-    login_as user 
-    redirect_to root_path
+    login_as user
+    remember_me
+    redirect_back_or_default root_url root_url
   end
 end
