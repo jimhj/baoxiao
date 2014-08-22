@@ -44,13 +44,13 @@ body {
     > li { float: left; }
 
     .navbar-toggle { display: none; }
+    .default { display: none; }
   }  
 
   .navbar-collapse ul.nav li,  ul.navbar-right > li { 
     &.open a, &:hover a { color: $brand-primary; background-color: #FFF;}
     &.current_user i {
       font-size: 20px;
-      // &.fa-weibo { color: #E6162D; }
     }
   }
 
@@ -74,6 +74,9 @@ body {
         padding: 0;
         margin: 0;
       }
+
+      .current_user { display: none; }
+      > li.default { display: block; }
     }   
   }  
 }

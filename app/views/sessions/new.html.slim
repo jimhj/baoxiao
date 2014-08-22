@@ -4,6 +4,11 @@
       h3.panel-title 登录
     .panel-body
       = form_tag login_path do
+        .form-group
+          a.btn.btn-danger.btn-lg.btn-block href="/auth/weibo"
+            i.fa.fa-weibo
+            span.ml-5 微博登录
+        hr
         = render 'share/flash_messages'
         .form-group
           = label_tag 'Email'
