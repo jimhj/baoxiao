@@ -12,8 +12,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process resize_to_fit: [120, nil]
-    process crop: '120x90+0+0'
+    resize_to_fill(120, 90)
   end
 
   def store_dir
@@ -31,17 +30,16 @@ class PictureUploader < CarrierWave::Uploader::Base
     end
   end
 
-  private
+  # private
   
-  def crop(geometry)
-    manipulate! do |image|      
-      if image[:height] > 90
-        y = (image[:height] - 90) / 2
-        geometry = "120x90+0+#{y}"
-      end
-      
-      image.crop geometry
-      image
-    end    
-  end  
+  # def crop(geometry)
+  #   manipulate! do |image|      
+  #     if image[:height] > 90
+  #       y = (image[:height] - 90) / 2
+  #       geometry = "120x90+0+#{y}"
+  #     end
+  #     image.crop geometry
+  #     image
+  #   end    
+  # end  
 end
