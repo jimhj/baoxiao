@@ -31,7 +31,10 @@ $(document).ready ->
     if resp.user
       voted_ids = resp.user.voted_joke_ids
       liked_ids = resp.user.liked_comment_ids
+      if /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        $('.navbar-nav > li.default').after $('.navbar-nav > li.current_user')
       $('.navbar-nav > li.current_user').replaceWith $(resp.nav)
+
     else
       voted_ids = ($.cookie('anonymous_votes') || "").split(",")
       liked_ids = ($.cookie('anonymous_likes') || "").split(",")

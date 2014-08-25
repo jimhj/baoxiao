@@ -44,6 +44,9 @@
     }
 
     @media (max-width: $grid-float-breakpoint) {
+      .content {
+        word-wrap: break-word;
+      }
       .thumb { text-align: center; }
     }
   }

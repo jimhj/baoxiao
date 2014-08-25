@@ -39,6 +39,7 @@ class PictureUploader < CarrierWave::Uploader::Base
         y = (image[:height] - 90) / 2
         geometry = "120x90+0+#{y}"
       end
+      
       image.crop geometry
       image
     end    

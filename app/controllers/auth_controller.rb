@@ -2,38 +2,30 @@ class AuthController < ApplicationController
   before_action :no_login_required
 
   def weibo_callback
-    auth = request.env["omniauth.auth"]
-    Rails.logger.info auth
-    user = User.find_or_create_by!(weibo_uid: auth.uid.to_s) do |u|
-      if u.new_record?
-        u.email = "#{SecureRandom.hex(6)}@weibo.random.com"
-        u.remote_avatar_url = File.join(auth.info.avatar_url, 'avatar.jpg')
-        u.password = SecureRandom.hex(8)
-        u.name = auth.info.name
-      end
-      u.weibo_token = auth.credentials.token
-    end
-
-    login_as user
-    remember_me
-    redirect_back_or_default root_url root_url
+    callback :weibo
   end
 
   def qq_callback
+    callback :qq
+  end
+
+  private
+
+  def callback(source_type)
     auth = request.env["omniauth.auth"]
     Rails.logger.info auth
-    user = User.find_or_create_by!(qq_uid: auth.uid) do |u|
+    user = User.find_or_create_by!("#{source_type}_uid" => auth.uid.to_s) do |u|
       if u.new_record?
-        u.email = "#{SecureRandom.hex(6)}@qq.random.com"
+        u.email = "#{SecureRandom.hex(6)}@#{source_type}.random.com"
         u.remote_avatar_url = File.join(auth.info.avatar_url, 'avatar.jpg')
         u.password = SecureRandom.hex(8)
         u.name = auth.info.name
       end
-      u.qq_token = auth.credentials.token
+      u.send("#{source_type}_token=", auth.credentials.token)
     end
 
     login_as user
     remember_me
-    redirect_back_or_default root_url root_url    
+    redirect_back_or_default root_url root_url     
   end
 end
