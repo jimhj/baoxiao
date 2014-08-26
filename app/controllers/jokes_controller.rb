@@ -11,6 +11,11 @@ class JokesController < ApplicationController
 
   def create
     @joke = current_user.jokes.build joke_params
+    if @joke.content.length < 20 && !@joke.picture.blank?
+      @joke.title = @joke.content.gsub!(/\n/, '')
+      @joke.content = ""
+    end
+
     if @joke.save
       redirect_to @joke
     else
