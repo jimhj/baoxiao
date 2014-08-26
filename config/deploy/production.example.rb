@@ -17,7 +17,7 @@
 set :password, ask('Server password', nil)
 fetch(:default_env).merge!( rvm_path: "/home/xiao/.rvm/bin/rvm" )
 server 'xxx.xxx.xxx.xxx', 
-        user: 'xiao',
+        user: 'xxxx',
         roles: %w{web app db},
         password: fetch(:password)
 
