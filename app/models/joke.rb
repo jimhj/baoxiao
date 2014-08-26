@@ -9,10 +9,11 @@ class Joke < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
-  validates :content, presence: true, 
-                      uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, 
-                      length: { minimum: 2, maximum: 300 },
-                      unless: Proc.new { |joke| joke.user.admin? }
+  validates :content, presence: true, if: Proc.new { |joke| joke.title.blank? }
+  # validates :content, presence: true, 
+  #                     uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, 
+  #                     length: { minimum: 2, maximum: 300 },
+  #                     unless: Proc.new { |joke| joke.user.admin? }
 
   default_scope { where(status: Joke.statuses[:approved]) }
 
