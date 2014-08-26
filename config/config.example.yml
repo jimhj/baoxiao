@@ -5,8 +5,8 @@ defaults: &defaults
   app_description: '笑话博览笑话大全与千万网友一起分享最新最热的爆笑笑话、搞笑图片、动态图、冷笑话、糗事笑话、成人笑话、经典笑话、内涵段子等笑话大全。'
   weibo_key: "xxxxxxxx"
   weibo_secret: "xxxxxxxxxxxxxxxxxxxx"
-  qq_key: "101148852"
-  qq_secret: "8b48c290e7c037f3a593de01f3d45083"      
+  qq_key: "xxxxxxxxxx"
+  qq_secret: "xxxxxxxxxxxxxxxxxxxxxxxxxxx"      
   admin_emails:
     - "xxxxxx@xxxxx.com"
 
