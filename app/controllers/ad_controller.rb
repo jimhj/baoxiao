@@ -20,6 +20,7 @@ class AdController < ApplicationController
     number = number.to_i
     @recommends = Joke.recommends(number)
     if params[:position] == 'bottom'
+      headers['X-Frame-Options'] = "ALLOWALL"
       render template: 'ad/ad_1', layout: false
     else
     end
