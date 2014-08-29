@@ -16,7 +16,6 @@ html
 
       .recommends li {
         float: left;
-        margin-right: 14px;
         margin-bottom: 16px;
         width: 120px;
       }
@@ -52,7 +51,7 @@ html
     .recommends
       ul
         - @recommends.each do |joke|
-          li
+          li style="margin-right: #{@gap}px;"
             a href="#{joke_path(joke)}" title="#{joke.picture_alt}" target="_blank"
               .thumbnail
                 img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"

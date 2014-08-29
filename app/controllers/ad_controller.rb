@@ -6,9 +6,10 @@ class AdController < ApplicationController
     position = params[:position].presence || 'bottom'
     @ad_width = params[:width].presence || '624'
     @ad_height = params[:height].presence || '250'
+    gap = params[:gap].presence || '14'
     number = params[:number].presence || 8
     @tag_id = params[:t]
-    @request_url = ad_pics_url(position: position, number: number, host: 'www.xiaohuabolan.com')
+    @request_url = ad_pics_url(position: position, number: number, gap: gap, host: 'www.xiaohuabolan.com')
 
     respond_to do |format|
       format.js { render file: "ad/recommends.js.erb" }
@@ -18,6 +19,7 @@ class AdController < ApplicationController
   def pics
     number = params[:number].presence || 8
     number = number.to_i
+    @gap = params[:gap]
     @recommends = Joke.recommends(number)
     if params[:position] == 'bottom'
       headers['X-Frame-Options'] = "ALLOWALL"
