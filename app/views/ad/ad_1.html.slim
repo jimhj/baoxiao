@@ -8,6 +8,8 @@ html
 
       .recommends ul {
         list-style: none;
+        margin: 0;
+        padding: 0;
       }
 
       .recommends li {
@@ -49,7 +51,7 @@ html
       ul
         - @recommends.each do |joke|
           li
-            a href="#{joke_path(joke)}" title="#{joke.picture_alt}"
+            a href="#{joke_path(joke)}" title="#{joke.picture_alt}" target="_blank"
               .thumbnail
                 img src="#{joke.picture.thumb.url}" alt="#{joke.picture_alt}"
               span= (joke.title.presence || joke.content).truncate(8, omission: '')
