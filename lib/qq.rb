@@ -50,9 +50,6 @@ module OmniAuth
       end
 
       def raw_info
-        # SET :mode because by default it will use :header option, and send out header like
-        # opts[:headers]={"Authorization"=>"Bearer 2.001FOK5CacB2wCc20a59773d0uSGnj"}
-        # this doesn't align with weibo API (see: http://open.weibo.com/wiki/2/account/get_uid)
         access_token.options[:mode] = :query
         access_token.options[:param_name] = 'access_token'
         resp = access_token.get('oauth2.0/me').body
