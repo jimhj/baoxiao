@@ -10,4 +10,5 @@ iframe.setAttribute('height', '<%= @ad_height %>');
 
 iframe.src = encodeURI('<%= @request_url %>');
 
-document.body.appendChild(iframe);
+var el = document.getElementById('<%= @tag_id %>');
+el.parentNode.insertBefore(iframe, el);

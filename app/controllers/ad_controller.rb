@@ -7,6 +7,7 @@ class AdController < ApplicationController
     @ad_width = params[:width].presence || '624'
     @ad_height = params[:height].presence || '250'
     number = params[:number].presence || 8
+    @tag_id = params[:t]
     @request_url = ad_pics_url(position: position, number: number, host: 'www.xiaohuabolan.com')
 
     respond_to do |format|
