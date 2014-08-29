@@ -49,7 +49,8 @@ Rails.application.routes.draw do
   end  
 
   scope 'ad', as: 'ad' do
-    root to: 'ad#handle'
+    get :recommends, to: 'ad#recommends'
+    get 'pics/:position', to: 'ad#pics', as: :pics
   end
 
   namespace :admin do

@@ -39,3 +39,8 @@ Rails.application.configure do
 
   config.assets.precompile += %w( html5shiv.js respond.min.js bootstrap-ie7.css )
 end
+
+# CarrierWave.configure do |config|
+#   config.asset_host = "http://127.0.0.1:8000"
+#   # config.asset_host = "http://bxcdn.qiniudn.com"
+# end
