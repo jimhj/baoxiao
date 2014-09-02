@@ -126,7 +126,13 @@ body {
     .friend-sites .panel-heading {
       color: $brand-primary;
     }
+    .friend-sites .panel-body {
+      line-height: 22px;
+    }
     .friend-sites .panel-body ul { margin-bottom: 0px; }
+    .friend-sites .panel-body ul > li > a {
+      font-size: 12px;
+    }
   }
 
   @media (min-width: $screen-lg-min) {
