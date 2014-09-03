@@ -16,6 +16,9 @@ module Baoxiao
     end
 
     resources :users do
+      post :sign_up do
+      end
+
       post :sign_in do
         user = User.where(email: params[:email].downcase).first
         if user && user.authenticate(params[:password])
