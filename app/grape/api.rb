@@ -14,5 +14,18 @@ module Baoxiao
         present @jokes, :with => APIEntities::Joke
       end      
     end
+
+    resources :users do
+      post :sign_in do
+        user = User.where(email: params[:email].downcase).first
+        if user && user.authenticate(params[:password])
+          user.ensure_private_token!
+          present user, with: APIEntities::User, private_token: :show       
+        else
+          error!({ "error" => "邮箱或者密码错误" }, 201)
+        end
+      end
+    end
+
   end
 end

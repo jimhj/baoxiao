@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821091949) do
+ActiveRecord::Schema.define(version: 20140903080256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140821091949) do
   create_table "friend_sites", force: true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "priority",   default: 1000
+    t.integer  "priority",   default: 1000, null: false
     t.integer  "status",     default: 0
     t.integer  "user_id"
     t.datetime "created_at"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20140821091949) do
     t.string   "weibo_token"
     t.string   "qq_uid"
     t.string   "qq_token"
+    t.string   "private_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
