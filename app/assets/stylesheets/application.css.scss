@@ -90,9 +90,10 @@ body {
 
     .group-ads {
       width: 312px;
-      display: none; 
+      display: none;
+      .panel { width: 312px; }
     }
-    
+
     .siteAd { display: none; }
   } 
 }
