@@ -13,11 +13,16 @@
   .list-group-item id="vote-for-joke-#{joke.id}"
     .header_bar  
     .list-group-item-user.clearfix.mb-10
-      - unless joke.anonymous?
+      - if !joke.anonymous?
         .pull-left
           a href="#{user_path(joke.user)}" 
             = image_tag joke.user.avatar.thumb.url, alt: joke.user.name
           a.ml-5.mr-5 href="#{user_path(joke.user)}"= joke.user.name
+      - if joke.from_client?
+        .pull-right
+          span 来自
+          a.ml-2= joke.device_name
+          span.ml-2 客户端 
 
     - if joke.title.present?
       .list-group-title.clearfix.mb-10

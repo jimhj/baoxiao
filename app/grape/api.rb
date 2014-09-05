@@ -1,12 +1,16 @@
 require "entities"
+require "helpers"
 
 module Baoxiao
   class API < Grape::API
     prefix "api"
     default_error_formatter :json
+
+    helpers APIHelpers
     
     resources :jokes do
       get do
+        logger.info request.headers
         @jokes = Joke.includes(:user)
                      .order('id DESC')
                      .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
@@ -30,5 +34,21 @@ module Baoxiao
       end
     end
 
+    resources :jokes do
+      post do
+        authenticate!
+        joke = current_user.jokes.build
+        joke.content = params[:content]
+        joke.anonymous = false
+        joke.user_agent = request.headers["User-Agent"]
+        joke.from_client = true
+
+        if joke.save
+          present joke, :with => APIEntities::Joke
+        else
+          error!({ "error" => joke.errors.full_messages }, 400)
+        end
+      end
+    end
   end
 end

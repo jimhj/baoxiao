@@ -133,6 +133,14 @@ class Joke < ActiveRecord::Base
     comments.where('likes_count > 5').order('likes_count DESC, id DESC').first
   end
 
+  def device_name
+    if self.user_agent.include?('iPhone')
+      'iPhone'
+    else
+      ''
+    end
+  end
+
   def self.search_with_hightlight q
     highlight_opts = {
       "term_vector"     => "with_positions_offsets" 
