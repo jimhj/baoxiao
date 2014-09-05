@@ -6,7 +6,7 @@ module Baoxiao
     end
 
     def current_user
-      @current_user ||= User.where(private_token: params[:token]).first
+      @current_user ||= User.find_by(private_token: params[:token])
     end
 
     def authenticate!

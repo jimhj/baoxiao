@@ -35,8 +35,13 @@ module Baoxiao
     end
 
     resources :jokes do
+      params do
+        requires :token, type: String
+      end
+          
       post do
         authenticate!
+
         joke = current_user.jokes.build
         joke.content = params[:content]
         joke.anonymous = false
