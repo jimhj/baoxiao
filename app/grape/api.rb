@@ -21,6 +21,17 @@ module Baoxiao
 
     resources :users do
       post :sign_up do
+        user = User.new
+        user.email = params[:email]
+        user.name = params[:name]
+        user.password = params[:password]
+
+        if user.save
+          user.ensure_private_token!
+          present user, with: APIEntities::User, private_token: :show
+        else
+          error!({ "error" => user.errors.full_messages.first }, 200)
+        end
       end
 
       post :sign_in do
@@ -29,7 +40,7 @@ module Baoxiao
           user.ensure_private_token!
           present user, with: APIEntities::User, private_token: :show       
         else
-          error!({ "error" => "邮箱或者密码错误" }, 201)
+          error!({ "error" => "邮箱或者密码错误" }, 200)
         end
       end
     end
@@ -38,7 +49,7 @@ module Baoxiao
       params do
         requires :token, type: String
       end
-          
+
       post do
         authenticate!
 
@@ -51,7 +62,7 @@ module Baoxiao
         if joke.save
           present joke, :with => APIEntities::Joke
         else
-          error!({ "error" => joke.errors.full_messages }, 400)
+          error!({ "error" => joke.errors.full_messages.first }, 200)
         end
       end
     end
