@@ -3,7 +3,20 @@ class Admin::TagsController < Admin::ApplicationController
 
   def index
     # @tags = Joke.tag_counts_on(:tags).order('taggings_count DESC')
-    @tags = ActsAsTaggableOn::Tag.order('taggings_count DESC')
+    @tags = ActsAsTaggableOn::Tag.order('taggings_count DESC').paginate(page: params[:page], per_page: 50)
+  end
+
+  def new
+    @tag = ActsAsTaggableOn::Tag.new
+  end
+
+  def create
+    @tag = ActsAsTaggableOn::Tag.new tag_params
+    if @tag.save
+      redirect_to :back, notice: '创建标签成功'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -22,7 +35,7 @@ class Admin::TagsController < Admin::ApplicationController
   end
 
   def search
-    @tags = ActsAsTaggableOn::Tag.where("name LIKE '%#{params[:q]}%'").order('taggings_count DESC')
+    @tags = ActsAsTaggableOn::Tag.where("name LIKE '%#{params[:q]}%'").order('taggings_count DESC').paginate(page: params[:page], per_page: 50)
     render template: 'admin/tags/index'
   end
 

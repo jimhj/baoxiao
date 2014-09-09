@@ -1,0 +1,18 @@
+.bs-docs-section
+  .page-header 新建标签
+  .row
+    .col-md-10
+      .panel
+        .panel-body
+          = render 'share/flash_messages'
+          = form_for @tag, :url => admin_tags_path, :class => 'form' do |f|
+            = render 'share/form_error_messages', form: f
+            .form-group
+              = f.text_field :name, :class => 'form-control', placeholder: '标题'
+            .form-group
+              = f.text_field :seo_title, :class => 'form-control', placeholder: 'SEO标题'
+            .form-group
+              = f.text_field :keywords, :class => 'form-control', placeholder: '填写关键字，逗号隔开'
+            .form-group
+              = f.text_area :description, :class => 'form-control', :rows => 10, placeholder: '填写描述'
+            = f.submit "确定新建", :class => 'btn btn-primary'
