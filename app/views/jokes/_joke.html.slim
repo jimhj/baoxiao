@@ -64,7 +64,8 @@
             span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
               i.fa.fa-share-square-o
       .tags
-        i.fa.fa-tags
         - cache(joke.tags) do
+          - if joke.tags.any?
+            i.fa.fa-tags
           - joke.tags.each do |tag|
             a href="#{tag_path(tag.name)}"= tag

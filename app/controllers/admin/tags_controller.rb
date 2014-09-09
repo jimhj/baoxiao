@@ -27,7 +27,7 @@ class Admin::TagsController < Admin::ApplicationController
     @tag = ActsAsTaggableOn::Tag.find params[:id]
     tag_params[:keywords] = tag_params[:keywords].to_s.split(/,\s?|，\s?/).join(',')
     if @tag.update_attributes! tag_params
-      expire_fragment(%r{/*/tags})
+      # expire_fragment(%r{/*/tags})
       redirect_to :back
     else
       render :edit

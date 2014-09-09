@@ -40,9 +40,10 @@
                 span.bds_more style="background: none !important;height: 100%;padding-left:0 !important;"
                   i.fa.fa-share-square-o
           .tags
-            i.fa.fa-tags
-            - @tags.each do |tag|
-              a href="#{tag_path(tag.name)}"= tag
+            - if @tags.any?
+              i.fa.fa-tags
+              - @tags.each do |tag|
+                a href="#{tag_path(tag.name)}"= tag
       .pagebar.clearfix
         .pull-left
           a.btn.btn-primary.btn-lg.prevJoke class=('disabled' if @joke.prev.nil?) href="#{sibling_joke_path(@joke.prev)}"
