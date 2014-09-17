@@ -1,6 +1,6 @@
 # encoding: utf-8
 class FriendSite < ActiveRecord::Base
-  include JokeCacheSweeper
+  # include JokeCacheSweeper
 
   validates_presence_of :name, :url, :priority
 
