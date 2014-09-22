@@ -21,7 +21,7 @@ module Baoxiao
         if model.content.blank?
           ''
         else
-          model.content.gsub(/<br\s*\/?>/, '\n')
+          model.content.gsub(/<br\s*\/?>/, '\r\n')
         end
       end      
 
