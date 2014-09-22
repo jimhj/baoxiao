@@ -30,7 +30,7 @@
           a href="#{joke_path(joke.id)}"= joke.title
 
     .list-group-item-text
-      .content= simple_format(joke.content).strip
+      .content= simple_format(joke.content.strip)
       - if joke.picture.present?
         .thumb.mt-10
           a href="#{joke_path(joke.id)}"
