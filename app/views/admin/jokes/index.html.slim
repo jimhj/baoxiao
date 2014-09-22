@@ -30,7 +30,8 @@
         - else
           - klass = ''
         tr class="#{klass} joke-#{j.id}"
-          td= j.id
+          td
+            a href="#{joke_path(j)}" target="_blank"= j.id
           td style="max-width: 200px;"= j.content.truncate(80)
           td= image_tag j.picture.thumb.url
           td= j.status
