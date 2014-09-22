@@ -18,7 +18,11 @@ module Baoxiao
       end
 
       expose :content do |model|
-        model.content.blank? ? '' : model.content
+        if model.content.blank?
+          ''
+        else
+          model.content.gsub(/<br\s*\/?>/, '\n')
+        end
       end      
 
       expose :picture_url do |model|
