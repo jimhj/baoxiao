@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
-  caches_action :index, :cache_path => Proc.new { |c| c.params }, :expires_in => 1.hour
+  caches_action :index, :cache_path => Proc.new { |c| c.params }, :expires_in => 10.minutes
 
   def index
     @jokes = Joke.includes(:user).order('id DESC')
