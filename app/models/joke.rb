@@ -10,7 +10,7 @@ class Joke < ActiveRecord::Base
 
   validates :title, uniqueness: true, length: { maximum: 40 }, allow_blank: true
   validates :content, presence: true, if: Proc.new { |joke| joke.title.blank? }
-  validates :content, uniqueness: true
+  validates :content, uniqueness: true, if: Proc.new { |joke| joke.picture.blank? }
   # validates :content, presence: true, 
   #                     uniqueness: { if: Proc.new { |joke| joke.picture.blank? } }, 
   #                     length: { minimum: 2, maximum: 300 },
