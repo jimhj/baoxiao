@@ -7,7 +7,7 @@ GIT
       delayed_job (>= 3.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   specs:
     actionmailer (4.1.2)
       actionpack (= 4.1.2)
