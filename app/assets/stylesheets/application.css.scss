@@ -65,6 +65,20 @@ i.fa.fa-plus { font-size: 18px; font-weight: normal; }
     }    
   }
 
+  a.mobile-client {
+    position: absolute;
+    top: 0px;
+    right: -8px;
+    border-radius: 0px 0px 4px 4px;
+    border-left: 2px dashed #FFF;
+    // border-right: 2px dashed #FFF;
+    border-bottom: 2px dashed #FFF;
+
+    @media (max-width: 1170px) {
+      right: 16%;
+    }    
+  }  
+
 }
 
 body[class="jokes-show"], body[class="jokes-new"], body[class^="sessions"] {

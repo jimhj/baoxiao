@@ -17,6 +17,9 @@ module Parser
         parser.xpath("//div[@class='article block untagged mb15']").each do |c|
           content = c.xpath("./div[@class='content']").first.try(:content)
           picture = c.xpath("./div[@class='thumb']//img[1]/@src").first.try(:value)
+
+          p picture
+          
           up_votes = c.xpath(".//li[@class='up']/a[@class='voting']/span[1]").first.try(:content)
           down_votes = c.xpath(".//li[@class='down']/a[@class='voting']/span[1]").first.try(:content)
 

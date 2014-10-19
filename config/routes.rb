@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get :hot
       get :random
       get :rand
+      get :duanzi
+      get :tupian
       get :search
       get :check_title
       get :check_content

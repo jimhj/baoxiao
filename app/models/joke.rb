@@ -22,6 +22,8 @@ class Joke < ActiveRecord::Base
   scope :hot_pictures, -> { hot.where.not(picture: nil) }
   scope :recents, -> { where.not("title is null or title = ''").order('created_at DESC') }
   scope :recent_pictures, -> { recents.where.not(picture: nil) }
+  scope :duanzi, -> { where("picture is null").order('created_at DESC') }
+  scope :tupian, -> { where.not("picture is null").order('created_at DESC') }
 
   store :picture_meta_info, accessors: [:normal, :small, :thumb]
 
@@ -55,7 +57,7 @@ class Joke < ActiveRecord::Base
     uncached do
       find_by_sql(
         <<-SQL
-          SELECT * FROM jokes where recommended is true and status = 1 order by random() LIMIT #{total};
+          SELECT * FROM jokes where recommended is true and status = 1 and picture is not null order by random() LIMIT #{total};
         SQL
       )
     end

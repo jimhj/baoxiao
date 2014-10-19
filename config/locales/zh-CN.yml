@@ -44,6 +44,8 @@ zh-CN:
     search: '搜索笑话'
     new: '投稿'
     register: '注册'
+    duanzi: '段子'
+    tupian: '美图'
   users:
     title: '%{name}的笑话'
   tags:

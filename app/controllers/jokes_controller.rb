@@ -53,6 +53,16 @@ class JokesController < ApplicationController
     redirect_to joke_path(@joke)
   end
 
+  def duanzi
+    @jokes = Joke.duanzi.paginate(page_opts)
+    set_seo_meta "#{t('indexs.duanzi')}_#{Settings.app_title}"
+  end
+
+  def tupian
+    @jokes = Joke.tupian.paginate(page_opts)
+    set_seo_meta "#{t('indexs.tupian')}_#{Settings.app_title}"
+  end
+
   def recent
     @jokes = Joke.includes(:user).order('id DESC')
                                  .paginate(page: params[:page], per_page: 20, total_entries: 2000)

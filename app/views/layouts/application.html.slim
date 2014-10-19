@@ -25,7 +25,10 @@ html
       .big-ad
         a.btn.btn-danger.feed
           i.fa.fa-rss
-          span.ml-5 订阅 
+          span.ml-5 订阅
+        a.btn.btn-primary.mobile-client href="https://itunes.apple.com/cn/app/xiao-hua-bo-lan/id919439141?mt=8"
+          i.fa.fa-mobile
+          span.ml-5 手机客户端 
         
     .navbar
       .container.clearfix
@@ -46,22 +49,36 @@ html
               a href="#{root_path}" 
                 i.fa.fa-home
                 span.ml-5 首页
-            li
-              a href="#{recent_jokes_path}" 
-                i.fa.fa-refresh
-                span.ml-5 最新            
+            / li
+            /   a href="#{recent_jokes_path}" 
+            /     i.fa.fa-refresh
+            /     span.ml-5 最新            
             li
               a href="#{hot_jokes_path}" 
                 i.fa.fa-fire
-                span.ml-5 最热
+                span.ml-5 热门
             li
               a href="#{random_jokes_path}" 
                 i.fa.fa-random
                 span.ml-5 随机
             li
+              a href="#{tupian_jokes_path}" 
+                i.fa.fa-image
+                span.ml-5 纯图
+            li
+              a href="#{duanzi_jokes_path}" 
+                i.fa.fa-align-left
+                span.ml-5 段子
+
+            li
               a href="#{tags_path}" 
                 i.fa.fa-tags
                 span.ml-5 笑点
+
+            / li
+            /   a href="https://itunes.apple.com/cn/app/xiao-hua-bo-lan/id919439141?mt=8" 
+            /     i.fa.fa-mobile
+            /     span.ml-5 客户端
 
     .main
       .container
