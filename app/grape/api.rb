@@ -20,7 +20,43 @@ module Baoxiao
                      .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
 
         present @jokes, :with => APIEntities::Joke
-      end      
+      end
+
+      get :meinvmeitu do
+        @jokes = Joke.includes(:user)
+                     .tagged_with('美女')
+                     .order('id DESC')
+                     .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
+
+        present @jokes, :with => APIEntities::Joke        
+      end
+
+      get :xieemanhua do
+        @jokes = Joke.includes(:user)
+                     .tagged_with('邪恶')
+                     .order('id DESC')
+                     .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
+
+        present @jokes, :with => APIEntities::Joke        
+      end
+
+      get :youmoqiushi do
+        @jokes = Joke.includes(:user)
+                     .tagged_with('糗事')
+                     .order('id DESC')
+                     .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
+
+        present @jokes, :with => APIEntities::Joke        
+      end
+
+      get :neihanduanzi do
+        @jokes = Joke.includes(:user)
+                     .tagged_with('内涵')
+                     .order('id DESC')
+                     .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
+
+        present @jokes, :with => APIEntities::Joke        
+      end                       
     end
 
     resources :users do
