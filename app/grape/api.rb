@@ -56,6 +56,12 @@ module Baoxiao
                      .paginate(page: params[:page] || 1, per_page: params[:per_page] || 20, total_entries: 2000)
 
         present @jokes, :with => APIEntities::Joke        
+      end
+
+      get ":id/comments" do
+        joke = Joke.find params[:id]
+        comments = joke.comments.order('created_at ASC')
+        present comments, with: APIEntities::Comment
       end                       
     end
 

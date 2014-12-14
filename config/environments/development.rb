@@ -41,5 +41,5 @@ Rails.application.configure do
 end
 
 CarrierWave.configure do |config|
-  config.asset_host = "http://127.0.0.1:3000"
+  config.asset_host = "http://127.0.0.1:8000"
 end

@@ -51,5 +51,10 @@ module Baoxiao
 
       expose :user, using: APIEntities::User, unless: lambda{ |joke, options| joke.anonymous? }
     end
+
+    class Comment < Grape::Entity
+      expose :body
+      expose :user, using: APIEntities::User
+    end
   end
 end
