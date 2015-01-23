@@ -3,7 +3,9 @@ class TagsController < ApplicationController
 
   def index
     @tags = ActsAsTaggableOn::Tag.order('taggings_count DESC')
-    set_seo_meta "#{t('indexs.tags')}_#{Settings.app_title}"
+    app_title = "开心100_最新搞笑图片_爆笑冷笑话_内涵幽默"
+    # set_seo_meta "#{t('indexs.tags')}_#{Settings.app_title}"
+    set_seo_meta "#{t('indexs.tags')}_#{app_title}"
   end
 
   def show

@@ -6,6 +6,9 @@
 $brand-primary: #1A9850;
 $navbar-border-radius: 0;
 $feed-color: #DDB170;
+$grid-columns: 12;
+$grid-gutter-width: 10px;
+$container-desktop: 960px;
 
 @import "bootstrap";
 @import "bootstrap_customize";
@@ -100,12 +103,11 @@ body {
     }
   }
 
-  @media (max-width: 992px) {
-
+  @media (max-width: $container-desktop) {
     .group-ads {
-      width: 312px;
-      display: none;
-      .panel { width: 312px; }
+      // width: 312px;
+      // display: none;
+      // .panel { width: 312px; }
     }
 
     .siteAd { display: none; }
@@ -144,6 +146,10 @@ body {
 }
 
 .main > .container {   
+  @media (min-width: $container-desktop) {
+    width: 76%;
+  }
+
   > .row {
     width: 100%;
     margin: 0 auto;  
@@ -160,11 +166,11 @@ body {
     }
   }
 
-  @media (min-width: $screen-lg-min) {
-    > .row {
-      width: 90%;
-    }
-  }
+  // @media (min-width: $screen-lg-min) {
+  //   > .row {
+  //     // width: 80%;
+  //   }
+  // }
 
   @media (max-width: $grid-float-breakpoint) {
     padding-left: 0;

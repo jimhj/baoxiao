@@ -53,7 +53,7 @@ class Joke < ActiveRecord::Base
     find_by_sql(sql).first
   end
 
-  def self.recommends(total = 8)
+  def self.recommends(total = 10)
     uncached do
       find_by_sql(
         <<-SQL

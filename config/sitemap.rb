@@ -1,6 +1,6 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.compress = false
-SitemapGenerator::Sitemap.default_host = "http://www.xiaohuabolan.com"
+SitemapGenerator::Sitemap.default_host = "http://www.kaixin100.com"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -35,7 +35,7 @@ SitemapGenerator::Sitemap.create do
     add tag_path(tag.name), lastmod: Time.now
   end
 
-  Joke.find_each do |joke|
+  Joke.order('created_at DESC').limit(1000) do |joke|
     add joke_path(joke), lastmod: joke.updated_at
   end
 end
