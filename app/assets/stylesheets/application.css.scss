@@ -7,7 +7,7 @@ $brand-primary: #1A9850;
 $navbar-border-radius: 0;
 $feed-color: #DDB170;
 $grid-columns: 12;
-$grid-gutter-width: 30px;
+$grid-gutter-width: 20px;
 $container-desktop: 960px;
 
 @import "bootstrap";
@@ -131,11 +131,19 @@ body {
   // i.fa-renren { color: #105BA3; }
   // i.fa-qq { color: #008AC5; }
 
+  .panel.siteAd {
+    border: none;    
+    border-top: none;
+    // border-radius: 0;
+  }
+
   .panel.siteAd .panel-body {
-    padding: 5px 5px 0px 5px;
+    padding: 5px 0px 0px 8px;
+
     iframe { 
       width: 100%;
       max-width: 300px; 
+      margin: 0px auto;
     }
   }
 
