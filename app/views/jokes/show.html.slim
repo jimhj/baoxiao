@@ -21,6 +21,10 @@
               a href="#{joke_path(@joke.id)}"
                 img src="#{@joke.picture.normal.url}" alt="#{@joke.picture_alt}"
 
+          - if ad = Ad.for_detail_content[0]
+            .text-center.siteAd.mt-20 class="ad-#{ad.try(:version)}"
+              = raw ad.try(:body)
+
         .status.mt-10.clearfix
           ul.list-unstyled.counts.pull-right.clearfix
             li

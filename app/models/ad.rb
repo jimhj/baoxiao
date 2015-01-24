@@ -4,7 +4,7 @@ class Ad < ActiveRecord::Base
   validates_presence_of :name, :body
   enum status: [:enable, :disable]
 
-  AD_TYPES = %w(LIST SIDEBAR DETAIL RECOMMAND MOBILE)
+  AD_TYPES = %w(LIST SIDEBAR DETAIL DETAIL_CONTENT RECOMMAND MOBILE BAIDU)
 
   class << self
     AD_TYPES.each do |ad_type|
@@ -40,6 +40,8 @@ class Ad < ActiveRecord::Base
       expire_fragment 'ads_detail_1'
       expire_fragment 'ads_detail_2'
       expire_fragment 'ads_detail_3'
+    when "DETAIL_CONTENT"
+      expire_fragment 'ads_detail_content_1'
     when "RECOMMAND"
       expire_fragment 'ads_recommand_1'
       expire_fragment 'ads_recommand_2'

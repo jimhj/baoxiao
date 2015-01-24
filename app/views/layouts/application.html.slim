@@ -88,7 +88,7 @@ html
     .footer
       .container
         .row
-          .col-md-7 
+          .col-md-8
             ul.list-unstyled.clearfix.bottom-nav
               li.pull-left
                 a href="https://itunes.apple.com/cn/app/xiao-hua-bo-lan/id919439141?mt=8"
@@ -98,14 +98,17 @@ html
                 a href="#{tags_path}" 
                   i.fa.fa-cloud
                   span.ml-5 笑点                                    
-          .col-md-3.copyright
+          .col-md-4.copyright
             ul.list-unstyled
               li © 2008-2018 开心100 版权所有
 
   = render 'share/baidu_share_script'
-  = render 'share/ba'
   = render 'share/qq_feed'
   .mobileAd
     - cache "ads_mobile_1", skip_digest: true do
       - if ad = Ad.for_mobile[0]
         = raw ad.try :body
+  - if ad = Ad.for_baidu[0]
+    = raw ad.try(:body)
+  - else
+    = render 'share/ba'
