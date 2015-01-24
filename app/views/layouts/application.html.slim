@@ -105,11 +105,12 @@ html
   = render 'share/baidu_share_script'
   = render 'share/qq_feed'
   .mobileAd
-    - cache "ads_mobile_1", skip_digest: true do
-      - if ad = Ad.for_mobile[0]
-        = raw ad.try :body
+    - if ad = Ad.for_mobile[0]
+      = raw ad.try :body
 
   - if ad = Ad.for_baidu[0]
     = raw ad.try(:body)
   - else
     = render 'share/ba'
+html
+  p 12312321
