@@ -108,6 +108,7 @@ html
     - cache "ads_mobile_1", skip_digest: true do
       - if ad = Ad.for_mobile[0]
         = raw ad.try :body
+
   - if ad = Ad.for_baidu[0]
     = raw ad.try(:body)
   - else

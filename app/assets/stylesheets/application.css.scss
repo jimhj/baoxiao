@@ -25,6 +25,14 @@ $container-desktop: 960px;
   .mb-#{$margin} { margin-bottom: #{$margin}px; }
 }
 
+#cproIframe2001holder, #cproIframe2002holder {
+  div, iframe {
+    box-sizing:content-box;
+    -moz-box-sizing:content-box; /* Firefox */
+    -webkit-box-sizing:content-box; /* Safari */  
+  }
+}
+
 i.fa.fa-plus { font-size: 18px; font-weight: normal; }
 
 .site-top {
