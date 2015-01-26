@@ -7,8 +7,8 @@ $brand-primary: #1A9850;
 $navbar-border-radius: 0;
 $feed-color: #DDB170;
 $grid-columns: 12;
-$grid-gutter-width: 20px;
-$container-desktop: 960px;
+$grid-gutter-width: 10px;
+// $container-desktop: 960px;
 
 @import "bootstrap";
 @import "bootstrap_customize";
@@ -126,11 +126,6 @@ body {
   min-height: 452px;
 
   em { background-color: #FFF681; }
-  // i.fa-weibo { color: #E6162D; }
-  // i.fa-weixin { color: #87AA39; }
-  // i.fa-renren { color: #105BA3; }
-  // i.fa-qq { color: #008AC5; }
-
   .panel.siteAd {
     border: none;    
     border-top: none;
@@ -138,10 +133,11 @@ body {
   }
 
   .panel.siteAd .panel-body {
-    padding: 5px 0px 0px 8px;
+    // padding: 5px 0px 0px 8px;
+    padding: 4px 0px 0px 3px
 
     iframe { 
-      width: 100%;
+      // width: 100%;
       // max-width: 300px; 
       margin: 0px auto;
     }
@@ -159,14 +155,15 @@ body {
     }
 
     > .container > .row {
-      width: 100%;
+      // width: 80%;
     }
   }  
 }
 
 .main > .container {   
   @media (min-width: $container-desktop) {
-    width: 80%;
+    // width: 80%;
+    width: 960px;
   }
 
   > .row {
@@ -185,11 +182,11 @@ body {
     }
   }
 
-  // @media (min-width: $screen-lg-min) {
-  //   > .row {
-  //     // width: 80%;
-  //   }
-  // }
+  @media (min-width: $screen-lg-min) {
+    > .row {
+      // width: 80%;
+    }
+  }
 
   @media (max-width: $grid-float-breakpoint) {
     padding-left: 0;
